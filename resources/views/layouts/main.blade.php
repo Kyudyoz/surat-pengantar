@@ -137,14 +137,14 @@
                                 @endif
 				            </a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="/profil/{{ auth()->user()->id }}"><i class="align-middle me-1" data-feather="user"></i> Profil</a>
-								<a class="dropdown-item" href="/pengaturan/{{ auth()->user()->id }}"><i class="align-middle me-1" data-feather="settings"></i> Pengaturan Akun</a>
+								<a class="dropdown-item" href="/profil"><i class="align-middle me-1" data-feather="user"></i> Profil</a>
+								<a class="dropdown-item" href="/pengaturan"><i class="align-middle me-1" data-feather="settings"></i> Pengaturan Akun</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="/bantuan"><i class="align-middle me-1" data-feather="help-circle"></i> Bantuan</a>
 								<div class="dropdown-divider"></div>
 								<form action="/logout" method="POST">
                                     @csrf
-                                    <button class="nav-link" type="submit"><i class="align-middle me-1" data-feather="log-out"></i> Logout</button>
+                                    <button class="nav-link" type="submit">&nbsp;&nbsp;<i class="align-middle me-1" data-feather="log-out"></i> Logout</button>
                                 </form>
 							</div>
 						</li>

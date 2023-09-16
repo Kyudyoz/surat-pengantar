@@ -16,7 +16,7 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/',[HomeController::class, 'blog'])->middleware('auth');
+Route::get('/',[HomeController::class, 'blog']);
 Route::get('/dashboardRt',[HomeController::class, 'dashboardRt'])->middleware('auth');
 Route::get('/dashboard',[HomeController::class, 'dashboard'])->middleware('auth');
 Route::get('/profil',[HomeController::class, 'profil'])->middleware('auth');
