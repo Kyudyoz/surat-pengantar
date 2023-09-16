@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RtController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/',[HomeController::class, 'blog'])->middleware('auth');
+Route::get('/dashboardRt',[HomeController::class, 'dashboardRt'])->middleware('auth');
+Route::get('/dashboard',[HomeController::class, 'dashboard'])->middleware('auth');
+Route::get('/profil',[HomeController::class, 'profil'])->middleware('auth');
+Route::get('/validasi',[RtController::class, 'validasi'])->middleware('auth');
+Route::get('/dataWarga',[RtController::class, 'dataWarga'])->middleware('auth');
+
+
+//login
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
