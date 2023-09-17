@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RtController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\wargaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,11 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/',[HomeController::class, 'blog']);
+Route::get('/profil',[HomeController::class, 'profil'])->middleware('auth');
+
+//rt
 Route::get('/dashboardRt',[HomeController::class, 'dashboardRt'])->middleware('auth');
 Route::get('/dashboard',[HomeController::class, 'dashboard'])->middleware('auth');
-Route::get('/profil',[HomeController::class, 'profil'])->middleware('auth');
 Route::get('/validasi',[RtController::class, 'validasi'])->middleware('auth');
 Route::get('/dataWarga',[RtController::class, 'dataWarga'])->middleware('auth');
 
@@ -28,4 +31,8 @@ Route::get('/dataWarga',[RtController::class, 'dataWarga'])->middleware('auth');
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
+
+//warga
+Route::get('/buatSurat', [wargaController::class, 'buatSurat'])->middleware('auth');
+Route::get('/hapusSurat/{id}', [wargaController::class, 'destroy'])->middleware('auth');
 

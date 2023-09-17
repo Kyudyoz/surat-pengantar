@@ -3,7 +3,7 @@
 <main class="content">
     <div class="container-fluid p-0">
 
-        <h1 class="h3 mb-3"><strong>RT 27</strong> Dashboard</h1>
+        <h1 class="h3 mb-3"><strong>{{ auth()->user()->rt->nama_rt }}</strong> Dashboard</h1>
 
         <div class="row">
             <div class="col-xl-6 col-xxl-6 d-flex">
@@ -23,7 +23,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h1 class="mt-1 mb-3">80</h1>
+                                    <h1 class="mt-1 mb-3">{{ $jmlWarga }}</h1>
                                 </div>
                             </div>
                             <div class="card">
@@ -39,7 +39,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h1 class="mt-1 mb-3">14.212</h1>
+                                    <h1 class="mt-1 mb-3">{{ $jmlDiproses }}</h1>
                                 </div>
                             </div>
                         </div>

@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('surats', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->foreignId('rt_id');
             $table->string('keperluan')->nullable();
+            $table->string('jenis_surat')->nullable();
             $table->string('tinggal')->nullable();
             $table->string('bidang_usaha')->nullable();
             $table->string('nama_usaha')->nullable();
@@ -26,7 +28,7 @@ return new class extends Migration
             $table->string('lokasi')->nullable();
             $table->string('jenis_cerai')->nullable();
             $table->string('nama_pasangan')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->default('Diproses');
             $table->timestamps();
         });
     }

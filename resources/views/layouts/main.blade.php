@@ -8,10 +8,13 @@
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="../assets/img/icons/surat.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 	<link href="{{ URL::asset('/assets/css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 	<title>{{ $title }}</title>
+    @livewireStyles
 </head>
 
 <body>
@@ -83,7 +86,7 @@
 		            </li>
 
 		            <li class="sidebar-item {{ ($active === "Blog") ? 'active' : '' }}">
-		                <a class="sidebar-link" href="/blog">
+		                <a class="sidebar-link" href="/">
 		                    <i class="align-middle" data-feather="slack"></i> <span class="align-middle">Bulian News</span>
 		                </a>
 		            </li>
@@ -94,7 +97,7 @@
 		            </li>
 
 		            <li class="sidebar-item {{ ($active === "Blog") ? 'active' : '' }}">
-		                <a class="sidebar-link" href="/blog">
+		                <a class="sidebar-link" href="/">
 		                    <i class="align-middle" data-feather="slack"></i> <span class="align-middle">Bulian News</span>
 		                </a>
 		            </li>
@@ -105,9 +108,6 @@
 		            </li>
                     @endauth
 		        </ul>
-
-
-
 		    </div>
 		</nav>
 
@@ -173,7 +173,41 @@
 		</div>
 	</div>
 
+    @livewireScripts
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $('.delete').click(function () {
+            let suratId = $(this).attr('data-id');
+
+            Swal.fire({
+                title: 'Yakin?',
+                text: "Surat yang dihapus tidak bisa dikembalikan",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/hapusSurat/"+suratId+""
+                    Swal.fire(
+                        'Berhasil!',
+                        'Suratmu sudah dihapus',
+                        'success'
+                    )
+                }
+            })
+        })
+    </script>
+    @include('sweetalert::alert')
+
+    <script src="https://kit.fontawesome.com/057baadc3d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 	<script src="{{ URL::asset('/assets/js/app.js') }}"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script> <!-- Bahasa Indonesia -->
 

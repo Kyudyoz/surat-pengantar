@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Rt;
 use App\Models\User;
+use App\Models\Surat;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -64,6 +65,27 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345'),
             'nama' => 'Admin',
             'role' => 'Admin'
+        ]);
+
+        Surat::create([
+            'user_id' => 1,
+            'rt_id' => 1,
+            'keperluan' => 'Terserah',
+            'jenis_surat' => 'Surat Keterangan Usaha'
+        ]);
+        Surat::create([
+            'user_id' => 1,
+            'rt_id' => 1,
+            'keperluan' => 'Entah',
+            'jenis_surat' => 'Surat Keterangan Duda',
+            'status' => 'Ditolak'
+        ]);
+        Surat::create([
+            'user_id' => 1,
+            'rt_id' => 1,
+            'keperluan' => 'Terakhir',
+            'jenis_surat' => 'Surat Keterangan Domisili',
+            'status' => 'Disetujui'
         ]);
     }
 }
