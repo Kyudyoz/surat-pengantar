@@ -11,4 +11,10 @@ class Surat extends Model
 
     protected $guarded = ['id'];
 
+    public function rt(){
+        return $this->belongsTo(Rt::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

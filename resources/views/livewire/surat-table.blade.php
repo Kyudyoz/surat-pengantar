@@ -25,29 +25,91 @@
                                     <td>{{ $surat->jenis_surat }}</td>
                                     <td>
                                         @if ($surat->status == 'Diproses')
-                                        <a href="/suratSaya/{{ $surat->id }}" class="btn btn-success">
+                                        @if ($surat->jenis_surat == 'Surat Keterangan Tidak Mampu')
+                                        <a href="/lihatSKTM/{{ $surat->id }}" class="btn btn-success">
                                             Lihat
                                         </a>
-                                        <a href="/editSurat/{{ $surat->id }}" class="btn btn-warning">
+                                        <a href="/editSKTM/{{ $surat->id }}" class="btn btn-warning">
                                             Edit
                                         </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Usaha')
+                                        <a href="/lihatSKU/{{ $surat->id }}" class="btn btn-success">
+                                            Lihat
+                                        </a>
+                                        <a href="/editSKU/{{ $surat->id }}" class="btn btn-warning">
+                                            Edit
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Domisili')
+                                        <a href="/lihatSKD/{{ $surat->id }}" class="btn btn-success">
+                                            Lihat
+                                        </a>
+                                        <a href="/editSKD/{{ $surat->id }}" class="btn btn-warning">
+                                            Edit
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Kematian')
+                                        <a href="/lihatSKK/{{ $surat->id }}" class="btn btn-success">
+                                            Lihat
+                                        </a>
+                                        <a href="/editSKK/{{ $surat->id }}" class="btn btn-warning">
+                                            Edit
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Kepemilikan Rumah')
+                                        <a href="/lihatSKKR/{{ $surat->id }}" class="btn btn-success">
+                                            Lihat
+                                        </a>
+                                        <a href="/editSKKR/{{ $surat->id }}" class="btn btn-warning">
+                                            Edit
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Janda')
+                                        <a href="/lihatSKJ/{{ $surat->id }}" class="btn btn-success">
+                                            Lihat
+                                        </a>
+                                        <a href="/editSKJ/{{ $surat->id }}" class="btn btn-warning">
+                                            Edit
+                                        </a>
+                                        @endif
                                         <a href="#" class="btn btn-danger delete" data-id="{{ $surat->id }}">
                                             Hapus
                                         </a>
 
-                                        {{-- <form action="/hapusSurat/{{ $surat->id }}" method="post" class="d-inline" onsubmit="return sweetAlert();">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger" >
-                                                Hapus
-                                            </button>
-                                        </form> --}}
                                         @elseif($surat->status == 'Disetujui')
-                                        <a href="" class="btn btn-warning text-dark">
+                                        @if ($surat->jenis_surat == 'Surat Keterangan Tidak Mampu')
+                                        <a href="/lihatSKTM/{{ $surat->id }}" class="btn btn-success">
                                             <strong>
                                                 Cetak <i class="fa-solid fa-print fa-lg"></i>
                                             </strong>
                                         </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Usaha')
+                                        <a href="/lihatSKU/{{ $surat->id }}" class="btn btn-success">
+                                            <strong>
+                                                Cetak <i class="fa-solid fa-print fa-lg"></i>
+                                            </strong>
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Domisili')
+                                        <a href="/lihatSKD/{{ $surat->id }}" class="btn btn-success">
+                                            <strong>
+                                                Cetak <i class="fa-solid fa-print fa-lg"></i>
+                                            </strong>
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Kematian')
+                                        <a href="/lihatSKK/{{ $surat->id }}" class="btn btn-success">
+                                            <strong>
+                                                Cetak <i class="fa-solid fa-print fa-lg"></i>
+                                            </strong>
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Kepemilikan Rumah')
+                                        <a href="/lihatSKKR/{{ $surat->id }}" class="btn btn-success">
+                                            <strong>
+                                                Cetak <i class="fa-solid fa-print fa-lg"></i>
+                                            </strong>
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Janda')
+                                        <a href="/lihatSKJ/{{ $surat->id }}" class="btn btn-success">
+                                            <strong>
+                                                Cetak <i class="fa-solid fa-print fa-lg"></i>
+                                            </strong>
+                                        </a>
+                                        @endif
                                         @elseif($surat->status == 'Ditolak')
                                         <span class="badge bg-secondary">Tidak dapat dilakukan</span>
                                         @endif

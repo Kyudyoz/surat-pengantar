@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('rts', function (Blueprint $table) {
             $table->id();
             $table->string('nama_rt');
+            $table->string('nama_ketua')->nullable();
             $table->timestamps();
         });
     }

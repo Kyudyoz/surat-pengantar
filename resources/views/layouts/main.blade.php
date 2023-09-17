@@ -12,6 +12,20 @@
 
 	<link href="{{ URL::asset('/assets/css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <style>
+        trix-toolbar [data-trix-button-group ="file-tools"]{
+          display: none;
+        }
+        trix-editor{
+          background-color: white;
+        }
+        .trix-button-group{
+          background-color: white;
+        }
+      </style>
 
 	<title>{{ $title }}</title>
     @livewireStyles
@@ -172,10 +186,19 @@
 			</footer>
 		</div>
 	</div>
+    @if(session()->has('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session()->get('success') }}',
+        })
+    </script>
 
+    @endif
     @livewireScripts
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         $('.delete').click(function () {
             let suratId = $(this).attr('data-id');
@@ -191,11 +214,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location = "/hapusSurat/"+suratId+""
-                    Swal.fire(
-                        'Berhasil!',
-                        'Suratmu sudah dihapus',
-                        'success'
-                    )
+
                 }
             })
         })
@@ -231,6 +250,35 @@
             };
             flatpickr("#datetimepicker-dashboard", options);
         });
+    </script>
+
+<script>
+    const title = document.querySelector("#judul");
+    const slug = document.querySelector("#slug");
+
+    title.addEventListener("change", function () {
+        fetch("/dashboard/create/checkSlug?title=" + title.value)
+            .then((response) => response.json())
+            .then((data) => (slug.value = data.slug));
+    });
+
+    document.addEventListener("trix-file-accept", function(e){
+        e.preventDefault();
+    });
+
+    function previewImage() {
+      const image = document.querySelector("#image");
+      const imgPreview = document.querySelector(".img-preview");
+
+      imgPreview.style.display = 'block';
+
+      const oFReader = new FileReader();
+      oFReader.readAsDataURL(image.files[0]);
+      oFReader.onload = function(oFREvent){
+        imgPreview.src = oFREvent.target.result;
+      }
+    }
+
     </script>
 
 

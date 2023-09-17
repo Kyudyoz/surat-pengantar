@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('lokasi')->nullable();
             $table->string('jenis_cerai')->nullable();
             $table->string('nama_pasangan')->nullable();
+            $table->string('no_hp')->nullable();
             $table->string('status')->default('Diproses');
             $table->timestamps();
         });

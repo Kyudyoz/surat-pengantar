@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RtController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\wargaController;
 
 /*
@@ -34,5 +35,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 //warga
 Route::get('/buatSurat', [wargaController::class, 'buatSurat'])->middleware('auth');
+Route::post('/suratStore', [wargaController::class, 'store'])->middleware('auth');
+Route::get('/editSurat/{id}', [wargaController::class, 'edit'])->middleware('auth');
+Route::post('/editSurat/{id}/update', [wargaController::class, 'update'])->middleware('auth');
 Route::get('/hapusSurat/{id}', [wargaController::class, 'destroy'])->middleware('auth');
 
+//pdf
+Route::get('/lihatSKTM/{id}', [PdfController::class, 'cetak_sktm'])->middleware('auth');

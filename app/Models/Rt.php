@@ -11,7 +11,10 @@ class Rt extends Model
 
     protected $guarded = ['id'];
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function users(){
+        return $this->hasMany(User::class);
+    }
+    public function surats(){
+        return $this->hasMany(Surat::class);
     }
 }
