@@ -27,8 +27,26 @@
                                             <input type="hidden" name="jenis_surat" value="Surat Keterangan Usaha">
                                             <div class="mb-3">
                                                 <label class="form-label">Keperluan</label>
-                                                <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" type="text" name="keperluan" placeholder="Masukan Keperluan" />
+                                                <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" required type="text" name="keperluan" placeholder="Masukan Keperluan" />
                                                 @error('keperluan')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Jenis Usaha</label>
+                                                <input class="form-control form-control-lg @error('bidang_usaha') is-invalid @enderror" required type="text" name="bidang_usaha" placeholder="Masukan jenis usaha" />
+                                                @error('bidang_usaha')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Nama Usaha</label>
+                                                <input class="form-control form-control-lg @error('nama_usaha') is-invalid @enderror" required type="text" name="nama_usaha" placeholder="Masukan nama usaha" />
+                                                @error('nama_usaha')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>

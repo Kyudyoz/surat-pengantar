@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('rt_id');
             $table->string('keperluan')->nullable();
+            $table->string('nik')->nullable();
             $table->string('jenis_surat')->nullable();
             $table->string('tinggal')->nullable();
             $table->string('bidang_usaha')->nullable();

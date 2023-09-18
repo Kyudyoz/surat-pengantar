@@ -27,7 +27,7 @@
                                             <input type="hidden" name="jenis_surat" value="Surat Keterangan Kepemilikan Rumah">
                                             <div class="mb-3">
                                                 <label class="form-label">Keperluan</label>
-                                                <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" type="text" name="keperluan" placeholder="Masukan Keperluan" />
+                                                <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" required type="text" name="keperluan" placeholder="Masukan Keperluan" />
                                                 @error('keperluan')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -36,7 +36,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Alamat rumah yang dimaksud</label>
-                                                <input class="form-control form-control-lg @error('lokasi') is-invalid @enderror" type="text" name="lokasi" placeholder="Masukan Alamat" />
+                                                <input class="form-control form-control-lg @error('lokasi') is-invalid @enderror" required type="text" name="lokasi" placeholder="Masukan Alamat" />
                                                 @error('lokasi')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}

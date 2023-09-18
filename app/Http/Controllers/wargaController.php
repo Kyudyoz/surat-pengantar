@@ -56,6 +56,7 @@ class wargaController extends Controller
             'keperluan' =>'required',
         ]);
         $validatedData['jenis_surat'] = $request->jenis_surat;
+        $validatedData['nik'] = $request->nik;
         $validatedData['lokasi'] = $request->lokasi;
         $validatedData['tinggal'] = $request->tinggal;
         $validatedData['bidang_usaha'] = $request->bidang_usaha;

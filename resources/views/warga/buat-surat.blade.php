@@ -157,7 +157,7 @@
                     <div class="row g-0">
                       <div class="col-md-9">
                         <div class="card-body">
-                          <h5 class="card-title badge bg-secondary text-white">Surat Kematian</h5>
+                          <h5 class="card-title badge bg-secondary text-white">Surat Keterangan Kematian</h5>
                           <p class="card-text">Surat Keterangan Kematian adalah dokumen resmi yang menerangkan bahwa seseorang telah meninggal dunia. Nama lengkap orang yang meninggal, tanggal dan tempat kematian, serta penyebab kematian jika diketahui. Surat ini untuk proses administratif seperti warisan, klaim asuransi dan lainya</p>
                         </div>
                       </div>

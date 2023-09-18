@@ -27,8 +27,17 @@
                                             <input type="hidden" name="jenis_surat" value="Surat Keterangan Domisili">
                                             <div class="mb-3">
                                                 <label class="form-label">Keperluan</label>
-                                                <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" type="text" name="keperluan" placeholder="Masukan Keperluan" />
+                                                <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" required type="text" name="keperluan" placeholder="Masukan Keperluan" />
                                                 @error('keperluan')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Tempat tinggal saat ini</label>
+                                                <input class="form-control form-control-lg @error('tinggal') is-invalid @enderror" required type="text" name="tinggal" placeholder="Saat ini tinggal di rumah siapa?" />
+                                                @error('tinggal')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>

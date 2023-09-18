@@ -2,7 +2,7 @@
 @section('main')
 <main class="d-flex w-100">
     <div class="container d-flex flex-column">
-        <div class="row vh-100">
+        <div class="row">
             <div class="col-sm-10 col-md-8 col-lg-8 col-xl-8 mx-auto d-table h-100">
                 <div class="d-table-cell align-middle">
 
@@ -26,9 +26,63 @@
                                             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                             <input type="hidden" name="jenis_surat" value="Surat Keterangan Kematian">
                                             <div class="mb-3">
+                                                <label class="form-label">NIK beliau</label>
+                                                <input class="form-control form-control-lg @error('nik') is-invalid @enderror" required type="text" name="nik" placeholder="Masukan NIK Beliau" />
+                                                @error('nik')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
                                                 <label class="form-label">Keperluan</label>
-                                                <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" type="text" name="keperluan" placeholder="Masukan Keperluan" />
+                                                <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" required type="text" name="keperluan" placeholder="Masukan keperluan" />
                                                 @error('keperluan')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Tanggal kematian</label>
+                                                <input class="form-control form-control-lg @error('tanggal_kematian') is-invalid @enderror" required type="date" name="tanggal_kematian" placeholder="mm/dd/yy" />
+                                                @error('tanggal_kematian')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Jam kematian</label>
+                                                <input class="form-control form-control-lg @error('jam_kematian') is-invalid @enderror" required type="time" name="jam_kematian"/>
+                                                @error('jam_kematian')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Tempat kematian</label>
+                                                <input class="form-control form-control-lg @error('tempat_kematian') is-invalid @enderror" required type="text" name="tempat_kematian" placeholder="Masukan tempat kematian" />
+                                                @error('tempat_kematian')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Penyebab kematian</label>
+                                                <input class="form-control form-control-lg @error('penyebab_kematian') is-invalid @enderror" required type="text" name="penyebab_kematian" placeholder="Masukan penyebab kematian" />
+                                                @error('penyebab_kematian')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Tempat dimakamkan</label>
+                                                <input class="form-control form-control-lg @error('tempat_dimakamkan') is-invalid @enderror" required type="text" name="tempat_dimakamkan" placeholder="Masukan tempat dimakamkan" />
+                                                @error('tempat_dimakamkan')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>

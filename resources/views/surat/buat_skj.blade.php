@@ -7,7 +7,11 @@
                 <div class="d-table-cell align-middle">
 
                     <div class="text-center mt-4">
+                        @if (auth()->user()->jenis_kelamin == 'Laki-laki')
+                        <h1 class="h2">Surat Keterangan Duda</h1>
+                        @else
                         <h1 class="h2">Surat Keterangan Janda</h1>
+                        @endif
                         <p class="lead">
                             Masukkan data yang diperlukan
                         </p>
@@ -24,11 +28,43 @@
                                         <form action="/suratStore" method="post">
                                             @csrf
                                             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                            @if (auth()->user()->jenis_kelamin == 'Laki-laki')
+                                            <input type="hidden" name="jenis_surat" value="Surat Keterangan Duda">
+                                            @else
                                             <input type="hidden" name="jenis_surat" value="Surat Keterangan Janda">
+                                            @endif
                                             <div class="mb-3">
                                                 <label class="form-label">Keperluan</label>
                                                 <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" type="text" name="keperluan" placeholder="Masukan Keperluan" />
                                                 @error('keperluan')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                @if (auth()->user()->jenis_kelamin == 'Laki-laki')
+                                                <label class="form-label">Nama Istri</label>
+                                                <input class="form-control form-control-lg @error('nama_pasangan') is-invalid @enderror" type="text" name="nama_pasangan" placeholder="Masukan nama istri" required/>
+                                                @else
+                                                <label class="form-label">Nama Suami</label>
+                                                <input class="form-control form-control-lg @error('nama_pasangan') is-invalid @enderror" type="text" name="nama_pasangan" placeholder="Masukan nama suami" required/>
+                                                @endif
+
+                                                @error('nama_pasangan')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Jenis Cerai</label>
+                                                <select name="jenis_cerai" id="jenis_cerai" class="form-select form-select-md @error('jenis_cerai') is-invalid @enderror" required>
+                                                    <option value="">Jenis Cerai</option>
+                                                    <option value="Cerai Mati">Cerai Mati</option>
+                                                    <option value="Cerai Hidup">Cerai Hidup</option>
+                                                </select>
+                                                @error('jenis_cerai')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>

@@ -42,11 +42,21 @@
                                         @csrf
 										<div class="mb-3">
 											<label class="form-label">NIK</label>
-											<input class="form-control form-control-lg" type="text" name="nik" placeholder="Masukan NIK" />
+											<input class="form-control form-control-lg @error('nik') is-invalid @enderror" type="text" name="nik" placeholder="Masukan NIK"/>
+                                            @error('nik')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Password</label>
-											<input class="form-control form-control-lg" type="password" name="password" placeholder="Masukan password" />
+											<input class="form-control form-control-lg @error('password') is-invalid @enderror" type="password" name="password" placeholder="Masukan password" />
+                                            @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
 										</div>
 										<div>
 										</div>
