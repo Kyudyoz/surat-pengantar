@@ -46,7 +46,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col mt-0">
-                                            <h5 class="card-title">Surat pengantar yang belum disetujui</h5>
+                                            <h5 class="card-title">Surat pengantar yang sedang diproses</h5>
                                         </div>
 
                                         <div class="col-auto">

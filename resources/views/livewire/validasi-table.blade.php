@@ -25,9 +25,31 @@
                                     <td>{{ $surat->jenis_surat }}</td>
                                     <td>
                                         @if ($surat->status == 'Diproses')
-                                        <a href="/lihatSurat/{{ $surat->id }}" class="btn btn-primary">
+                                        @if ($surat->jenis_surat == 'Surat Keterangan Tidak Mampu')
+                                        <a href="/lihatSKTM/{{ $surat->id }}" class="btn btn-primary">
                                             Lihat
                                         </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Usaha')
+                                        <a href="/lihatSKU/{{ $surat->id }}" class="btn btn-primary">
+                                            Lihat
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Domisili')
+                                        <a href="/lihatSKD/{{ $surat->id }}" class="btn btn-primary">
+                                            Lihat
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Kematian')
+                                        <a href="/lihatSKK/{{ $surat->id }}" class="btn btn-primary">
+                                            Lihat
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Kepemilikan Rumah')
+                                        <a href="/lihatSKKR/{{ $surat->id }}" class="btn btn-primary">
+                                            Lihat
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Janda' || $surat->jenis_surat == 'Surat Keterangan Duda')
+                                        <a href="/lihatSKJ/{{ $surat->id }}" class="btn btn-primary">
+                                            Lihat
+                                        </a>
+                                        @endif
                                         <a href="/setujui/{{ $surat->id }}" class="btn btn-success">
                                             Setujui
                                         </a>
@@ -35,9 +57,31 @@
                                             Tolak
                                         </a>
                                         @elseif($surat->status == 'Disetujui')
-                                        <a href="#" class="btn btn-primary">
-                                                Lihat
+                                        @if ($surat->jenis_surat == 'Surat Keterangan Tidak Mampu')
+                                        <a href="/lihatSKTM/{{ $surat->id }}" class="btn btn-primary">
+                                            Lihat
                                         </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Usaha')
+                                        <a href="/lihatSKU/{{ $surat->id }}" class="btn btn-primary">
+                                            Lihat
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Domisili')
+                                        <a href="/lihatSKD/{{ $surat->id }}" class="btn btn-primary">
+                                            Lihat
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Kematian')
+                                        <a href="/lihatSKK/{{ $surat->id }}" class="btn btn-primary">
+                                            Lihat
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Kepemilikan Rumah')
+                                        <a href="/lihatSKKR/{{ $surat->id }}" class="btn btn-primary">
+                                            Lihat
+                                        </a>
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Janda' || $surat->jenis_surat == 'Surat Keterangan Duda')
+                                        <a href="/lihatSKJ/{{ $surat->id }}" class="btn btn-primary">
+                                            Lihat
+                                        </a>
+                                        @endif
                                         @elseif($surat->status == 'Ditolak')
                                         <span class="badge bg-secondary">Tidak dapat dilakukan</span>
                                         @endif

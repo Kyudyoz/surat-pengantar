@@ -14,12 +14,59 @@ class wargaController extends Controller
             'active' => 'Buat Surat',
         ]);
     }
+    public function buatSktm() {
+        return view('surat.buat_sktm',[
+            'title' => 'Buat SKTM',
+            'active' => 'Buat Surat',
+        ]);
+    }
+    public function buatSkkr() {
+        return view('surat.buat_skkr',[
+            'title' => 'Buat SKKR',
+            'active' => 'Buat Surat',
+        ]);
+    }
+    public function buatSku() {
+        return view('surat.buat_sku',[
+            'title' => 'Buat SKU',
+            'active' => 'Buat Surat',
+        ]);
+    }
+    public function buatSkd() {
+        return view('surat.buat_skd',[
+            'title' => 'Buat SKD',
+            'active' => 'Buat Surat',
+        ]);
+    }
+    public function buatSkk() {
+        return view('surat.buat_skk',[
+            'title' => 'Buat SKK',
+            'active' => 'Buat Surat',
+        ]);
+    }
+    public function buatSkj() {
+        return view('surat.buat_skj',[
+            'title' => 'Buat SKJ',
+            'active' => 'Buat Surat',
+        ]);
+    }
 
     public function store(Request $request) {
         $validatedData = $request->validate([
             'keperluan' =>'required',
-            'jenis_surat' =>'required',
         ]);
+        $validatedData['jenis_surat'] = $request->jenis_surat;
+        $validatedData['lokasi'] = $request->lokasi;
+        $validatedData['tinggal'] = $request->tinggal;
+        $validatedData['bidang_usaha'] = $request->bidang_usaha;
+        $validatedData['nama_usaha'] = $request->nama_usaha;
+        $validatedData['tanggal_kematian'] = $request->tanggal_kematian;
+        $validatedData['jam_kematian'] = $request->jam_kematian;
+        $validatedData['tempat_kematian'] = $request->tempat_kematian;
+        $validatedData['penyebab_kematian'] = $request->penyebab_kematian;
+        $validatedData['tempat_dimakamkan'] = $request->tempat_dimakamkan;
+        $validatedData['jenis_cerai'] = $request->jenis_cerai;
+        $validatedData['nama_pasangan'] = $request->nama_pasangan;
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['rt_id'] = auth()->user()->rt_id;
         Surat::create($validatedData);

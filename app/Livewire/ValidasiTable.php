@@ -14,7 +14,7 @@ class ValidasiTable extends Component
     {
         $surats2 = Surat::where('rt_id', auth()->user()->rt_id)
         ->orderBy('status')
-        ->simplePaginate(2);
+        ->simplePaginate(5);
         return view('livewire.validasi-table',[
             'surats2' => $surats2,
         ]);

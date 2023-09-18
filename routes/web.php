@@ -26,6 +26,8 @@ Route::get('/dashboardRt',[HomeController::class, 'dashboardRt'])->middleware('a
 Route::get('/dashboard',[HomeController::class, 'dashboard'])->middleware('auth');
 Route::get('/validasi',[RtController::class, 'validasi'])->middleware('auth');
 Route::get('/dataWarga',[RtController::class, 'dataWarga'])->middleware('auth');
+Route::get('/setujui/{id}',[RtController::class, 'setuju'])->middleware('auth');
+Route::get('/tolak/{id}',[RtController::class, 'tolak'])->middleware('auth');
 
 
 //login
@@ -35,6 +37,12 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 //warga
 Route::get('/buatSurat', [wargaController::class, 'buatSurat'])->middleware('auth');
+Route::get('/buatSKTM', [wargaController::class, 'buatSktm'])->middleware('auth');
+Route::get('/buatSKKR', [wargaController::class, 'buatSkkr'])->middleware('auth');
+Route::get('/buatSKU', [wargaController::class, 'buatSku'])->middleware('auth');
+Route::get('/buatSKD', [wargaController::class, 'buatSkd'])->middleware('auth');
+Route::get('/buatSKK', [wargaController::class, 'buatSkk'])->middleware('auth');
+Route::get('/buatSKJ', [wargaController::class, 'buatSkj'])->middleware('auth');
 Route::post('/suratStore', [wargaController::class, 'store'])->middleware('auth');
 Route::get('/editSurat/{id}', [wargaController::class, 'edit'])->middleware('auth');
 Route::post('/editSurat/{id}/update', [wargaController::class, 'update'])->middleware('auth');

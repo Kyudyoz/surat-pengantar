@@ -60,7 +60,7 @@
                                         <a href="/editSKKR/{{ $surat->id }}" class="btn btn-warning">
                                             Edit
                                         </a>
-                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Janda')
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Janda' || $surat->jenis_surat == 'Surat Keterangan Duda')
                                         <a href="/lihatSKJ/{{ $surat->id }}" class="btn btn-success">
                                             Lihat
                                         </a>
@@ -103,7 +103,7 @@
                                                 Cetak <i class="fa-solid fa-print fa-lg"></i>
                                             </strong>
                                         </a>
-                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Janda')
+                                        @elseif ($surat->jenis_surat == 'Surat Keterangan Janda' || $surat->jenis_surat == 'Surat Keterangan Duda')
                                         <a href="/lihatSKJ/{{ $surat->id }}" class="btn btn-success">
                                             <strong>
                                                 Cetak <i class="fa-solid fa-print fa-lg"></i>

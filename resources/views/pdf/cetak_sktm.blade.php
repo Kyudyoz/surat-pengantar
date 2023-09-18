@@ -24,7 +24,7 @@
                 <h2 class="text-center mt-4 mb-0">Pemerintah Kabupaten Batanghari</h2>
                 <h2 class="text-center mb-0">Kecamatan Muara Bulian</h2>
                 <h2 class="text-center">Kelurahan Muara Bulian</h2>
-                <h2 class="text-center">{{ $surat->rt->nama_rt}}</h2>
+                <h2 class="text-center">{{ $surat->rt->nama_rt}} RW 07</h2>
             </div>
             <table><tr><td class="border border-2"></td></tr></table>
         </div>
