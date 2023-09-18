@@ -13,7 +13,7 @@ class PostTable extends Component
 
     public function render()
     {
-        $posts = Post::latest()->paginate(3);
+        $posts = Post::latest()->paginate(2);
 
         return view('livewire.post-table',[
             "posts"=> $posts,
