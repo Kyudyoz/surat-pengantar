@@ -79,7 +79,7 @@ class PdfController extends Controller
 
         $surats = Surat::where('id', $id)->get();
         foreach ($surats as $surat) {
-            $users = User::where('nik', $surat->nik);
+            $users = User::where('nik', $surat->nik)->get();
         }
         $path = base_path('/public/assets/img/ttd/ttd.png');
         $type = pathinfo($path, PATHINFO_EXTENSION);

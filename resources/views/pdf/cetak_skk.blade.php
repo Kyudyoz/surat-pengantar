@@ -40,50 +40,98 @@
         </div>
         <div class="row">
             <div class="col-md-12">
+                @foreach ($users as $user)
                 <table class="table table-bordered">
                     <tr>
                         <td width="30%">Nama</td>
                         <td width="2%">:</td>
-                        <td>{{ ucfirst($surat->user->nama) }}</td>
+                        <td>{{ $user->nama }}</td>
                     </tr>
                     <tr>
                         <td>NIK</td>
                         <td>:</td>
-                        <td>{{ ucfirst($surat->user->nik) }}</td>
+                        <td>{{ $user->nik }}</td>
                     </tr>
                     <tr>
                         <td>Jenis Kelamin</td>
                         <td>:</td>
-                        <td>{{ ucfirst($surat->user->jenis_kelamin) }}</td>
+                        <td>{{ $user->jenis_kelamin }}</td>
                     </tr>
                     <tr>
                         <td>Tempat/Tanggal Lahir</td>
                         <td>:</td>
-                        <td>{{ ucfirst($surat->user->tempat_lahir) }}/{{ \Carbon\Carbon::parse($surat->user->tanggal_lahir)->isoFormat('D MMMM Y') }}</td>
+                        <td>{{ $user->tempat_lahir }}/{{ \Carbon\Carbon::parse($user->tanggal_lahir)->isoFormat('D MMMM Y') }}</td>
                     </tr>
                     <tr>
-                        <td>Alamat</td>
+                        <td>Alamat Terakhir</td>
                         <td>:</td>
-                        <td>{{ ucfirst($surat->user->alamat)}}</td>
+                        <td>{{ $user->alamat}}</td>
                     </tr>
                     <tr>
                         <td>Pekerjaan</td>
                         <td>:</td>
-                        <td>{{ ucfirst($surat->user->pekerjaan) }}</td>
-                    </tr>
-                    <tr>
-                        <td>Keperluan</td>
-                        <td>:</td>
-                        <td>{{ ucfirst($surat->keperluan) }}</td>
+                        <td>{{ $user->pekerjaan }}</td>
                     </tr>
                 </table>
+                @endforeach
             </div>
         </div>
         <div class="keterangan">
-            <p class="mt-4">Bahwa warga tersebut di atas adalah benar-benar keluarga tidak mampu.</p>
-            <p>Demikian surat keterangan ini kami buat dengan sebenarnya untuk dipergunakan sebagaimana mestinya.</p>
+            <p class="mt-4">Benar nama tersebut di atas adalah warga/penduduk yang  semasa hidup bertempat tinggal terakhir seperti alamat tersebut di atas. Diterangkan pula yang bersangkutan telah meninggal dunia pada :</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td width="30%">Hari</td>
+                            <td width="2%">:</td>
+                            @php
+                                $namaHariInggris = \Carbon\Carbon::parse($surat->tanggal_kematian)->format('l');
+                                $namaHariIndonesia = [
+                                    'Monday'    => 'Senin',
+                                    'Tuesday'   => 'Selasa',
+                                    'Wednesday' => 'Rabu',
+                                    'Thursday'  => 'Kamis',
+                                    'Friday'    => 'Jumat',
+                                    'Saturday'  => 'Sabtu',
+                                    'Sunday'    => 'Minggu',
+                                ];
+                            @endphp
+                            <td>
+                                {{ $namaHariIndonesia[$namaHariInggris] }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tanggal</td>
+                            <td>:</td>
+                            <td>{{ \Carbon\Carbon::parse($surat->tanggal_kematian)->isoFormat('D MMMM Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Jam</td>
+                            <td>:</td>
+                            <td>{{ \Carbon\Carbon::parse($surat->jam_kematian)->format('H:i') }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tempat</td>
+                            <td>:</td>
+                            <td>{{ ucfirst($surat->tempat_kematian)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Dikarenakan</td>
+                            <td>:</td>
+                            <td>{{ ucfirst($surat->penyebab_kematian)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Dimakamkan di</td>
+                            <td>:</td>
+                            <td>{{ ucfirst($surat->tempat_dimakamkan) }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <p>Demikian surat keterangan kematian ini kami buat dengan sebenarnya untuk dipergunakan sebagaimana mestinya.</p>
         </div>
-        <div class="container1" style="margin-top: 10%">
+        <div class="container1" style="margin-top: 5%">
             <div class="row justify-content-center align-items-center">
                 <div class="col-md-6">
                     <p style="text-align: center"> Muara Bulian, {{ $surat->created_at->isoFormat('D MMMM Y') }}</p>

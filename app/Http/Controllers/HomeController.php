@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Surat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -71,9 +72,66 @@ class HomeController extends Controller
     }
     public function profil()
     {
+
+        $users = User::where('id', auth()->user()->id)->get();
         return view('profil',[
             'title' => 'Halaman Profil',
-            'active' => 'Profil'
+            'active' => 'Profil',
+            'users' => $users
         ]);
+    }
+    public function pengaturan()
+    {
+
+        $users = User::where('id', auth()->user()->id)->get();
+        return view('pengaturan',[
+            'title' => 'Pengaturan Akun',
+            'active' => 'Profil',
+            'users' => $users
+        ]);
+    }
+    public function editPass()
+    {
+
+        $users = User::where('id', auth()->user()->id)->get();
+        return view('edit_password',[
+            'title' => 'Edit Password',
+            'active' => 'Profil',
+            'users' => $users
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $rules = [
+            'nama' => 'required|max:255',
+            'image'=> 'image|file|max:1024',
+        ];
+        $validatedData = $request->validate($rules);
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('user-images');
+        }
+        $id = $request->id;
+        $validatedData['id'] = $id;
+
+        User::where('id', $id)->update($validatedData);
+        return redirect('/profil')->with('success', 'Foto Profil Berhasil Diubah');
+    }
+
+    public function updateNoHp(Request $request){
+
+        $validatedData['no_hp'] = $request->no_hp;
+        User::where('id', auth()->user()->id)->update($validatedData);
+        return redirect('/profil')->with('success', 'No. Handphone Berhasil Diubah');
+    }
+    public function updatePass(Request $request){
+
+        $validatedData['password'] = bcrypt($request->password);
+        User::where('id', auth()->user()->id)->update($validatedData);
+
+        return redirect('/pengaturan')->with('success', 'Password berhasil diubah!');
     }
 }

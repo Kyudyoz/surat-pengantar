@@ -80,13 +80,18 @@
             </div>
         </div>
         <div class="keterangan">
-            <p class="mt-4">Bahwa warga tersebut di atas adalah benar-benar keluarga tidak mampu.</p>
-            <p>Demikian surat keterangan ini kami buat dengan sebenarnya untuk dipergunakan sebagaimana mestinya.</p>
+            <p class="mt-4">Adalah benar memiliki satu unit rumah yang berada di <span style="text-transform: capitalize">{{ strtolower(ucfirst($surat->lokasi)) }}</span></p>
+            <p>Demikian surat keterangan ini dikeluarkan untuk dapat digunakan sebagaimana mestinya</p>
         </div>
-        <div class="container1" style="margin-top: 10%">
+        <div class="container1" style="margin-top: 5%">
             <div class="row justify-content-center align-items-center">
                 <div class="col-md-6">
                     <p style="text-align: center"> Muara Bulian, {{ $surat->created_at->isoFormat('D MMMM Y') }}</p>
+                    <p style="text-align: center">Pemohon</p>
+                    <p style="text-align: center;padding-top:10%">{{ ucfirst($surat->user->nama) }}</p>
+                </div>
+                <div class="col-md-6" style="padding-top: 5%">
+                    <p style="text-align: center">Mengetahui,</p>
                     <p style="text-align: center">Ketua {{ ucfirst($surat->rt->nama_rt) }}</p>
                     @if ($surat->status == 'Disetujui')
                     <div class="text-center" style="text-align: center">

@@ -74,20 +74,187 @@ class wargaController extends Controller
         return redirect('/dashboard')->with('success', 'Surat Berhasil Diajukan!');
     }
 
-    public function edit($id) {
+    public function editSktm($id) {
         $surat = Surat::find($id);
-        return view('warga.edit-surat',[
+        return view('surat.edit_sktm',[
             'title' => 'Edit Surat',
             'active' => 'Dashboard Warga',
             'surat' => $surat
         ]);
     }
 
-    public function update(Request $request, $id){
+    public function updateSktm(Request $request, $id){
         $validatedData = $request->validate([
             'keperluan' =>'required',
-            'jenis_surat' =>'required',
         ]);
+        $validatedData['jenis_surat'] = $request->jenis_surat;
+        $validatedData['nik'] = $request->nik;
+        $validatedData['lokasi'] = $request->lokasi;
+        $validatedData['tinggal'] = $request->tinggal;
+        $validatedData['bidang_usaha'] = $request->bidang_usaha;
+        $validatedData['nama_usaha'] = $request->nama_usaha;
+        $validatedData['tanggal_kematian'] = $request->tanggal_kematian;
+        $validatedData['jam_kematian'] = $request->jam_kematian;
+        $validatedData['tempat_kematian'] = $request->tempat_kematian;
+        $validatedData['penyebab_kematian'] = $request->penyebab_kematian;
+        $validatedData['tempat_dimakamkan'] = $request->tempat_dimakamkan;
+        $validatedData['jenis_cerai'] = $request->jenis_cerai;
+        $validatedData['nama_pasangan'] = $request->nama_pasangan;
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['rt_id'] = auth()->user()->rt_id;
+        Surat::where('id',$id)->update($validatedData);
+        return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
+    }
+    public function editSku($id) {
+        $surat = Surat::find($id);
+        return view('surat.edit_sku',[
+            'title' => 'Edit Surat',
+            'active' => 'Dashboard Warga',
+            'surat' => $surat
+        ]);
+    }
+
+    public function updateSku(Request $request, $id){
+        $validatedData = $request->validate([
+            'keperluan' =>'required',
+        ]);
+        $validatedData['jenis_surat'] = $request->jenis_surat;
+        $validatedData['nik'] = $request->nik;
+        $validatedData['lokasi'] = $request->lokasi;
+        $validatedData['tinggal'] = $request->tinggal;
+        $validatedData['bidang_usaha'] = $request->bidang_usaha;
+        $validatedData['nama_usaha'] = $request->nama_usaha;
+        $validatedData['tanggal_kematian'] = $request->tanggal_kematian;
+        $validatedData['jam_kematian'] = $request->jam_kematian;
+        $validatedData['tempat_kematian'] = $request->tempat_kematian;
+        $validatedData['penyebab_kematian'] = $request->penyebab_kematian;
+        $validatedData['tempat_dimakamkan'] = $request->tempat_dimakamkan;
+        $validatedData['jenis_cerai'] = $request->jenis_cerai;
+        $validatedData['nama_pasangan'] = $request->nama_pasangan;
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['rt_id'] = auth()->user()->rt_id;
+        Surat::where('id',$id)->update($validatedData);
+        return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
+    }
+    public function editSkd($id) {
+        $surat = Surat::find($id);
+        return view('surat.edit_skd',[
+            'title' => 'Edit Surat',
+            'active' => 'Dashboard Warga',
+            'surat' => $surat
+        ]);
+    }
+
+    public function updateSkd(Request $request, $id){
+        $validatedData = $request->validate([
+            'keperluan' =>'required',
+        ]);
+        $validatedData['jenis_surat'] = $request->jenis_surat;
+        $validatedData['nik'] = $request->nik;
+        $validatedData['lokasi'] = $request->lokasi;
+        $validatedData['tinggal'] = $request->tinggal;
+        $validatedData['bidang_usaha'] = $request->bidang_usaha;
+        $validatedData['nama_usaha'] = $request->nama_usaha;
+        $validatedData['tanggal_kematian'] = $request->tanggal_kematian;
+        $validatedData['jam_kematian'] = $request->jam_kematian;
+        $validatedData['tempat_kematian'] = $request->tempat_kematian;
+        $validatedData['penyebab_kematian'] = $request->penyebab_kematian;
+        $validatedData['tempat_dimakamkan'] = $request->tempat_dimakamkan;
+        $validatedData['jenis_cerai'] = $request->jenis_cerai;
+        $validatedData['nama_pasangan'] = $request->nama_pasangan;
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['rt_id'] = auth()->user()->rt_id;
+        Surat::where('id',$id)->update($validatedData);
+        return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
+    }
+    public function editSkj($id) {
+        $surat = Surat::find($id);
+        return view('surat.edit_skj',[
+            'title' => 'Edit Surat',
+            'active' => 'Dashboard Warga',
+            'surat' => $surat
+        ]);
+    }
+
+    public function updateSkj(Request $request, $id){
+        $validatedData = $request->validate([
+            'keperluan' =>'required',
+        ]);
+        $validatedData['jenis_surat'] = $request->jenis_surat;
+        $validatedData['nik'] = $request->nik;
+        $validatedData['lokasi'] = $request->lokasi;
+        $validatedData['tinggal'] = $request->tinggal;
+        $validatedData['bidang_usaha'] = $request->bidang_usaha;
+        $validatedData['nama_usaha'] = $request->nama_usaha;
+        $validatedData['tanggal_kematian'] = $request->tanggal_kematian;
+        $validatedData['jam_kematian'] = $request->jam_kematian;
+        $validatedData['tempat_kematian'] = $request->tempat_kematian;
+        $validatedData['penyebab_kematian'] = $request->penyebab_kematian;
+        $validatedData['tempat_dimakamkan'] = $request->tempat_dimakamkan;
+        $validatedData['jenis_cerai'] = $request->jenis_cerai;
+        $validatedData['nama_pasangan'] = $request->nama_pasangan;
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['rt_id'] = auth()->user()->rt_id;
+        Surat::where('id',$id)->update($validatedData);
+        return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
+    }
+    public function editSkk($id) {
+        $surat = Surat::find($id);
+        return view('surat.edit_skk',[
+            'title' => 'Edit Surat',
+            'active' => 'Dashboard Warga',
+            'surat' => $surat
+        ]);
+    }
+
+    public function updateSkk(Request $request, $id){
+        $validatedData = $request->validate([
+            'keperluan' =>'required',
+        ]);
+        $validatedData['jenis_surat'] = $request->jenis_surat;
+        $validatedData['nik'] = $request->nik;
+        $validatedData['lokasi'] = $request->lokasi;
+        $validatedData['tinggal'] = $request->tinggal;
+        $validatedData['bidang_usaha'] = $request->bidang_usaha;
+        $validatedData['nama_usaha'] = $request->nama_usaha;
+        $validatedData['tanggal_kematian'] = $request->tanggal_kematian;
+        $validatedData['jam_kematian'] = $request->jam_kematian;
+        $validatedData['tempat_kematian'] = $request->tempat_kematian;
+        $validatedData['penyebab_kematian'] = $request->penyebab_kematian;
+        $validatedData['tempat_dimakamkan'] = $request->tempat_dimakamkan;
+        $validatedData['jenis_cerai'] = $request->jenis_cerai;
+        $validatedData['nama_pasangan'] = $request->nama_pasangan;
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['rt_id'] = auth()->user()->rt_id;
+        Surat::where('id',$id)->update($validatedData);
+        return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
+    }
+    public function editSkkr($id) {
+        $surat = Surat::find($id);
+        return view('surat.edit_skkr',[
+            'title' => 'Edit Surat',
+            'active' => 'Dashboard Warga',
+            'surat' => $surat
+        ]);
+    }
+
+    public function updateSkkr(Request $request, $id){
+        $validatedData = $request->validate([
+            'keperluan' =>'required',
+        ]);
+        $validatedData['jenis_surat'] = $request->jenis_surat;
+        $validatedData['nik'] = $request->nik;
+        $validatedData['lokasi'] = $request->lokasi;
+        $validatedData['tinggal'] = $request->tinggal;
+        $validatedData['bidang_usaha'] = $request->bidang_usaha;
+        $validatedData['nama_usaha'] = $request->nama_usaha;
+        $validatedData['tanggal_kematian'] = $request->tanggal_kematian;
+        $validatedData['jam_kematian'] = $request->jam_kematian;
+        $validatedData['tempat_kematian'] = $request->tempat_kematian;
+        $validatedData['penyebab_kematian'] = $request->penyebab_kematian;
+        $validatedData['tempat_dimakamkan'] = $request->tempat_dimakamkan;
+        $validatedData['jenis_cerai'] = $request->jenis_cerai;
+        $validatedData['nama_pasangan'] = $request->nama_pasangan;
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['rt_id'] = auth()->user()->rt_id;
         Surat::where('id',$id)->update($validatedData);

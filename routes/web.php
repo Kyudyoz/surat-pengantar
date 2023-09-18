@@ -5,6 +5,7 @@ use App\Http\Controllers\RtController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\wargaController;
 
 /*
@@ -18,8 +19,14 @@ use App\Http\Controllers\wargaController;
 |
 */
 
-Route::get('/',[HomeController::class, 'blog']);
+Route::get('/',[PostController::class, 'index']);
 Route::get('/profil',[HomeController::class, 'profil'])->middleware('auth');
+Route::get('/pengaturan',[HomeController::class, 'pengaturan'])->middleware('auth');
+Route::get('/editPass',[HomeController::class, 'editPass'])->middleware('auth');
+Route::put('/userProfile/update',[HomeController::class, 'update'])->middleware('auth');
+Route::post('/updateNoHp/{id}',[HomeController::class, 'updateNoHp'])->middleware('auth');
+Route::post('/updatePass/{id}',[HomeController::class, 'updatePass'])->middleware('auth');
+
 
 //rt
 Route::get('/dashboardRt',[HomeController::class, 'dashboardRt'])->middleware('auth');
@@ -44,9 +51,24 @@ Route::get('/buatSKD', [wargaController::class, 'buatSkd'])->middleware('auth');
 Route::get('/buatSKK', [wargaController::class, 'buatSkk'])->middleware('auth');
 Route::get('/buatSKJ', [wargaController::class, 'buatSkj'])->middleware('auth');
 Route::post('/suratStore', [wargaController::class, 'store'])->middleware('auth');
-Route::get('/editSurat/{id}', [wargaController::class, 'edit'])->middleware('auth');
-Route::post('/editSurat/{id}/update', [wargaController::class, 'update'])->middleware('auth');
+Route::get('/editSKTM/{id}', [wargaController::class, 'editSktm'])->middleware('auth');
+Route::get('/editSKKR/{id}', [wargaController::class, 'editSkkr'])->middleware('auth');
+Route::get('/editSKU/{id}', [wargaController::class, 'editSku'])->middleware('auth');
+Route::get('/editSKD/{id}', [wargaController::class, 'editSkd'])->middleware('auth');
+Route::get('/editSKK/{id}', [wargaController::class, 'editSkk'])->middleware('auth');
+Route::get('/editSKJ/{id}', [wargaController::class, 'editSkj'])->middleware('auth');
+Route::post('/updateSKTM/{id}', [wargaController::class, 'updateSktm'])->middleware('auth');
+Route::post('/updateSKKR/{id}', [wargaController::class, 'updateSkkr'])->middleware('auth');
+Route::post('/updateSKU/{id}', [wargaController::class, 'updateSku'])->middleware('auth');
+Route::post('/updateSKD/{id}', [wargaController::class, 'updateSkd'])->middleware('auth');
+Route::post('/updateSKK/{id}', [wargaController::class, 'updateSkk'])->middleware('auth');
+Route::post('/updateSKJ/{id}', [wargaController::class, 'updateSkj'])->middleware('auth');
 Route::get('/hapusSurat/{id}', [wargaController::class, 'destroy'])->middleware('auth');
 
 //pdf
 Route::get('/lihatSKTM/{id}', [PdfController::class, 'cetak_sktm'])->middleware('auth');
+Route::get('/lihatSKU/{id}', [PdfController::class, 'cetak_sku'])->middleware('auth');
+Route::get('/lihatSKK/{id}', [PdfController::class, 'cetak_skk'])->middleware('auth');
+Route::get('/lihatSKKR/{id}', [PdfController::class, 'cetak_skkr'])->middleware('auth');
+Route::get('/lihatSKJ/{id}', [PdfController::class, 'cetak_skj'])->middleware('auth');
+Route::get('/lihatSKD/{id}', [PdfController::class, 'cetak_skd'])->middleware('auth');

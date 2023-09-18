@@ -7,13 +7,9 @@
                 <div class="d-table-cell align-middle">
 
                     <div class="text-center mt-4">
-                        @if (auth()->user()->jenis_kelamin == 'Laki-laki')
-                        <h1 class="h2">Surat Keterangan Duda</h1>
-                        @else
-                        <h1 class="h2">Surat Keterangan Janda</h1>
-                        @endif
+                        <h1 class="h2">Surat Keterangan Usaha</h1>
                         <p class="lead">
-                            Masukkan data yang diperlukan
+                            Edit data yang diperlukan
                         </p>
                     </div>
 
@@ -25,17 +21,13 @@
                                 </div>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-9 mx-auto">
                                     <div class="m-sm-8">
-                                        <form action="/suratStore" method="post">
+                                        <form action="/updateSKU/{{ $surat->id }}" method="post">
                                             @csrf
                                             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                                            @if (auth()->user()->jenis_kelamin == 'Laki-laki')
-                                            <input type="hidden" name="jenis_surat" value="Surat Keterangan Duda">
-                                            @else
-                                            <input type="hidden" name="jenis_surat" value="Surat Keterangan Janda">
-                                            @endif
+                                            <input type="hidden" name="jenis_surat" value="Surat Keterangan Usaha">
                                             <div class="mb-3">
                                                 <label class="form-label">Keperluan</label>
-                                                <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" type="text" name="keperluan" placeholder="Masukan Keperluan" />
+                                                <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" required type="text" name="keperluan" placeholder="Masukan Keperluan" value="{{ old('keperluan', $surat->keperluan) }}"/>
                                                 @error('keperluan')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -43,28 +35,18 @@
                                                 @enderror
                                             </div>
                                             <div class="mb-3">
-                                                @if (auth()->user()->jenis_kelamin == 'Laki-laki')
-                                                <label class="form-label">Nama Istri</label>
-                                                <input class="form-control form-control-lg @error('nama_pasangan') is-invalid @enderror" type="text" name="nama_pasangan" placeholder="Masukan nama istri" required/>
-                                                @else
-                                                <label class="form-label">Nama Suami</label>
-                                                <input class="form-control form-control-lg @error('nama_pasangan') is-invalid @enderror" type="text" name="nama_pasangan" placeholder="Masukan nama suami" required/>
-                                                @endif
-
-                                                @error('nama_pasangan')
+                                                <label class="form-label">Jenis Usaha</label>
+                                                <input class="form-control form-control-lg @error('bidang_usaha') is-invalid @enderror" required type="text" name="bidang_usaha" placeholder="Masukan jenis usaha" value="{{ old('bidang_usaha', $surat->bidang_usaha) }}"/>
+                                                @error('bidang_usaha')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
                                                 @enderror
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Jenis Cerai</label>
-                                                <select name="jenis_cerai" id="jenis_cerai" class="form-select form-select-md @error('jenis_cerai') is-invalid @enderror" required>
-                                                    <option value="" hidden>Jenis Cerai</option>
-                                                    <option value="Cerai Mati">Cerai Mati</option>
-                                                    <option value="Cerai Hidup">Cerai Hidup</option>
-                                                </select>
-                                                @error('jenis_cerai')
+                                                <label class="form-label">Nama Usaha</label>
+                                                <input class="form-control form-control-lg @error('nama_usaha') is-invalid @enderror" required type="text" name="nama_usaha" placeholder="Masukan nama usaha" value="{{ old('nama_usaha', $surat->nama_usaha) }}"/>
+                                                @error('nama_usaha')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>

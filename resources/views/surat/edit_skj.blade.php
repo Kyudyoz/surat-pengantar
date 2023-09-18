@@ -13,7 +13,7 @@
                         <h1 class="h2">Surat Keterangan Janda</h1>
                         @endif
                         <p class="lead">
-                            Masukkan data yang diperlukan
+                            Edit data yang diperlukan
                         </p>
                     </div>
 
@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="col-sm-7 col-md-6 col-lg-7 col-xl-9 mx-auto">
                                     <div class="m-sm-8">
-                                        <form action="/suratStore" method="post">
+                                        <form action="/updateSKJ/{{ $surat->id }}" method="post">
                                             @csrf
                                             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                             @if (auth()->user()->jenis_kelamin == 'Laki-laki')
@@ -35,7 +35,7 @@
                                             @endif
                                             <div class="mb-3">
                                                 <label class="form-label">Keperluan</label>
-                                                <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" type="text" name="keperluan" placeholder="Masukan Keperluan" />
+                                                <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" type="text" name="keperluan" placeholder="Masukan Keperluan" value="{{ old('keperluan', $surat->keperluan) }}"/>
                                                 @error('keperluan')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -45,10 +45,10 @@
                                             <div class="mb-3">
                                                 @if (auth()->user()->jenis_kelamin == 'Laki-laki')
                                                 <label class="form-label">Nama Istri</label>
-                                                <input class="form-control form-control-lg @error('nama_pasangan') is-invalid @enderror" type="text" name="nama_pasangan" placeholder="Masukan nama istri" required/>
+                                                <input class="form-control form-control-lg @error('nama_pasangan') is-invalid @enderror" type="text" name="nama_pasangan" placeholder="Masukan nama istri" required value="{{ old('nama_pasangan', $surat->nama_pasangan) }}"/>
                                                 @else
                                                 <label class="form-label">Nama Suami</label>
-                                                <input class="form-control form-control-lg @error('nama_pasangan') is-invalid @enderror" type="text" name="nama_pasangan" placeholder="Masukan nama suami" required/>
+                                                <input class="form-control form-control-lg @error('nama_pasangan') is-invalid @enderror" type="text" name="nama_pasangan" placeholder="Masukan nama suami" required value="{{ old('nama_pasangan', $surat->nama_pasangan) }}"/>
                                                 @endif
 
                                                 @error('nama_pasangan')
@@ -61,8 +61,8 @@
                                                 <label class="form-label">Jenis Cerai</label>
                                                 <select name="jenis_cerai" id="jenis_cerai" class="form-select form-select-md @error('jenis_cerai') is-invalid @enderror" required>
                                                     <option value="" hidden>Jenis Cerai</option>
-                                                    <option value="Cerai Mati">Cerai Mati</option>
-                                                    <option value="Cerai Hidup">Cerai Hidup</option>
+                                                    <option value="Cerai Mati" {{ old('jenis_cerai', $surat->jenis_cerai) == 'Cerai Mati' ? 'selected' : '' }}>Cerai Mati</option>
+                                                    <option value="Cerai Hidup" {{ old('jenis_cerai', $surat->jenis_cerai) == 'Cerai Hidup' ? 'selected' : '' }}>Cerai Hidup</option>
                                                 </select>
                                                 @error('jenis_cerai')
                                                 <div class="invalid-feedback">

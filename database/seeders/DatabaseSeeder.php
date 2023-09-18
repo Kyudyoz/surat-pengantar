@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Post;
 use App\Models\Rt;
 use App\Models\User;
 use App\Models\Surat;
@@ -87,6 +89,22 @@ class DatabaseSeeder extends Seeder
             'keperluan' => 'Terakhir',
             'jenis_surat' => 'Surat Keterangan Domisili',
             'status' => 'Disetujui'
+        ]);
+
+        Post::create([
+            'user_id' => 2,
+            'judul' => 'judul pertama',
+            'body' => 'aasijdasoijdaosjdqojwdwqjqwejqwpejqwjeqwpeqwjeqwpe'
+        ]);
+        Post::create([
+            'user_id' => 2,
+            'judul' => 'judul kedua',
+            'body' => 'aasijdasoijdaosjdqojwdwqjqwejqwpejqwjeqwpeqwjeqwpe'
+        ]);
+        Post::create([
+            'user_id' => 2,
+            'judul' => 'judul ketiga',
+            'body' => 'aasijdasoijdaosjdqojwdwqjqwejqwpejqwjeqwpeqwjeqwpe'
         ]);
     }
 }

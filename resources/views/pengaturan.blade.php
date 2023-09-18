@@ -111,11 +111,28 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <h5><strong>No. Handphone</strong></h5>
-                                                    @if ($user->no_hp)
-                                                    <p class="text-muted">+{{ $user->no_hp }}</p>
-                                                    @else
-                                                    <p class="text-muted">-</p>
-                                                    @endif
+
+                                                    <form action="/updateNoHp/{{ $user->id }}" method="post">
+
+                                                        @csrf
+                                                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                                        <div class="mb-3">
+                                                            <input class="form-control form-control-lg @error('no_hp') is-invalid @enderror" type="text" name="no_hp" id="no_hp" placeholder="Masukan No. Handphone" value="{{ old('no_hp', $user->no_hp) }}"/>
+                                                            @error('no_hp')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="d-grid gap-2 mt-3">
+                                                            <button type="submit" class="btn btn-lg btn-primary">Simpan!</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-4">
+                                                <div class="col-md-12 ">
+                                                    <a href="/editPass" class="btn btn-warning w-100">Ubah Password</a>
                                                 </div>
                                             </div>
                                         </div>

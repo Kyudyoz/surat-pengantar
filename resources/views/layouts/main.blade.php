@@ -25,6 +25,42 @@
         .trix-button-group{
           background-color: white;
         }
+
+        .pict .upload {
+            width: 125px;
+            position: relative;
+            margin: auto;
+        }
+
+        .pict .upload img {
+            border-radius: 50%;
+            border: 2px solid #999898;
+            background-color: white;
+        }
+
+        .pict .upload .round {
+            position: absolute;
+            display: inline;
+            background: #202521;
+            bottom: 0;
+            right: 0;
+            width: 33px;
+            height: 33px;
+            line-height: 33px;
+            text-align: center;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .pict .upload .round input[type="file"] {
+            position: absolute;
+            transform: scale(2);
+            opacity: 0;
+        }
+
+        .pict .upload .round input[type="file"]::-webkit-file-upload-button {
+            cursor: pointer;
+        }
       </style>
 
 	<title>{{ $title }}</title>
@@ -140,14 +176,20 @@
 				            </a>
 
 				            <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                                @if (auth()->user()->jenis_kelamin == 'Laki-laki')
-				                <img src="../assets/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
-				                    alt="{{ auth()->user()->nama }}" />
+                                @if (auth()->user()->image)
+                                    <img src="{{ asset('storage/'. auth()->user()->image) }}" class="avatar img-fluid rounded me-1"
+                                    alt="{{ auth()->user()->nama }}" />
                                     <span class="text-dark">{{ auth()->user()->nama }}</span>
                                 @else
-                                <img src="../assets/img/avatars/avatar-5.jpg" class="avatar img-fluid rounded me-1"
-				                    alt="{{ auth()->user()->nama }}" />
-                                    <span class="text-dark">{{ auth()->user()->nama }}</span>
+                                    @if (auth()->user()->jenis_kelamin == 'Laki-laki')
+                                    <img src="../assets/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
+                                        alt="{{ auth()->user()->nama }}" />
+                                        <span class="text-dark">{{ auth()->user()->nama }}</span>
+                                    @else
+                                    <img src="../assets/img/avatars/avatar-5.jpg" class="avatar img-fluid rounded me-1"
+                                        alt="{{ auth()->user()->nama }}" />
+                                        <span class="text-dark">{{ auth()->user()->nama }}</span>
+                                    @endif
                                 @endif
 				            </a>
 							<div class="dropdown-menu dropdown-menu-end">
@@ -251,7 +293,11 @@
             flatpickr("#datetimepicker-dashboard", options);
         });
     </script>
-
+<script>
+    document.getElementById('image').onchange =function(){
+      document.getElementById('form').submit();
+    }
+</script>
 <script>
     const title = document.querySelector("#judul");
     const slug = document.querySelector("#slug");
@@ -280,6 +326,21 @@
     }
 
     </script>
+    <script>
+    document.getElementById("no_hp").addEventListener("input", function() {
+      var input = this.value;
+      input = input.replace(/\+|-/g, ""); // Menghapus tanda "+" atau "-"
+      input = input.replace(/[^\d]/g, ""); // Menghapus karakter selain digit
+
+      // Memastikan angka pertama tidak diisi dengan 0 dan diganti dengan 62
+      if (input.startsWith("0")) {
+        input = "62" + input.substr(1);
+      }
+
+      this.value = input;
+    });
+
+      </script>
 
 
 </body>

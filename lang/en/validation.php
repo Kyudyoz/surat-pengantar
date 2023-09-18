@@ -56,7 +56,7 @@ return [
         'numeric' => ':attribute harus lebih besar atau sama dengan :value.',
         'string' => ':attribute harus lebih panjang atau sama dengan :value karakter.',
     ],
-    'image' => ':attribute harus berupa gambar.',
+    'image' => 'File harus berupa gambar.',
     'in' => ':attribute yang dipilih tidak valid.',
     'in_array' => ':attribute tidak ada dalam :other.',
     'integer' => ':attribute harus berupa bilangan bulat.',

@@ -62,7 +62,7 @@
                         <td>{{ ucfirst($surat->user->tempat_lahir) }}/{{ \Carbon\Carbon::parse($surat->user->tanggal_lahir)->isoFormat('D MMMM Y') }}</td>
                     </tr>
                     <tr>
-                        <td>Alamat</td>
+                        <td>Alamat Asal</td>
                         <td>:</td>
                         <td>{{ ucfirst($surat->user->alamat)}}</td>
                     </tr>
@@ -71,22 +71,22 @@
                         <td>:</td>
                         <td>{{ ucfirst($surat->user->pekerjaan) }}</td>
                     </tr>
-                    <tr>
-                        <td>Keperluan</td>
-                        <td>:</td>
-                        <td>{{ ucfirst($surat->keperluan) }}</td>
-                    </tr>
                 </table>
             </div>
         </div>
         <div class="keterangan">
-            <p class="mt-4">Bahwa warga tersebut di atas adalah benar-benar keluarga tidak mampu.</p>
-            <p>Demikian surat keterangan ini kami buat dengan sebenarnya untuk dipergunakan sebagaimana mestinya.</p>
+            <p class="mt-4">Adalah warga yang berdomisili di wilayah kami, tinggal di rumah Bapak/Ibu {{ ucfirst($surat->tinggal) }}. Surat keterangan domisili ini dibuat untuk keperluan {{ strtolower($surat->keperluan) }}</p>
+            <p>Demikian surat keterangan domisili ini kami buat dengan sebenarnya untuk dipergunakan sebagaimana mestinya.</p>
         </div>
-        <div class="container1" style="margin-top: 10%">
+        <div class="container1" style="margin-top: 5%">
             <div class="row justify-content-center align-items-center">
                 <div class="col-md-6">
                     <p style="text-align: center"> Muara Bulian, {{ $surat->created_at->isoFormat('D MMMM Y') }}</p>
+                    <p style="text-align: center">Pemohon</p>
+                    <p style="text-align: center;padding-top:10%">{{ ucfirst($surat->user->nama) }}</p>
+                </div>
+                <div class="col-md-6" style="padding-top: 5%">
+                    <p style="text-align: center">Mengetahui,</p>
                     <p style="text-align: center">Ketua {{ ucfirst($surat->rt->nama_rt) }}</p>
                     @if ($surat->status == 'Disetujui')
                     <div class="text-center" style="text-align: center">
