@@ -59,7 +59,7 @@
                       <div class="col-md-9">
                         <div class="card-body">
                           <h5 class="card-title badge bg-secondary text-white">Surat Keterangan Kepemilikan Rumah</h5>
-                          <p class="card-text">urat Keterangan Kepemilikan Rumah adalah dokumen resmi yang menunjukkan bahwa seseorang atau entitas adalah pemilik sah dari sebuah rumah atau properti. Surat ini digunakan dalam berbagai transaksi properti, pinjaman hipotek, atau sebagai bukti kepemilikan dalam kasus hukum atau pajak.</p>
+                          <p class="card-text">Surat Keterangan Kepemilikan Rumah adalah dokumen resmi yang menunjukkan bahwa seseorang atau entitas adalah pemilik sah dari sebuah rumah atau properti. Surat ini digunakan dalam berbagai transaksi properti, pinjaman hipotek, atau sebagai bukti kepemilikan dalam kasus hukum atau pajak.</p>
                         </div>
                       </div>
                       <div class="col-md-3 d-flex justify-content-center align-items-center ">

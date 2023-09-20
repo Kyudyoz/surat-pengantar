@@ -151,11 +151,6 @@
 		                    <i class="align-middle" data-feather="slack"></i> <span class="align-middle">Bulian News</span>
 		                </a>
 		            </li>
-		            <li class="sidebar-item {{ ($active === "Buat Surat2") ? 'active' : '' }}">
-		                <a class="sidebar-link" href="/buatSurat2">
-		                    <i class="align-middle" data-feather="slack"></i> <span class="align-middle">Buat Surat Tanpa Login</span>
-		                </a>
-		            </li>
                     @endauth
 		        </ul>
 		    </div>
