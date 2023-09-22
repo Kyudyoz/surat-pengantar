@@ -33,8 +33,15 @@ Route::get('/dashboardRt',[HomeController::class, 'dashboardRt'])->middleware('a
 Route::get('/dashboard',[HomeController::class, 'dashboard'])->middleware('auth');
 Route::get('/validasi',[RtController::class, 'validasi'])->middleware('auth');
 Route::get('/dataWarga',[RtController::class, 'dataWarga'])->middleware('auth');
+Route::get('/lihatDetail/{id}',[RtController::class, 'detail'])->middleware('auth');
 Route::get('/setujui/{id}',[RtController::class, 'setuju'])->middleware('auth');
 Route::get('/tolak/{id}',[RtController::class, 'tolak'])->middleware('auth');
+
+//post
+Route::get('/buat',[PostController::class, 'create'])->middleware('auth');
+Route::get('/create/checkSlug',[PostController::class, 'checkSlug'])->middleware('auth');
+Route::post('/storePost',[PostController::class, 'store'])->middleware('auth');
+Route::get('/posts/show/{id}',[PostController::class, 'show'])->middleware('auth');
 
 
 //login

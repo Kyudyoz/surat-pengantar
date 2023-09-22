@@ -256,7 +256,7 @@
             })
         })
     </script>
-    @include('sweetalert::alert')
+    {{-- @include('sweetalert::alert') --}}
 
     <script src="https://kit.fontawesome.com/057baadc3d.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -289,16 +289,16 @@
         });
     </script>
 <script>
-    document.getElementById('image').onchange =function(){
+    document.getElementById('imageProfil').onchange =function(){
       document.getElementById('form').submit();
     }
 </script>
 <script>
-    const title = document.querySelector("#judul");
+    const judul = document.querySelector("#judul");
     const slug = document.querySelector("#slug");
 
-    title.addEventListener("change", function () {
-        fetch("/dashboard/create/checkSlug?title=" + title.value)
+    judul.addEventListener("change", function () {
+        fetch("/create/checkSlug?judul=" + judul.value)
             .then((response) => response.json())
             .then((data) => (slug.value = data.slug));
     });
@@ -311,7 +311,7 @@
       const image = document.querySelector("#image");
       const imgPreview = document.querySelector(".img-preview");
 
-      imgPreview.style.display = 'block';
+        imgPreview.style.display = 'block';
 
       const oFReader = new FileReader();
       oFReader.readAsDataURL(image.files[0]);

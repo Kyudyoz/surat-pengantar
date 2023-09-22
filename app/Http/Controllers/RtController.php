@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 
@@ -20,9 +21,24 @@ class RtController extends Controller
     }
     public function dataWarga()
     {
+        // $users = User::where('rt_id', auth()->user()->rt_id)
+        // ->where('role', 'Warga')
+        // ->paginate(5);
         return view('rt.data-warga',[
             'title' => 'Data Warga',
-            'active' => 'Data Warga'
+            'active' => 'Data Warga',
+            // 'users' => $users,
+        ]);
+    }
+
+    public function detail($id)
+    {
+
+        $users = User::where('id', $id)->get();
+        return view('rt.detail-warga',[
+            'title' => 'Data Warga',
+            'active' => 'Data Warga',
+            'users' => $users
         ]);
     }
 

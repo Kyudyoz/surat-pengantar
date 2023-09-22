@@ -2,28 +2,27 @@
 
 namespace App\Livewire;
 
-use App\Models\Post;
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class PostTable extends Component
+class DataWargaTable extends Component
 {
     public $search = '';
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-
     public function render()
     {
-        $posts = Post::latest()->where('judul','like','%'.$this->search.'%')->paginate(2);
 
-        return view('livewire.post-table',[
-            "posts"=> $posts,
-
+        return view('livewire.data-warga-table',[
+            'users' => User::where('rt_id', auth()->user()->rt_id)->where('role','Warga')
+            ->where('nama','like','%'.$this->search.'%')->paginate(5),
         ]);
     }
-
     public function updatingSearch()
     {
+
+
         $this->resetPage();
     }
 }

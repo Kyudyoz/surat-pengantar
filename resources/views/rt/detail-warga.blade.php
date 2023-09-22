@@ -3,13 +3,13 @@
 <main class="content">
     <div class="container-fluid p-0">
 
-        <h1 class="h3 mb-3">Profil</h1>
+        @foreach ($users as $user)
+        <h1 class="h3 mb-3">Detail <strong>{{ $user->nama }}</strong></h1>
 
         <div class="row">
             <div class="col-xl-10 col-xxl-10 d-flex">
                 <div class="w-100">
                     <div class="row">
-                        @foreach ($users as $user)
 
                         <div class="col-md-12">
                             <div class="card">
@@ -18,10 +18,7 @@
                                         <div class="col-md-4 text-center p-2 border border-2">
 
                                             <div class="pict">
-                                                <form action="/userProfile/update" id="form" method="post"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('put')
+
                                                     @if ($user->image)
                                                     <div class="upload">
                                                         <img src="{{ asset('storage/'. $user->image) }}" title="profile"
@@ -89,17 +86,21 @@
                                                 <div class="col-sm-6">
                                                     <h5><strong>No. Handphone</strong></h5>
                                                     @if ($user->no_hp)
-                                                    <p class="text-muted">+{{ $user->no_hp }}</p>
+                                                    <p class="text-muted">
+                                                        <a href="https://wa.me/{{ $user->no_hp }}" class="btn btn-success">
+                                                            <i class="fa-brands fa-whatsapp fa-xl"></i> +{{ $user->no_hp }}
+                                                        </a>
+                                                    </p>
                                                     @else
                                                     <p class="text-muted">-</p>
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="row mt-4">
+                                            {{-- <div class="row mt-4">
                                                 <div class="col-md-12 ">
-                                                    <a href="/pengaturan" class="btn btn-warning w-100">Pengaturan Akun</a>
+                                                    <a href="/editData" class="btn btn-warning w-100">Ubah Data Warga</a>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

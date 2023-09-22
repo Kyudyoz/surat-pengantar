@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
         Post::create([
             'user_id' => 2,
             'judul' => 'judul pertama',
-            'body' => 'aasijdasoijdaosjdqojwdwqjqwejqwpejqwjeqwpeqwjeqwpe'
+            'body' => 'aasijdasoijdaosjdqojwdwqjqwejqadsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssacasascascassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssswpejqwjeqwpeqwjeqwpe'
         ]);
         Post::create([
             'user_id' => 2,

@@ -122,10 +122,18 @@ class HomeController extends Controller
     }
 
     public function updateNoHp(Request $request){
-
+        // $validatedData['nama'] = $request->nama;
+        // $validatedData['nik'] = $request->nik;
+        // $validatedData['tempat_lahir'] = $request->tempat_lahir;
+        // $validatedData['tanggal_lahir'] = $request->tanggal_lahir;
+        // $validatedData['jenis_kelamin'] = $request->jenis_kelamin;
+        $validatedData['alamat'] = $request->alamat;
+        $validatedData['agama'] = $request->agama;
+        $validatedData['status_perkawinan'] = $request->status_perkawinan;
+        $validatedData['pekerjaan'] = $request->pekerjaan;
         $validatedData['no_hp'] = $request->no_hp;
         User::where('id', auth()->user()->id)->update($validatedData);
-        return redirect('/profil')->with('success', 'No. Handphone Berhasil Diubah');
+        return redirect('/profil')->with('success', 'Profil Berhasil Diubah!');
     }
     public function updatePass(Request $request){
 

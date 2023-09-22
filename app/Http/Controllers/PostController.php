@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rt;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostController extends Controller
 {
@@ -25,7 +27,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('blog.create',[
+            "rts"=> Rt::all(),
+            'title' => 'Bulian News',
+            'active' => 'Blog'
+        ]);
     }
 
     /**
@@ -33,15 +39,31 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'judul' =>'required|max:255',
+            'slug' =>'required|unique:posts',
+            'image'=>'required|image|file|max:1024',
+            'body' => 'required',
+        ]);
+        $validatedData['image'] = $request->file('image')->store('post-image');
+        $validatedData['user_id'] = auth()->user()->id;
+
+        Post::create($validatedData);
+
+        return redirect('/')->with('success', 'Postingan berhasil dibuat!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show( $id)
     {
-        //
+        $post = Post::where('id', $id)->get();
+        return view('blog.show',[
+            "title"=>$post->judul,
+            "post"=>$post,
+            'active' => 'Blog'
+        ]);
     }
 
     /**
@@ -66,5 +88,10 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function checkSlug(Request $request){
+        $slug = SlugService::createSlug(Post::class, 'slug', $request->judul);
+        return response()->json(['slug' => $slug]);
     }
 }
