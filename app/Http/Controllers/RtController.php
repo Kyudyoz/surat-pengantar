@@ -31,6 +31,31 @@ class RtController extends Controller
         ]);
     }
 
+    public function tambahWarga(){
+        return view('rt.tambah-warga',[
+            'title' => 'Data Warga',
+            'active' => 'Data Warga',
+        ]);
+    }
+
+    public function storeWarga(Request $request){
+        $validatedData['rt_id'] = $request->rt_id;
+        $validatedData['nama'] = $request->nama;
+        $validatedData['nik'] = $request->nik;
+        $validatedData['password'] = bcrypt($request->password);
+        $validatedData['tempat_lahir'] = $request->tempat_lahir;
+        $validatedData['tanggal_lahir'] = $request->tanggal_lahir;
+        $validatedData['jenis_kelamin'] = $request->jenis_kelamin;
+        $validatedData['alamat'] = $request->alamat;
+        $validatedData['agama'] = $request->agama;
+        $validatedData['status_perkawinan'] = $request->status_perkawinan;
+        $validatedData['pekerjaan'] = $request->pekerjaan;
+        $validatedData['no_hp'] = $request->no_hp;
+        $validatedData['role'] = $request->role;
+        User::create($validatedData);
+        return redirect('/dataWarga')->with('success', 'Warga Berhasil Ditambah!');
+    }
+
     public function detail($id)
     {
 

@@ -26,10 +26,10 @@
                                                     </div>
                                                     @else
                                                     <div class="upload">
-                                                        @if (auth()->user()->jenis_kelamin == 'Laki-laki')
-                                                        <img src="../assets/img/avatars/avatar.jpg" alt="{{ auth()->user()->nama }}" width="125" height="125"/>
+                                                        @if ($user->jenis_kelamin == 'Laki-laki')
+                                                        <img src="../assets/img/avatars/avatar.jpg" alt="{{ $user->nama }}" width="125" height="125"/>
                                                         @else
-                                                        <img src="../assets/img/avatars/avatar-5.jpg" alt="{{ auth()->user()->nama }}" width="125" height="125"/>
+                                                        <img src="../assets/img/avatars/avatar-5.jpg" alt="{{ $user->nama }}" width="125" height="125"/>
                                                         @endif
                                                     </div>
                                                     @endif

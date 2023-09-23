@@ -34,6 +34,8 @@ Route::get('/dashboardRt',[HomeController::class, 'dashboardRt'])->middleware('a
 Route::get('/dashboard',[HomeController::class, 'dashboard'])->middleware('auth');
 Route::get('/validasi',[RtController::class, 'validasi'])->middleware('auth');
 Route::get('/dataWarga',[RtController::class, 'dataWarga'])->middleware('auth');
+Route::get('/tambahWarga',[RtController::class, 'tambahWarga'])->middleware('auth');
+Route::post('/storeWarga',[RtController::class, 'storeWarga'])->middleware('auth');
 Route::get('/lihatDetail/{id}',[RtController::class, 'detail'])->middleware('auth');
 Route::get('/setujui/{id}',[RtController::class, 'setuju'])->middleware('auth');
 Route::get('/tolak/{id}',[RtController::class, 'tolak'])->middleware('auth');
