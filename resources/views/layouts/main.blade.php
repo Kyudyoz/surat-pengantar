@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link rel="shortcut icon" href="../assets/img/icons/surat.png" />
+	<link rel="shortcut icon" href="{{ URL::asset('/assets/img/icons/surat.png') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 	<link href="{{ URL::asset('/assets/css/app.css') }}" rel="stylesheet">
@@ -132,7 +132,7 @@
                     @endif
 
 		            <li class="sidebar-header">
-		                Blog
+		                Umum
 		            </li>
 
 		            <li class="sidebar-item {{ ($active === "Blog") ? 'active' : '' }}">
@@ -140,15 +140,25 @@
 		                    <i class="align-middle" data-feather="slack"></i> <span class="align-middle">Bulian News</span>
 		                </a>
 		            </li>
+		            <li class="sidebar-item {{ ($active === "Info RT") ? 'active' : '' }}">
+		                <a class="sidebar-link" href="/infoRt">
+		                    <i class="align-middle" data-feather="info"></i> <span class="align-middle">Informasi RT/RW</span>
+		                </a>
+		            </li>
 
                     @else
                     <li class="sidebar-header">
-		                Blog
+		                Umum
 		            </li>
 
 		            <li class="sidebar-item {{ ($active === "Blog") ? 'active' : '' }}">
 		                <a class="sidebar-link" href="/">
 		                    <i class="align-middle" data-feather="slack"></i> <span class="align-middle">Bulian News</span>
+		                </a>
+		            </li>
+                    <li class="sidebar-item {{ ($active === "Info RT") ? 'active' : '' }}">
+		                <a class="sidebar-link" href="/infoRt">
+		                    <i class="align-middle" data-feather="info"></i> <span class="align-middle">Informasi RT/RW</span>
 		                </a>
 		            </li>
                     @endauth
@@ -172,16 +182,16 @@
 
 				            <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                                 @if (auth()->user()->image)
-                                    <img src="{{ asset('storage/'. auth()->user()->image) }}" class="avatar img-fluid rounded me-1"
+                                    <img src="{{ URL::asset('storage/'. auth()->user()->image) }}" class="avatar img-fluid rounded me-1"
                                     alt="{{ auth()->user()->nama }}" />
                                     <span class="text-dark">{{ auth()->user()->nama }}</span>
                                 @else
                                     @if (auth()->user()->jenis_kelamin == 'Laki-laki')
-                                    <img src="../assets/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
+                                    <img src="{{ URL::asset('/assets/img/avatars/avatar.jpg') }}" class="avatar img-fluid rounded me-1"
                                         alt="{{ auth()->user()->nama }}" />
                                         <span class="text-dark">{{ auth()->user()->nama }}</span>
                                     @else
-                                    <img src="../assets/img/avatars/avatar-5.jpg" class="avatar img-fluid rounded me-1"
+                                    <img src="{{ URL::asset('/assets/img/avatars/avatar-5.jpg') }}" class="avatar img-fluid rounded me-1"
                                         alt="{{ auth()->user()->nama }}" />
                                         <span class="text-dark">{{ auth()->user()->nama }}</span>
                                     @endif
@@ -251,6 +261,24 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location = "/hapusSurat/"+suratId+""
+
+                }
+            })
+        })
+        $('.deletePost').click(function () {
+            let postSlug = $(this).attr('data-id');
+
+            Swal.fire({
+                title: 'Yakin?',
+                text: "Posingan yang dihapus tidak bisa dikembalikan",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/deletePost/"+postSlug+""
 
                 }
             })

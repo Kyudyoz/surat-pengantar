@@ -50,6 +50,20 @@ class DatabaseSeeder extends Seeder
             'role' => 'Warga'
         ]);
         User::create([
+            'rt_id' => 2,
+            'nik' => '1234567892',
+            'password' => bcrypt('12345'),
+            'nama' => 'Sabrian',
+            'tempat_lahir' => 'Jambi',
+            'tanggal_lahir' => '2003-11-07',
+            'alamat' => 'Jambi',
+            'jenis_kelamin' => 'Laki-laki',
+            'agama' => 'Islam',
+            'status_perkawinan' => 'Belum Kawin',
+            'pekerjaan' => 'Pengurus RT',
+            'role' => 'Ketua'
+        ]);
+        User::create([
             'rt_id' => 1,
             'nik' => '1234567891',
             'password' => bcrypt('12345'),
@@ -62,6 +76,34 @@ class DatabaseSeeder extends Seeder
             'status_perkawinan' => 'Belum Kawin',
             'pekerjaan' => 'Pejabat RT',
             'role' => 'Ketua'
+        ]);
+        User::create([
+            'rt_id' => 3,
+            'nik' => '1234567894',
+            'password' => bcrypt('12345'),
+            'nama' => 'Reysha',
+            'tempat_lahir' => 'Jambi',
+            'tanggal_lahir' => '2003-02-24',
+            'alamat' => 'Muara Bulian',
+            'jenis_kelamin' => 'Perempuan',
+            'agama' => 'Islam',
+            'status_perkawinan' => 'Belum Kawin',
+            'pekerjaan' => 'Pejabat RT',
+            'role' => 'Ketua'
+        ]);
+        User::create([
+            'rt_id' => 2,
+            'nik' => '1234567893',
+            'password' => bcrypt('12345'),
+            'nama' => 'Ilham',
+            'tempat_lahir' => 'Padang',
+            'tanggal_lahir' => '2003-02-24',
+            'alamat' => 'Muara Bulian',
+            'jenis_kelamin' => 'Laki-laki',
+            'agama' => 'Islam',
+            'status_perkawinan' => 'Belum Kawin',
+            'pekerjaan' => 'Mahasiswa',
+            'role' => 'Warga'
         ]);
         User::create([
             'nik' => 'admin',
@@ -94,16 +136,20 @@ class DatabaseSeeder extends Seeder
         Post::create([
             'user_id' => 2,
             'judul' => 'judul pertama',
+            'slug' => 'judul-pertama',
             'body' => 'aasijdasoijdaosjdqojwdwqjqwejqadsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssacasascascassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssswpejqwjeqwpeqwjeqwpe'
         ]);
         Post::create([
             'user_id' => 2,
             'judul' => 'judul kedua',
+            'slug' => 'judul-kedua',
+
             'body' => 'aasijdasoijdaosjdqojwdwqjqwejqwpejqwjeqwpeqwjeqwpe'
         ]);
         Post::create([
             'user_id' => 2,
             'judul' => 'judul ketiga',
+            'slug' => 'judul-ketiga',
             'body' => 'aasijdasoijdaosjdqojwdwqjqwejqwpejqwjeqwpeqwjeqwpe'
         ]);
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Rt;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostController extends Controller
@@ -56,9 +57,9 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show( $id)
+    public function show(Post $post)
     {
-        $post = Post::where('id', $id)->get();
+
         return view('blog.show',[
             "title"=>$post->judul,
             "post"=>$post,
@@ -71,7 +72,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('blog.edit',[
+            "title" => "Edit Postingan",
+            "active" => "Blog",
+            'post' => $post
+        ]);
     }
 
     /**
@@ -79,7 +84,31 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $rules = [
+            'judul' =>'required|max:255',
+            'image'=>'image|file|max:1024',
+            'body' => 'required',
+        ];
+
+
+
+        if ($request->slug != $post->slug) {
+            $rules['slug'] = 'required|unique:posts';
+        }
+
+        $validatedData = $request->validate($rules);
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('post-image');
+        }
+        $validatedData['user_id'] = auth()->user()->id;
+
+        Post::where('id', $post->id)
+        ->update($validatedData);
+
+        return redirect('/')->with('success', 'Postingan berhasil diubah!');
     }
 
     /**
@@ -87,7 +116,11 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        if ($post->image) {
+            Storage::delete($post->image);
+        }
+        Post::destroy($post->id);
+        return redirect('/')->with('success', 'Postingan berhasil dihapus');
     }
 
     public function checkSlug(Request $request){

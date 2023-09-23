@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rt;
 use App\Models\User;
 use App\Models\Surat;
 use Illuminate\Http\Request;
@@ -90,6 +91,16 @@ class HomeController extends Controller
             'users' => $users
         ]);
     }
+
+    public function infoRt(){
+        return view('info-rt',[
+            'title' => 'Informasi RT/RW',
+            'active' => 'Info RT',
+            'rts' => Rt::all(),
+            'users' => User::where('role', 'Ketua')->orderBy('rt_id')->get()
+        ]);
+    }
+
     public function editPass()
     {
 
@@ -118,15 +129,10 @@ class HomeController extends Controller
         $validatedData['id'] = $id;
 
         User::where('id', $id)->update($validatedData);
-        return redirect('/profil')->with('success', 'Foto Profil Berhasil Diubah');
+        return redirect('/pengaturan')->with('success', 'Foto Profil Berhasil Diubah');
     }
 
     public function updateNoHp(Request $request){
-        // $validatedData['nama'] = $request->nama;
-        // $validatedData['nik'] = $request->nik;
-        // $validatedData['tempat_lahir'] = $request->tempat_lahir;
-        // $validatedData['tanggal_lahir'] = $request->tanggal_lahir;
-        // $validatedData['jenis_kelamin'] = $request->jenis_kelamin;
         $validatedData['alamat'] = $request->alamat;
         $validatedData['agama'] = $request->agama;
         $validatedData['status_perkawinan'] = $request->status_perkawinan;

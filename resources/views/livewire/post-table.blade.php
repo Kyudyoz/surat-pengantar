@@ -39,7 +39,7 @@
                         -webkit-box-orient: vertical; text-overflow:ellipsis; ">{{ strip_tags($post->body) }}</p>
 
                                                         <div class="w-100">
-                                                            <a href="/posts/show/{{ $post->id }}" class="btn btn-secondary w-100">Baca selengkapnya</a>
+                                                            <a href="/posts/show/{{ $post->slug }}" class="btn btn-secondary w-100">Baca selengkapnya</a>
                                                         </div>
                                                     </div>
                                                 </div>

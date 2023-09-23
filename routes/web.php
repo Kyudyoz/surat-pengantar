@@ -22,6 +22,7 @@ use App\Http\Controllers\wargaController;
 Route::get('/',[PostController::class, 'index']);
 Route::get('/profil',[HomeController::class, 'profil'])->middleware('auth');
 Route::get('/pengaturan',[HomeController::class, 'pengaturan'])->middleware('auth');
+Route::get('/infoRt', [HomeController::class, 'infoRt']);
 Route::get('/editPass',[HomeController::class, 'editPass'])->middleware('auth');
 Route::put('/userProfile/update',[HomeController::class, 'update'])->middleware('auth');
 Route::post('/updateNoHp/{id}',[HomeController::class, 'updateNoHp'])->middleware('auth');
@@ -41,8 +42,10 @@ Route::get('/tolak/{id}',[RtController::class, 'tolak'])->middleware('auth');
 Route::get('/buat',[PostController::class, 'create'])->middleware('auth');
 Route::get('/create/checkSlug',[PostController::class, 'checkSlug'])->middleware('auth');
 Route::post('/storePost',[PostController::class, 'store'])->middleware('auth');
-Route::get('/posts/show/{id}',[PostController::class, 'show'])->middleware('auth');
-
+Route::get('/posts/show/{post:slug}',[PostController::class, 'show']);
+Route::get('/posts/edit/{post:slug}',[PostController::class, 'edit'])->middleware('auth');
+Route::post('/posts/update/{post:slug}',[PostController::class, 'update'])->middleware('auth');
+Route::get('/deletePost/{post:slug}', [PostController::class, 'destroy'])->middleware('auth');
 
 //login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

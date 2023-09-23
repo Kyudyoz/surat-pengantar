@@ -2,7 +2,6 @@
 @section('main')
 <main class="content">
     <div class="container-fluid p-0">
-        <h1 class="h3 mb-3">Bulian News</h1>
 
         <div class="row justify-content-center mt-2">
 
@@ -28,11 +27,17 @@
                         </small>
                         <hr />
                         <p class="card-text">{!! $post->body !!}</p>
+                        @auth
+                            @if (auth()->user()->role == "Ketua" || auth()->user()->role == "admin")
+                            <div class="w-100 text-end">
+                                <a href="/posts/edit/{{ $post->slug }}" class="btn btn-warning">Edit</a>
+                                <a href="#" class="btn btn-danger deletePost" data-id="{{ $post->slug }}">
+                                    Hapus
+                                </a>
+                            </div>
+                            @endif
+                        @endauth
 
-                        <div class="w-100">
-                            <a href="/posts/show/{{ $post->slug }}" class="btn btn-secondary w-100">Baca
-                                selengkapnya</a>
-                        </div>
                     </div>
                 </div>
 
