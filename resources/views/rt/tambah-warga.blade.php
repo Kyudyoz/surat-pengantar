@@ -155,6 +155,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5><strong>Password</strong></h5>
+                                                        <div class="mb-3">
+                                                            <input class="form-control form-control-lg @error('password') is-invalid @enderror" type="text" name="password" id="password" placeholder="Masukan Password"/>
+                                                            @error('password')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="d-grid gap-2 mt-3">
                                                     <button type="submit" class="btn btn-lg btn-primary">Tambah Warga!</button>
                                                 </div>

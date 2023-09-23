@@ -41,7 +41,9 @@ class RtController extends Controller
     public function storeWarga(Request $request){
         $validatedData['rt_id'] = $request->rt_id;
         $validatedData['nama'] = $request->nama;
-        $validatedData['nik'] = $request->nik;
+        $validatedData['nik'] = $request->validate([
+            'nik' => 'required|unique:users'
+        ]);
         $validatedData['password'] = bcrypt($request->password);
         $validatedData['tempat_lahir'] = $request->tempat_lahir;
         $validatedData['tanggal_lahir'] = $request->tanggal_lahir;
