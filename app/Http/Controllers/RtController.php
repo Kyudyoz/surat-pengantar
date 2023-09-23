@@ -39,19 +39,21 @@ class RtController extends Controller
     }
 
     public function storeWarga(Request $request){
-        $validatedData['rt_id'] = $request->rt_id;
-        $validatedData['nama'] = $request->nama;
-        $validatedData['nik'] = $request->validate([
-            'nik' => 'required|unique:users'
+        // $validatedData['nama'] = $request->nama;
+        $validatedData = $request->validate([
+            'nik' => 'required|unique:users',
+            'nama' => 'required',
+            'tanggal_lahir' => 'required',
+            'tempat_lahir' => 'required',
+            'alamat' => 'required',
+            'pekerjaan' => 'required',
+            'password' => 'required',
         ]);
+        $validatedData['rt_id'] = $request->rt_id;
         $validatedData['password'] = bcrypt($request->password);
-        $validatedData['tempat_lahir'] = $request->tempat_lahir;
-        $validatedData['tanggal_lahir'] = $request->tanggal_lahir;
         $validatedData['jenis_kelamin'] = $request->jenis_kelamin;
-        $validatedData['alamat'] = $request->alamat;
         $validatedData['agama'] = $request->agama;
         $validatedData['status_perkawinan'] = $request->status_perkawinan;
-        $validatedData['pekerjaan'] = $request->pekerjaan;
         $validatedData['no_hp'] = $request->no_hp;
         $validatedData['role'] = $request->role;
         User::create($validatedData);
