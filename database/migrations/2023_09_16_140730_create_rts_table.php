@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_rt');
             $table->string('nama_ketua')->nullable();
+            $table->string('ttd')->nullable();
             $table->timestamps();
         });
     }

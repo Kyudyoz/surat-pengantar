@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RtController;
 use App\Http\Controllers\HomeController;
@@ -31,7 +32,6 @@ Route::post('/updatePass/{id}',[HomeController::class, 'updatePass'])->middlewar
 
 //rt
 Route::get('/dashboardRt',[HomeController::class, 'dashboardRt'])->middleware('auth');
-Route::get('/dashboard',[HomeController::class, 'dashboard'])->middleware('auth');
 Route::get('/validasi',[RtController::class, 'validasi'])->middleware('auth');
 Route::get('/dataWarga',[RtController::class, 'dataWarga'])->middleware('auth');
 Route::get('/tambahWarga',[RtController::class, 'tambahWarga'])->middleware('auth');
@@ -55,6 +55,7 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 //warga
+Route::get('/dashboard',[HomeController::class, 'dashboard'])->middleware('auth');
 Route::get('/buatSurat', [wargaController::class, 'buatSurat'])->middleware('auth');
 Route::get('/buatSKTM', [wargaController::class, 'buatSktm'])->middleware('auth');
 Route::get('/buatSKKR', [wargaController::class, 'buatSkkr'])->middleware('auth');
@@ -84,3 +85,14 @@ Route::get('/lihatSKK/{id}', [PdfController::class, 'cetak_skk'])->middleware('a
 Route::get('/lihatSKKR/{id}', [PdfController::class, 'cetak_skkr'])->middleware('auth');
 Route::get('/lihatSKJ/{id}', [PdfController::class, 'cetak_skj'])->middleware('auth');
 Route::get('/lihatSKD/{id}', [PdfController::class, 'cetak_skd'])->middleware('auth');
+
+//admin
+Route::get('/dashboardAdmin',[HomeController::class, 'dashboardAdmin'])->middleware('auth');
+Route::get('/tambahUser',[AdminController::class, 'tambahUser'])->middleware('auth');
+Route::post('/storeUser',[AdminController::class, 'storeUser'])->middleware('auth');
+Route::get('/tambahRt',[AdminController::class, 'tambahRt'])->middleware('auth');
+Route::post('/storeRt',[AdminController::class, 'storeRt'])->middleware('auth');
+Route::get('/dataUser',[AdminController::class, 'dataUser'])->middleware('auth');
+Route::get('/dataRt',[AdminController::class, 'dataRt'])->middleware('auth');
+Route::get('/lihatDetailRt/{id}',[AdminController::class, 'lihatDetailRt'])->middleware('auth');
+Route::post('/updateRt/{id}',[AdminController::class, 'updateRt'])->middleware('auth');

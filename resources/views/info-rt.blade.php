@@ -17,7 +17,7 @@
                                 @if ($users->count())
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        
                                         <th>Nama</th>
                                         <th>Alamat</th>
                                         <th>RT</th>
@@ -27,7 +27,7 @@
                                 <tbody>
                                     @foreach ($users as $user)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        
                                         <td>{{ $user->nama }}</td>
                                         <td>{{ $user->alamat }}</td>
                                         <td>
@@ -48,6 +48,9 @@
                                 </tbody>
                                 @endif
                             </table>
+                            <div class="d-flex justify-content-end mx-2 mt-2">
+                                {{ $users->links() }}
+                            </div>
                         </div>
                     </div>
 

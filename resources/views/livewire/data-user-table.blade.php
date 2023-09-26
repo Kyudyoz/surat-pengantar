@@ -5,7 +5,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <input type="text" class="form-control w-25" wire:model.live="search" placeholder="Cari warga...">
+                            <input type="text" class="form-control w-25" wire:model.live="search" placeholder="Cari user...">
                         </div>
                         <table class="table table-hover my-0 text-center">
                             @if ($users->count())
@@ -13,8 +13,10 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
+                                    <th>RT</th>
                                     <th>Alamat</th>
                                     <th>Nomor Telepon</th>
+                                    <th>Status</th>
                                     <th>Lihat Detail</th>
                                 </tr>
                             </thead>
@@ -23,6 +25,7 @@
                                 <tr>
                                     <td>{{ ($users->currentPage() - 1) * $users->perPage() + $loop->iteration }}</td>
                                     <td>{{ $user->nama }}</td>
+                                    <td>{{ $user->rt->nama_rt }}</td>
                                     <td>{{ $user->alamat }}</td>
                                     <td>
                                         @if ($user->no_hp)
@@ -33,6 +36,7 @@
                                         -
                                         @endif
                                     </td>
+                                    <td>{{ $user->role }}</td>
                                     <td>
                                         <a href="/lihatDetail/{{ $user->id }}" class="btn btn-primary">
                                             <i class="align-middle fa-solid fa-eye fa-xl text-dark"></i>
@@ -42,7 +46,7 @@
                                 @endforeach
                                 @else
                                 <hr>
-                                    <p class="text-center">Warga tidak ditemukan</p>
+                                    <p class="text-center">User tidak ditemukan</p>
                             </tbody>
                             @endif
                         </table>

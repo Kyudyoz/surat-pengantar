@@ -26,9 +26,16 @@
                                                     @endif
                                                     <div class="card-body">
                                                         <h2 class="card-title text-dark">{{ Str::ucfirst($post->judul) }}</h2>
+                                                        @if (!($post->user->rt_id))
+                                                        <small class="card-text text-muted">
+                                                            Dari : Admin
+                                                        </small>
+                                                        @else
                                                         <small class="card-text text-muted">
                                                             Dari : {{ $post->user->rt->nama_rt }}
                                                         </small>
+                                                        @endif
+                                                        
                                                         <br>
                                                         <small class="card-text text-muted">
                                                               {{ $post->created_at->diffForHumans() }}

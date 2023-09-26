@@ -13,6 +13,7 @@
 	<link href="{{ URL::asset('/assets/css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <style>
@@ -74,7 +75,11 @@
 		        <a class="sidebar-brand" style="cursor: default">
 		            <p class="align-middle">Selamat Datang</p>
                     @auth
+                    @if (auth()->user()->role != 'Admin')
 		            <span class="align-middle">{{ auth()->user()->role }} {{ auth()->user()->rt->nama_rt }}</span>
+                    @else
+		            <span class="align-middle">{{ auth()->user()->role }}</span>
+                    @endif
                     @endauth
 		        </a>
 
@@ -93,6 +98,12 @@
                     @elseif(auth()->user()->role == 'Warga')
                     <li class="sidebar-item {{ ($active === "Dashboard Warga") ? 'active' : '' }}">
 		                <a class="sidebar-link" href="/dashboard">
+		                    <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Dashboard</span>
+		                </a>
+		            </li>
+                    @elseif(auth()->user()->role == 'Admin')
+                    <li class="sidebar-item {{ ($active === "Dashboard Admin") ? 'active' : '' }}">
+		                <a class="sidebar-link" href="/dashboardAdmin">
 		                    <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Dashboard</span>
 		                </a>
 		            </li>
@@ -127,6 +138,26 @@
 		            <li class="sidebar-item {{ ($active === "Buat Surat") ? 'active' : '' }}">
 		                <a class="sidebar-link" href="/buatSurat">
 		                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Buat Surat</span>
+		                </a>
+		            </li>
+                    @elseif(auth()->user()->role == 'Admin')
+                    <li class="sidebar-header">
+		                Fitur Admin
+		            </li>
+
+		            <li class="sidebar-item {{ ($active === "Tambah RT") ? 'active' : '' }}">
+		                <a class="sidebar-link" href="/tambahRt">
+		                    <i class="align-middle" data-feather="list"></i> <span class="align-middle">Tambah RT</span>
+		                </a>
+		            </li>
+		            <li class="sidebar-item {{ ($active === "Data RT") ? 'active' : '' }}">
+		                <a class="sidebar-link" href="/dataRt">
+		                    <i class="align-middle" data-feather="hash"></i> <span class="align-middle">Data RT</span>
+		                </a>
+		            </li>
+		            <li class="sidebar-item {{ ($active === "Data User") ? 'active' : '' }}">
+		                <a class="sidebar-link" href="/dataUser">
+		                    <i class="align-middle" data-feather="align-right"></i> <span class="align-middle">Data User</span>
 		                </a>
 		            </li>
                     @endif
@@ -200,8 +231,8 @@
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="/profil"><i class="align-middle me-1" data-feather="user"></i> Profil</a>
 								<a class="dropdown-item" href="/pengaturan"><i class="align-middle me-1" data-feather="settings"></i> Pengaturan Akun</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="/bantuan"><i class="align-middle me-1" data-feather="help-circle"></i> Bantuan</a>
+								{{-- <div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="/bantuan"><i class="align-middle me-1" data-feather="help-circle"></i> Bantuan</a> --}}
 								<div class="dropdown-divider"></div>
 								<form action="/logout" method="POST">
                                     @csrf
@@ -241,10 +272,24 @@
             text: '{{ session()->get('success') }}',
         })
     </script>
-
+    @elseif(session()->has('loginSuccess'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Login Berhasil!',
+            text: '{{ session()->get('loginSuccess') }}',
+        })
+    </script>
     @endif
     @livewireScripts
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+        $('.select2').select2();
+        });
+    </script>
 
     <script>
         $('.delete').click(function () {

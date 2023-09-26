@@ -10,6 +10,8 @@
 	<link rel="shortcut icon" href="../assets/img/icons/surat.png" />
 	<link href="{{ URL::asset('/assets/css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 	<title>Login</title>
 </head>
@@ -30,13 +32,13 @@
 
 						<div class="card">
 							<div class="card-body">
-                                @if (session()->has('loginError'))
+                                {{-- @if (session()->has('loginError'))
 
                                 <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
                                     <strong class="text-danger text-center"><em>{{ session('loginError') }}</em></strong>
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
-                                @endif
+                                @endif --}}
 								<div class="m-sm-3">
 									<form action="/login" method="post">
                                         @csrf
@@ -73,6 +75,15 @@
 		</div>
 	</main>
 
+	@if(session()->has('loginError'))
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Login Gagal!',
+            text: '{{ session()->get('loginError') }}',
+        })
+    </script>
+	@endif
     <script src="{{ URL::asset('/assets/js/app.js') }}"></script>
 
 </body>

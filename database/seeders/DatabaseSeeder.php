@@ -25,14 +25,19 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Rt::create([
-            'nama_rt' => 'RT 27',
-            'nama_ketua' => 'Muhammad Iqbal Firdaus'
+            'nama_rt' => 'RT 01',
+            'nama_ketua' => 'Muhammad Iqbal Firdaus',
+            'ttd' => 'ttd/ttd.png'
         ]);
         Rt::create([
-            'nama_rt' => 'RT 28'
+            'nama_rt' => 'RT 02',
+            'nama_ketua' => 'Sabrian'
+
         ]);
         Rt::create([
-            'nama_rt' => 'RT 29'
+            'nama_rt' => 'RT 03',
+            'nama_ketua' => 'Reysha'
+
         ]);
 
         User::create([

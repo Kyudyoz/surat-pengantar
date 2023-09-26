@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rt;
 use App\Models\User;
 use App\Models\Surat;
 use Illuminate\Http\Request;
@@ -13,11 +14,25 @@ class PdfController extends Controller
     public function cetak_sktm($id){
 
         $surats = Surat::where('id', $id)->get();
-        $path = base_path('/public/assets/img/ttd/ttd.png');
+        $rt = Rt::where('id', $surats[0]->rt_id)->get();
+        foreach ($rt as $ttd) {
+            $path = base_path('/public/storage/' . $ttd->ttd);
+        }
+        // $path = base_path('/public/assets/img/ttd/ttd.png');
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
-        $pdf = Pdf::loadView('pdf.cetak_sktm',['surats' => $surats, 'pic' =>$pic])->setPaper('a4', 'potrait');
+
+        $path2 = base_path('/public/assets/img/ttd/qrcode.png');
+        $type2 = pathinfo($path2, PATHINFO_EXTENSION);
+        $data2 = file_get_contents($path2);
+        $pic2 = 'data:image/' . $type2 . ';base64,' . base64_encode($data2);
+        $pdf = Pdf::loadView('pdf.cetak_sktm',
+        [
+            'surats' => $surats, 
+            'pic' =>$pic,
+            'pic2' => $pic2
+        ])->setPaper('a4', 'potrait');
         $namaPdf = 'SKTM_';
         foreach ($surats as $surat) {
         $namaPdf .= $surat->user->nama;
@@ -29,11 +44,25 @@ class PdfController extends Controller
     public function cetak_skd($id){
 
         $surats = Surat::where('id', $id)->get();
-        $path = base_path('/public/assets/img/ttd/ttd.png');
+        $rt = Rt::where('id', $surats[0]->rt_id)->get();
+        foreach ($rt as $ttd) {
+            $path = base_path('/public/storage/' . $ttd->ttd);
+        }
+        // $path = base_path('/public/assets/img/ttd/ttd.png');
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
-        $pdf = Pdf::loadView('pdf.cetak_skd',['surats' => $surats, 'pic' =>$pic])->setPaper('a4', 'potrait');
+
+        $path2 = base_path('/public/assets/img/ttd/qrcode.png');
+        $type2 = pathinfo($path2, PATHINFO_EXTENSION);
+        $data2 = file_get_contents($path2);
+        $pic2 = 'data:image/' . $type2 . ';base64,' . base64_encode($data2);
+        $pdf = Pdf::loadView('pdf.cetak_skd',
+        [
+            'surats' => $surats, 
+            'pic' =>$pic,
+            'pic2'=>$pic2
+        ])->setPaper('a4', 'potrait');
         $namaPdf = 'SKD_';
         foreach ($surats as $surat) {
         $namaPdf .= $surat->user->nama;
@@ -45,12 +74,24 @@ class PdfController extends Controller
     public function cetak_sku($id){
 
         $surats = Surat::where('id', $id)->get();
-
-        $path = base_path('/public/assets/img/ttd/ttd.png');
+        $rt = Rt::where('id', $surats[0]->rt_id)->get();
+        foreach ($rt as $ttd) {
+            $path = base_path('/public/storage/' . $ttd->ttd);
+        }
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
-        $pdf = Pdf::loadView('pdf.cetak_sku',['surats' => $surats, 'pic' =>$pic])->setPaper('a4', 'potrait');
+
+        $path2 = base_path('/public/assets/img/ttd/qrcode.png');
+        $type2 = pathinfo($path2, PATHINFO_EXTENSION);
+        $data2 = file_get_contents($path2);
+        $pic2 = 'data:image/' . $type2 . ';base64,' . base64_encode($data2);
+        $pdf = Pdf::loadView('pdf.cetak_sku',
+        [
+            'surats' => $surats, 
+            'pic' =>$pic,
+            'pic2'=>$pic2
+        ])->setPaper('a4', 'potrait');
         $namaPdf = 'SKU_';
         foreach ($surats as $surat) {
         $namaPdf .= $surat->user->nama;
@@ -62,11 +103,24 @@ class PdfController extends Controller
     public function cetak_skj($id){
 
         $surats = Surat::where('id', $id)->get();
-        $path = base_path('/public/assets/img/ttd/ttd.png');
+        $rt = Rt::where('id', $surats[0]->rt_id)->get();
+        foreach ($rt as $ttd) {
+            $path = base_path('/public/storage/' . $ttd->ttd);
+        }
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
-        $pdf = Pdf::loadView('pdf.cetak_skj',['surats' => $surats, 'pic' =>$pic])->setPaper('a4', 'potrait');
+
+        $path2 = base_path('/public/assets/img/ttd/qrcode.png');
+        $type2 = pathinfo($path2, PATHINFO_EXTENSION);
+        $data2 = file_get_contents($path2);
+        $pic2 = 'data:image/' . $type2 . ';base64,' . base64_encode($data2);
+        $pdf = Pdf::loadView('pdf.cetak_skj',
+        [
+            'surats' => $surats, 
+            'pic' =>$pic,
+            'pic2'=>$pic2
+        ])->setPaper('a4', 'potrait');
         $namaPdf = 'Surat Keterangan_';
         foreach ($surats as $surat) {
         $namaPdf .= $surat->user->nama;
@@ -81,15 +135,24 @@ class PdfController extends Controller
         foreach ($surats as $surat) {
             $users = User::where('nik', $surat->nik)->get();
         }
-        $path = base_path('/public/assets/img/ttd/ttd.png');
+        $rt = Rt::where('id', $surats[0]->rt_id)->get();
+        foreach ($rt as $ttd) {
+            $path = base_path('/public/storage/' . $ttd->ttd);
+        }
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+        $path2 = base_path('/public/assets/img/ttd/qrcode.png');
+        $type2 = pathinfo($path2, PATHINFO_EXTENSION);
+        $data2 = file_get_contents($path2);
+        $pic2 = 'data:image/' . $type2 . ';base64,' . base64_encode($data2);
         $pdf = Pdf::loadView('pdf.cetak_skk',
         [
             'surats' => $surats,
             'pic' =>$pic,
-            'users' =>$users
+            'users' =>$users,
+            'pic2'=>$pic2
         ])->setPaper('a4', 'potrait');
         $namaPdf = 'SKK_';
         foreach ($surats as $surat) {
@@ -102,11 +165,24 @@ class PdfController extends Controller
     public function cetak_skkr($id){
 
         $surats = Surat::where('id', $id)->get();
-        $path = base_path('/public/assets/img/ttd/ttd.png');
+        $rt = Rt::where('id', $surats[0]->rt_id)->get();
+        foreach ($rt as $ttd) {
+            $path = base_path('/public/storage/' . $ttd->ttd);
+        }
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
-        $pdf = Pdf::loadView('pdf.cetak_skkr',['surats' => $surats, 'pic' =>$pic])->setPaper('a4', 'potrait');
+
+        $path2 = base_path('/public/assets/img/ttd/qrcode.png');
+        $type2 = pathinfo($path2, PATHINFO_EXTENSION);
+        $data2 = file_get_contents($path2);
+        $pic2 = 'data:image/' . $type2 . ';base64,' . base64_encode($data2);
+        $pdf = Pdf::loadView('pdf.cetak_skkr',
+        [
+            'surats' => $surats, 
+            'pic' =>$pic,
+            'pic2'=>$pic2
+        ])->setPaper('a4', 'potrait');
         $namaPdf = 'SKKR_';
         foreach ($surats as $surat) {
         $namaPdf .= $surat->user->nama;

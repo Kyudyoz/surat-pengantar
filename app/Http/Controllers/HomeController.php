@@ -30,6 +30,25 @@ class HomeController extends Controller
 
         ]);
     }
+    public function dashboardAdmin()
+    {
+        $rts = Rt::all();
+        $jmlRt = $rts->count();
+        $user = User::where('role','!=' ,'Admin')->get();
+        $jmlUser = $user->count();
+        
+
+        return view('admin.dashboard-admin',[
+            'title' => 'Dashboard',
+            'active' => 'Dashboard Admin',
+            'rts' => $rts,
+            'jmlRt' => $jmlRt,
+            'user' => $user,
+            'jmlUser' => $jmlUser
+            
+
+        ]);
+    }
     public function dashboard()
     {
         $surats = Surat::where('user_id', auth()->user()->id)
@@ -96,8 +115,11 @@ class HomeController extends Controller
         return view('info-rt',[
             'title' => 'Informasi RT/RW',
             'active' => 'Info RT',
-            'rts' => Rt::all(),
-            'users' => User::where('role', 'Ketua')->orderBy('rt_id')->get()
+            // 'users' => User::where('role', 'Ketua')->orderBy('rt_id')->get()
+            'users' => User::where('role', 'Ketua')
+            ->leftJoin('rts', 'users.rt_id', '=', 'rts.id')
+            ->orderBy('rts.nama_rt')
+            ->simplePaginate(5)
         ]);
     }
 
