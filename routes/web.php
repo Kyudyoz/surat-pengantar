@@ -33,6 +33,8 @@ Route::post('/updatePass/{id}',[HomeController::class, 'updatePass'])->middlewar
 //rt
 Route::get('/dashboardRt',[HomeController::class, 'dashboardRt'])->middleware('auth');
 Route::get('/validasi',[RtController::class, 'validasi'])->middleware('auth');
+Route::get('/unggahTtd',[RtController::class, 'unggahTtd'])->middleware('auth');
+Route::post('/updateTtd/{id}',[RtController::class, 'updateTtd'])->middleware('auth');
 Route::get('/dataWarga',[RtController::class, 'dataWarga'])->middleware('auth');
 Route::get('/tambahWarga',[RtController::class, 'tambahWarga'])->middleware('auth');
 Route::post('/storeWarga',[RtController::class, 'storeWarga'])->middleware('auth');

@@ -78,7 +78,7 @@ return [
     ],
     'max' => [
         'array' => ':attribute tidak boleh memiliki lebih dari :max item.',
-        'file' => ':attribute tidak boleh lebih besar dari :max kilobyte.',
+        'file' => 'Ukuran gambar tidak boleh lebih besar dari :max kilobyte.',
         'numeric' => ':attribute tidak boleh lebih besar dari :max.',
         'string' => ':attribute tidak boleh lebih panjang dari :max karakter.',
     ],

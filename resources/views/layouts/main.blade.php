@@ -62,6 +62,8 @@
         .pict .upload .round input[type="file"]::-webkit-file-upload-button {
             cursor: pointer;
         }
+
+        
       </style>
 
 	<title>{{ $title }}</title>
@@ -128,6 +130,11 @@
 		            <li class="sidebar-item {{ ($active === "Data Warga") ? 'active' : '' }}">
 		                <a class="sidebar-link" href="/dataWarga">
 		                    <i class="align-middle" data-feather="server"></i> <span class="align-middle">Data Warga</span>
+		                </a>
+		            </li>
+		            <li class="sidebar-item {{ ($active === "Unggah Tanda Tangan") ? 'active' : '' }}">
+		                <a class="sidebar-link" href="/unggahTtd">
+		                    <i class="align-middle" data-feather="upload"></i> <span class="align-middle">Unggah Tanda Tangan</span>
 		                </a>
 		            </li>
                     @elseif(auth()->user()->role == 'Warga')
@@ -281,6 +288,15 @@
         })
     </script>
     @endif
+    @if (session()->has('ttdError'))
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Gagal!',
+            text: '{{ session()->get('ttdError') }}',
+        })
+    </script>
+    @endif
     @livewireScripts
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -329,7 +345,6 @@
             })
         })
     </script>
-    {{-- @include('sweetalert::alert') --}}
 
     <script src="https://kit.fontawesome.com/057baadc3d.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -381,17 +396,24 @@
     });
 
     function previewImage() {
-      const image = document.querySelector("#image");
-      const imgPreview = document.querySelector(".img-preview");
+        const image = document.querySelector("#image");
+        const imgPreview = document.querySelector(".img-preview");
+        const imgPreview2 = document.querySelector(".img-preview2");
 
-        imgPreview.style.display = 'block';
 
-      const oFReader = new FileReader();
-      oFReader.readAsDataURL(image.files[0]);
-      oFReader.onload = function(oFREvent){
-        imgPreview.src = oFREvent.target.result;
-      }
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+        oFReader.onload = function (oFREvent) {
+            imgPreview.style.display = 'block';
+            imgPreview.src = oFREvent.target.result;
+        }
+        const oFReader2 = new FileReader();
+        oFReader2.readAsDataURL(image.files[0]);
+        oFReader2.onload = function (oFREvent) {
+            imgPreview2.src = oFREvent.target.result;
+        }
     }
+
 
     </script>
     <script>

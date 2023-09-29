@@ -30,7 +30,7 @@
                                                         <input type="hidden" name="nama" value="{{ $user->nama }}">
                                                         <input type="hidden" name="oldImage" value="{{ $user->image }}">
                                                         <div class="round">
-                                                            <input type="file" name="image" id="imageProfil">
+                                                            <input type="file" accept="image/*" name="image" id="imageProfil">
                                                             <i class="fa-solid fa-camera fa-xl" style="color: white"></i>
                                                         </div>
                                                         @error('image')
@@ -49,7 +49,7 @@
                                                         <input type="hidden" name="id" value="{{ $user->id }}">
                                                         <input type="hidden" name="nama" value="{{ $user->nama }}">
                                                         <div class="round">
-                                                            <input type="file" name="image" id="imageProfil">
+                                                            <input type="file" accept="image/*" name="image" id="imageProfil">
                                                             <i class="fa-solid fa-camera fa-xl" style="color: white"></i>
                                                         </div>
                                                         @error('image')

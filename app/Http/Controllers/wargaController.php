@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 
@@ -55,6 +56,13 @@ class wargaController extends Controller
         $validatedData = $request->validate([
             'keperluan' =>'required',
         ]);
+
+        $user = User::where('nik', $request->nik)->first();
+
+            if (!$user) {
+        // Jika 'nik' tidak ditemukan, kembalikan pesan error
+            return back()->with('ttdError', 'NIK tidak ditemukan.');
+        }
         $validatedData['jenis_surat'] = $request->jenis_surat;
         $validatedData['nik'] = $request->nik;
         $validatedData['lokasi'] = $request->lokasi;
@@ -87,6 +95,10 @@ class wargaController extends Controller
         $validatedData = $request->validate([
             'keperluan' =>'required',
         ]);
+        $user = User::where('nik', $request->nik)->first();
+            if (!$user) {
+            return back()->with('ttdError', 'NIK tidak ditemukan.');
+        }
         $validatedData['jenis_surat'] = $request->jenis_surat;
         $validatedData['nik'] = $request->nik;
         $validatedData['lokasi'] = $request->lokasi;

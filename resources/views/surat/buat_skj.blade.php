@@ -28,6 +28,8 @@
                                         <form action="/suratStore" method="post">
                                             @csrf
                                             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                            <input type="hidden" name="nik" value="{{ auth()->user()->nik }}">
+
                                             @if (auth()->user()->jenis_kelamin == 'Laki-laki')
                                             <input type="hidden" name="jenis_surat" value="Surat Keterangan Duda">
                                             @else

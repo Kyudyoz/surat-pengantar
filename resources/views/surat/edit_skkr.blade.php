@@ -24,6 +24,8 @@
                                         <form action="/updateSKKR/{{ $surat->id }}" method="post">
                                             @csrf
                                             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                            <input type="hidden" name="nik" value="{{ auth()->user()->nik }}">
+
                                             <input type="hidden" name="jenis_surat" value="Surat Keterangan Kepemilikan Rumah">
                                             <div class="mb-3">
                                                 <label class="form-label">Keperluan</label>

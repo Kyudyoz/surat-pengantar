@@ -31,7 +31,7 @@
                       @else
                       <img class="img-preview img-fluid mb-3 col-sm-8 d-block">
                       @endif
-                      <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
+                      <input class="form-control @error('image') is-invalid @enderror" accept="image/*" type="file" id="image" name="image" onchange="previewImage()">
                       @error('image')
                           <div class="invalid-feedback">
                             {{ $message }}

@@ -16,9 +16,12 @@ class PdfController extends Controller
         $surats = Surat::where('id', $id)->get();
         $rt = Rt::where('id', $surats[0]->rt_id)->get();
         foreach ($rt as $ttd) {
-            $path = base_path('/public/storage/' . $ttd->ttd);
+            if ($ttd->ttd) {
+                $path = base_path('/public/storage/' . $ttd->ttd);
+            }else{
+                $path = base_path('/public/assets/img/ttd/ttd.png');
+            }
         }
-        // $path = base_path('/public/assets/img/ttd/ttd.png');
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
@@ -46,9 +49,12 @@ class PdfController extends Controller
         $surats = Surat::where('id', $id)->get();
         $rt = Rt::where('id', $surats[0]->rt_id)->get();
         foreach ($rt as $ttd) {
-            $path = base_path('/public/storage/' . $ttd->ttd);
+            if ($ttd->ttd) {
+                $path = base_path('/public/storage/' . $ttd->ttd);
+            }else{
+                $path = base_path('/public/assets/img/ttd/ttd.png');
+            }
         }
-        // $path = base_path('/public/assets/img/ttd/ttd.png');
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
@@ -76,7 +82,11 @@ class PdfController extends Controller
         $surats = Surat::where('id', $id)->get();
         $rt = Rt::where('id', $surats[0]->rt_id)->get();
         foreach ($rt as $ttd) {
-            $path = base_path('/public/storage/' . $ttd->ttd);
+            if ($ttd->ttd) {
+                $path = base_path('/public/storage/' . $ttd->ttd);
+            }else{
+                $path = base_path('/public/assets/img/ttd/ttd.png');
+            }
         }
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
@@ -105,7 +115,11 @@ class PdfController extends Controller
         $surats = Surat::where('id', $id)->get();
         $rt = Rt::where('id', $surats[0]->rt_id)->get();
         foreach ($rt as $ttd) {
-            $path = base_path('/public/storage/' . $ttd->ttd);
+            if ($ttd->ttd) {
+                $path = base_path('/public/storage/' . $ttd->ttd);
+            }else{
+                $path = base_path('/public/assets/img/ttd/ttd.png');
+            }
         }
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
@@ -137,7 +151,11 @@ class PdfController extends Controller
         }
         $rt = Rt::where('id', $surats[0]->rt_id)->get();
         foreach ($rt as $ttd) {
-            $path = base_path('/public/storage/' . $ttd->ttd);
+            if ($ttd->ttd) {
+                $path = base_path('/public/storage/' . $ttd->ttd);
+            }else{
+                $path = base_path('/public/assets/img/ttd/ttd.png');
+            }
         }
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
@@ -167,7 +185,11 @@ class PdfController extends Controller
         $surats = Surat::where('id', $id)->get();
         $rt = Rt::where('id', $surats[0]->rt_id)->get();
         foreach ($rt as $ttd) {
-            $path = base_path('/public/storage/' . $ttd->ttd);
+            if ($ttd->ttd) {
+                $path = base_path('/public/storage/' . $ttd->ttd);
+            }else{
+                $path = base_path('/public/assets/img/ttd/ttd.png');
+            }
         }
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
