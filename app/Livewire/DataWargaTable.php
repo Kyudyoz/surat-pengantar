@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Crypt;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -13,7 +14,7 @@ class DataWargaTable extends Component
     protected $paginationTheme = 'bootstrap';
     public function render()
     {
-
+        
         return view('livewire.data-warga-table',[
             'users' => User::where('rt_id', auth()->user()->rt_id)->where('role','Warga')
             ->where('nama','like','%'.$this->search.'%')->paginate(5),

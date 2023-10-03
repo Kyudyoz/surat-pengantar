@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Crypt;
 
 class RtController extends Controller
 {
@@ -92,6 +93,7 @@ class RtController extends Controller
 
     public function detail($id)
     {
+        $id = Crypt::decrypt($id);
 
         $users = User::where('id', $id)->get();
         return view('rt.detail-warga',[
@@ -103,6 +105,7 @@ class RtController extends Controller
 
     public function setuju($id)
     {
+        $id = Crypt::decrypt($id);
 
         $surat = Surat::find($id);
 
@@ -121,6 +124,7 @@ class RtController extends Controller
     }
     public function tolak($id)
     {
+        $id = Crypt::decrypt($id);
 
         $surat = Surat::find($id);
 

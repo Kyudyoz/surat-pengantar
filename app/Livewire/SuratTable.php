@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Surat;
+use Illuminate\Support\Facades\Crypt;
 use Livewire\Component;
 use Livewire\WithPagination;
 

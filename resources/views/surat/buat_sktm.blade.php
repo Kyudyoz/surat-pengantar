@@ -26,7 +26,7 @@
                                             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                             <input type="hidden" name="nik" value="{{ auth()->user()->nik }}">
 
-                                            <input type="hidden" name="jenis_surat" value="Surat Keterangan Tidak Mampu">
+                                            <input type="hidden" name="jenis_surat" value="Surat Pengantar Keterangan Tidak Mampu">
                                             <div class="mb-3">
                                                 <label class="form-label">Keperluan</label>
                                                 <input class="form-control form-control-lg @error('keperluan') is-invalid @enderror" type="text" name="keperluan" placeholder="Masukan Keperluan" />

@@ -26,85 +26,85 @@
                                     <td>
                                         @if ($surat->status == 'Diproses')
                                         @if ($surat->jenis_surat == 'Surat Keterangan Tidak Mampu')
-                                        <a href="/lihatSKTM/{{ $surat->id }}" class="btn btn-success">
+                                        <a href="/lihatSKTM/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             Lihat
                                         </a>
-                                        <a href="/editSKTM/{{ $surat->id }}" class="btn btn-warning">
+                                        <a href="/editSKTM/{{ Crypt::encrypt($surat->id) }}" class="btn btn-warning">
                                             Edit
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Usaha')
-                                        <a href="/lihatSKU/{{ $surat->id }}" class="btn btn-success">
+                                        <a href="/lihatSKU/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             Lihat
                                         </a>
-                                        <a href="/editSKU/{{ $surat->id }}" class="btn btn-warning">
+                                        <a href="/editSKU/{{ Crypt::encrypt($surat->id) }}" class="btn btn-warning">
                                             Edit
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Domisili')
-                                        <a href="/lihatSKD/{{ $surat->id }}" class="btn btn-success">
+                                        <a href="/lihatSKD/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             Lihat
                                         </a>
-                                        <a href="/editSKD/{{ $surat->id }}" class="btn btn-warning">
+                                        <a href="/editSKD/{{ Crypt::encrypt($surat->id) }}" class="btn btn-warning">
                                             Edit
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Kematian')
-                                        <a href="/lihatSKK/{{ $surat->id }}" class="btn btn-success">
+                                        <a href="/lihatSKK/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             Lihat
                                         </a>
-                                        <a href="/editSKK/{{ $surat->id }}" class="btn btn-warning">
+                                        <a href="/editSKK/{{ Crypt::encrypt($surat->id) }}" class="btn btn-warning">
                                             Edit
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Kepemilikan Rumah')
-                                        <a href="/lihatSKKR/{{ $surat->id }}" class="btn btn-success">
+                                        <a href="/lihatSKKR/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             Lihat
                                         </a>
-                                        <a href="/editSKKR/{{ $surat->id }}" class="btn btn-warning">
+                                        <a href="/editSKKR/{{ Crypt::encrypt($surat->id) }}" class="btn btn-warning">
                                             Edit
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Janda' || $surat->jenis_surat == 'Surat Keterangan Duda')
-                                        <a href="/lihatSKJ/{{ $surat->id }}" class="btn btn-success">
+                                        <a href="/lihatSKJ/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             Lihat
                                         </a>
-                                        <a href="/editSKJ/{{ $surat->id }}" class="btn btn-warning">
+                                        <a href="/editSKJ/{{ Crypt::encrypt($surat->id) }}" class="btn btn-warning">
                                             Edit
                                         </a>
                                         @endif
-                                        <a href="#" class="btn btn-danger delete" data-id="{{ $surat->id }}">
+                                        <a href="#" class="btn btn-danger delete" data-id="{{ Crypt::encrypt($surat->id) }}">
                                             Hapus
                                         </a>
 
                                         @elseif($surat->status == 'Disetujui')
                                         @if ($surat->jenis_surat == 'Surat Keterangan Tidak Mampu')
-                                        <a href="/lihatSKTM/{{ $surat->id }}" class="btn btn-success">
+                                        <a href="/lihatSKTM/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             <strong>
                                                 Cetak <i class="fa-solid fa-print fa-lg"></i>
                                             </strong>
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Usaha')
-                                        <a href="/lihatSKU/{{ $surat->id }}" class="btn btn-success">
+                                        <a href="/lihatSKU/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             <strong>
                                                 Cetak <i class="fa-solid fa-print fa-lg"></i>
                                             </strong>
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Domisili')
-                                        <a href="/lihatSKD/{{ $surat->id }}" class="btn btn-success">
+                                        <a href="/lihatSKD/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             <strong>
                                                 Cetak <i class="fa-solid fa-print fa-lg"></i>
                                             </strong>
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Kematian')
-                                        <a href="/lihatSKK/{{ $surat->id }}" class="btn btn-success">
+                                        <a href="/lihatSKK/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             <strong>
                                                 Cetak <i class="fa-solid fa-print fa-lg"></i>
                                             </strong>
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Kepemilikan Rumah')
-                                        <a href="/lihatSKKR/{{ $surat->id }}" class="btn btn-success">
+                                        <a href="/lihatSKKR/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             <strong>
                                                 Cetak <i class="fa-solid fa-print fa-lg"></i>
                                             </strong>
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Janda' || $surat->jenis_surat == 'Surat Keterangan Duda')
-                                        <a href="/lihatSKJ/{{ $surat->id }}" class="btn btn-success">
+                                        <a href="/lihatSKJ/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             <strong>
                                                 Cetak <i class="fa-solid fa-print fa-lg"></i>
                                             </strong>

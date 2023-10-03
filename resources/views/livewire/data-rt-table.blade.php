@@ -22,7 +22,7 @@
                                     <td>{{ $rt->nama_rt }}</td>
                                     <td>{{ $rt->nama_ketua }}</td>
                                     <td>
-                                        <a href="/lihatDetailRt/{{ $rt->id }}" class="btn btn-primary">
+                                        <a href="/lihatDetailRt/{{ Crypt::encrypt($rt->id) }}" class="btn btn-primary">
                                             <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                         </a>
                                     </td>

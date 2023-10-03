@@ -25,7 +25,7 @@
                     <div class="row g-0">
                       <div class="col-md-9">
                         <div class="card-body">
-                          <h5 class="card-title badge bg-secondary text-white">Surat Keterangan Tidak Mampu</h5>
+                          <h5 class="card-title badge bg-secondary text-white">Surat Pengantar Keterangan Tidak Mampu</h5>
                           <p class="card-text">Surat Keterangan Tidak Mampu adalah dokumen resmi yang membuktikan bahwa seseorang atau keluarganya tidak memiliki kemampuan finansial untuk memenuhi kebutuhan dasar mereka. Ini digunakan untuk mengajukan bantuan sosial atau keringanan biaya.</p>
                         </div>
                       </div>

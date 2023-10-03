@@ -7,11 +7,13 @@ use App\Models\User;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Crypt;
 
 
 class PdfController extends Controller
 {
     public function cetak_sktm($id){
+        $id = Crypt::decrypt($id);
 
         $surats = Surat::where('id', $id)->get();
         $rt = Rt::where('id', $surats[0]->rt_id)->get();
@@ -46,6 +48,7 @@ class PdfController extends Controller
     }
     public function cetak_skd($id){
 
+        $id = Crypt::decrypt($id);
         $surats = Surat::where('id', $id)->get();
         $rt = Rt::where('id', $surats[0]->rt_id)->get();
         foreach ($rt as $ttd) {
@@ -79,6 +82,7 @@ class PdfController extends Controller
     }
     public function cetak_sku($id){
 
+        $id = Crypt::decrypt($id);
         $surats = Surat::where('id', $id)->get();
         $rt = Rt::where('id', $surats[0]->rt_id)->get();
         foreach ($rt as $ttd) {
@@ -112,6 +116,7 @@ class PdfController extends Controller
     }
     public function cetak_skj($id){
 
+        $id = Crypt::decrypt($id);
         $surats = Surat::where('id', $id)->get();
         $rt = Rt::where('id', $surats[0]->rt_id)->get();
         foreach ($rt as $ttd) {
@@ -145,6 +150,7 @@ class PdfController extends Controller
     }
     public function cetak_skk($id){
 
+        $id = Crypt::decrypt($id);
         $surats = Surat::where('id', $id)->get();
         foreach ($surats as $surat) {
             $users = User::where('nik', $surat->nik)->get();
@@ -182,6 +188,7 @@ class PdfController extends Controller
     }
     public function cetak_skkr($id){
 
+        $id = Crypt::decrypt($id);
         $surats = Surat::where('id', $id)->get();
         $rt = Rt::where('id', $surats[0]->rt_id)->get();
         foreach ($rt as $ttd) {

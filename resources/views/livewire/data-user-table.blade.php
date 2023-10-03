@@ -38,7 +38,7 @@
                                     </td>
                                     <td>{{ $user->role }}</td>
                                     <td>
-                                        <a href="/lihatDetail/{{ $user->id }}" class="btn btn-primary">
+                                        <a href="/lihatDetail/{{ Crypt::encrypt($user->id) }}" class="btn btn-primary">
                                             <i class="align-middle fa-solid fa-eye fa-xl text-dark"></i>
                                         </a>
                                     </td>

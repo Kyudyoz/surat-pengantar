@@ -27,7 +27,6 @@ class DatabaseSeeder extends Seeder
         Rt::create([
             'nama_rt' => 'RT 01',
             'nama_ketua' => 'Muhammad Iqbal Firdaus',
-            'ttd' => 'ttd/ttd.png'
         ]);
         Rt::create([
             'nama_rt' => 'RT 02',

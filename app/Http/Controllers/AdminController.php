@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Rt;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class AdminController extends Controller
 {
@@ -38,7 +39,7 @@ class AdminController extends Controller
     public function dataUser() {
         return view('admin.data-user',[
             'title' => 'Data User',
-            'active' => 'Data User',
+            'active' => 'Data Warga',
         ]);
     }
 
@@ -74,7 +75,7 @@ class AdminController extends Controller
     }
 
     public function lihatDetailRt($id) {
-
+        $id = Crypt::decrypt($id);
         $rts = Rt::where('id', $id)->get();
         $users = User::where('rt_id', $id)->where('role', 'Warga')->get();
         return view('admin.detail-rt',[

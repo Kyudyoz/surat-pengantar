@@ -162,7 +162,7 @@
 		                    <i class="align-middle" data-feather="hash"></i> <span class="align-middle">Data RT</span>
 		                </a>
 		            </li>
-		            <li class="sidebar-item {{ ($active === "Data User") ? 'active' : '' }}">
+		            <li class="sidebar-item {{ ($active === "Data Warga") ? 'active' : '' }}">
 		                <a class="sidebar-link" href="/dataUser">
 		                    <i class="align-middle" data-feather="align-right"></i> <span class="align-middle">Data User</span>
 		                </a>

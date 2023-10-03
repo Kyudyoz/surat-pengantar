@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Surat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class wargaController extends Controller
 {
@@ -83,6 +84,7 @@ class wargaController extends Controller
     }
 
     public function editSktm($id) {
+        $id = Crypt::decrypt($id);
         $surat = Surat::find($id);
         return view('surat.edit_sktm',[
             'title' => 'Edit Surat',
@@ -118,6 +120,7 @@ class wargaController extends Controller
         return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
     }
     public function editSku($id) {
+        $id = Crypt::decrypt($id);
         $surat = Surat::find($id);
         return view('surat.edit_sku',[
             'title' => 'Edit Surat',
@@ -149,6 +152,7 @@ class wargaController extends Controller
         return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
     }
     public function editSkd($id) {
+        $id = Crypt::decrypt($id);
         $surat = Surat::find($id);
         return view('surat.edit_skd',[
             'title' => 'Edit Surat',
@@ -180,6 +184,7 @@ class wargaController extends Controller
         return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
     }
     public function editSkj($id) {
+        $id = Crypt::decrypt($id);
         $surat = Surat::find($id);
         return view('surat.edit_skj',[
             'title' => 'Edit Surat',
@@ -211,6 +216,7 @@ class wargaController extends Controller
         return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
     }
     public function editSkk($id) {
+        $id = Crypt::decrypt($id);
         $surat = Surat::find($id);
         return view('surat.edit_skk',[
             'title' => 'Edit Surat',
@@ -242,6 +248,7 @@ class wargaController extends Controller
         return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
     }
     public function editSkkr($id) {
+        $id = Crypt::decrypt($id);
         $surat = Surat::find($id);
         return view('surat.edit_skkr',[
             'title' => 'Edit Surat',

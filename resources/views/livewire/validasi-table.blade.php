@@ -26,59 +26,59 @@
                                     <td>
                                         @if ($surat->status == 'Diproses')
                                         @if ($surat->jenis_surat == 'Surat Keterangan Tidak Mampu')
-                                        <a href="/lihatSKTM/{{ $surat->id }}" class="btn btn-primary">
+                                        <a href="/lihatSKTM/{{ Crypt::encrypt($surat->id) }}" class="btn btn-primary">
                                             Lihat
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Usaha')
-                                        <a href="/lihatSKU/{{ $surat->id }}" class="btn btn-primary">
+                                        <a href="/lihatSKU/{{ Crypt::encrypt($surat->id) }}" class="btn btn-primary">
                                             Lihat
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Domisili')
-                                        <a href="/lihatSKD/{{ $surat->id }}" class="btn btn-primary">
+                                        <a href="/lihatSKD/{{ Crypt::encrypt($surat->id) }}" class="btn btn-primary">
                                             Lihat
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Kematian')
-                                        <a href="/lihatSKK/{{ $surat->id }}" class="btn btn-primary">
+                                        <a href="/lihatSKK/{{ Crypt::encrypt($surat->id) }}" class="btn btn-primary">
                                             Lihat
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Kepemilikan Rumah')
-                                        <a href="/lihatSKKR/{{ $surat->id }}" class="btn btn-primary">
+                                        <a href="/lihatSKKR/{{ Crypt::encrypt($surat->id) }}" class="btn btn-primary">
                                             Lihat
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Janda' || $surat->jenis_surat == 'Surat Keterangan Duda')
-                                        <a href="/lihatSKJ/{{ $surat->id }}" class="btn btn-primary">
+                                        <a href="/lihatSKJ/{{ Crypt::encrypt($surat->id) }}" class="btn btn-primary">
                                             Lihat
                                         </a>
                                         @endif
-                                        <a href="/setujui/{{ $surat->id }}" class="btn btn-success">
+                                        <a href="/setujui/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             Setujui
                                         </a>
-                                        <a href="/tolak/{{ $surat->id }}" class="btn btn-danger">
+                                        <a href="/tolak/{{ Crypt::encrypt($surat->id) }}" class="btn btn-danger">
                                             Tolak
                                         </a>
                                         @elseif($surat->status == 'Disetujui')
                                         @if ($surat->jenis_surat == 'Surat Keterangan Tidak Mampu')
-                                        <a href="/lihatSKTM/{{ $surat->id }}" class="btn btn-primary">
+                                        <a href="/lihatSKTM/{{ Crypt::encrypt($surat->id) }}" class="btn btn-primary">
                                             Lihat
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Usaha')
-                                        <a href="/lihatSKU/{{ $surat->id }}" class="btn btn-primary">
+                                        <a href="/lihatSKU/{{ Crypt::encrypt($surat->id) }}" class="btn btn-primary">
                                             Lihat
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Domisili')
-                                        <a href="/lihatSKD/{{ $surat->id }}" class="btn btn-primary">
+                                        <a href="/lihatSKD/{{ Crypt::encrypt($surat->id) }}" class="btn btn-primary">
                                             Lihat
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Kematian')
-                                        <a href="/lihatSKK/{{ $surat->id }}" class="btn btn-primary">
+                                        <a href="/lihatSKK/{{ Crypt::encrypt($surat->id) }}" class="btn btn-primary">
                                             Lihat
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Kepemilikan Rumah')
-                                        <a href="/lihatSKKR/{{ $surat->id }}" class="btn btn-primary">
+                                        <a href="/lihatSKKR/{{ Crypt::encrypt($surat->id) }}" class="btn btn-primary">
                                             Lihat
                                         </a>
                                         @elseif ($surat->jenis_surat == 'Surat Keterangan Janda' || $surat->jenis_surat == 'Surat Keterangan Duda')
-                                        <a href="/lihatSKJ/{{ $surat->id }}" class="btn btn-primary">
+                                        <a href="/lihatSKJ/{{ Crypt::encrypt($surat->id) }}" class="btn btn-primary">
                                             Lihat
                                         </a>
                                         @endif
