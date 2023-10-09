@@ -25,7 +25,7 @@
                                     <td>{{ $surat->jenis_surat }}</td>
                                     <td>
                                         @if ($surat->status == 'Diproses')
-                                        @if ($surat->jenis_surat == 'Surat Keterangan Tidak Mampu')
+                                        @if ($surat->jenis_surat == 'Surat Pengantar Keterangan Tidak Mampu')
                                         <a href="/lihatSKTM/{{ Crypt::encrypt($surat->id) }}" class="btn btn-success">
                                             Lihat
                                         </a>

@@ -147,6 +147,11 @@
 		                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Buat Surat</span>
 		                </a>
 		            </li>
+		            <li class="sidebar-item {{ ($active === "Surat Saya") ? 'active' : '' }}">
+		                <a class="sidebar-link" href="/suratSaya">
+		                    <i class="align-middle" data-feather="mail"></i> <span class="align-middle">Surat Saya</span>
+		                </a>
+		            </li>
                     @elseif(auth()->user()->role == 'Admin')
                     <li class="sidebar-header">
 		                Fitur Admin

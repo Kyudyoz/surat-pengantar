@@ -10,6 +10,19 @@ use Illuminate\Support\Facades\Crypt;
 class wargaController extends Controller
 {
 
+    public function suratSaya()
+    {
+       
+        $surats2 = Surat::where('user_id', auth()->user()->id)
+        ->latest()->simplePaginate(10);
+
+        return view('warga.surat-saya',[
+            'title' => 'Surat Saya',
+            'active' => 'Surat Saya',
+            'surats2' => $surats2,
+        ]);
+    }
+
     public function buatSurat() {
         return view('warga.buat-surat',[
             'title' => 'Buat Surat',
@@ -80,7 +93,7 @@ class wargaController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['rt_id'] = auth()->user()->rt_id;
         Surat::create($validatedData);
-        return redirect('/dashboard')->with('success', 'Surat Berhasil Diajukan!');
+        return redirect('/suratSaya')->with('success', 'Surat Berhasil Diajukan!');
     }
 
     public function editSktm($id) {
@@ -117,7 +130,7 @@ class wargaController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['rt_id'] = auth()->user()->rt_id;
         Surat::where('id',$id)->update($validatedData);
-        return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
+        return redirect('/suratSaya')->with('success', 'Surat Berhasil Diubah!');
     }
     public function editSku($id) {
         $id = Crypt::decrypt($id);
@@ -149,7 +162,7 @@ class wargaController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['rt_id'] = auth()->user()->rt_id;
         Surat::where('id',$id)->update($validatedData);
-        return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
+        return redirect('/suratSaya')->with('success', 'Surat Berhasil Diubah!');
     }
     public function editSkd($id) {
         $id = Crypt::decrypt($id);
@@ -181,7 +194,7 @@ class wargaController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['rt_id'] = auth()->user()->rt_id;
         Surat::where('id',$id)->update($validatedData);
-        return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
+        return redirect('/suratSaya')->with('success', 'Surat Berhasil Diubah!');
     }
     public function editSkj($id) {
         $id = Crypt::decrypt($id);
@@ -213,7 +226,7 @@ class wargaController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['rt_id'] = auth()->user()->rt_id;
         Surat::where('id',$id)->update($validatedData);
-        return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
+        return redirect('/suratSaya')->with('success', 'Surat Berhasil Diubah!');
     }
     public function editSkk($id) {
         $id = Crypt::decrypt($id);
@@ -245,7 +258,7 @@ class wargaController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['rt_id'] = auth()->user()->rt_id;
         Surat::where('id',$id)->update($validatedData);
-        return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
+        return redirect('/suratSaya')->with('success', 'Surat Berhasil Diubah!');
     }
     public function editSkkr($id) {
         $id = Crypt::decrypt($id);
@@ -277,7 +290,7 @@ class wargaController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['rt_id'] = auth()->user()->rt_id;
         Surat::where('id',$id)->update($validatedData);
-        return redirect('/dashboard')->with('success', 'Surat Berhasil Diubah!');
+        return redirect('/suratSaya')->with('success', 'Surat Berhasil Diubah!');
     }
 
     public function destroy($id)
@@ -285,7 +298,7 @@ class wargaController extends Controller
        $surat = Surat::find($id);
         Surat::destroy($surat->id);
 
-        return redirect('/dashboard')->with('success', 'Surat Berhasil Dihapus!');
+        return redirect('/suratSaya')->with('success', 'Surat Berhasil Dihapus!');
 
     }
 

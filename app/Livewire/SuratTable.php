@@ -16,7 +16,7 @@ class SuratTable extends Component
     public function render()
     {
         $surats2 = Surat::where('user_id', auth()->user()->id)
-        ->latest()->simplePaginate(2);
+        ->latest()->simplePaginate(10);
         return view('livewire.surat-table',[
             'surats2' => $surats2,
         ]);

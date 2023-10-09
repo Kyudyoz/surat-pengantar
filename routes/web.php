@@ -59,6 +59,7 @@ Route::post('/logout', [LoginController::class, 'logout']);
 //warga
 Route::get('/dashboard',[HomeController::class, 'dashboard'])->middleware('auth');
 Route::get('/buatSurat', [wargaController::class, 'buatSurat'])->middleware('auth');
+Route::get('/suratSaya', [wargaController::class, 'suratSaya'])->middleware('auth');
 Route::get('/buatSKTM', [wargaController::class, 'buatSktm'])->middleware('auth');
 Route::get('/buatSKKR', [wargaController::class, 'buatSkkr'])->middleware('auth');
 Route::get('/buatSKU', [wargaController::class, 'buatSku'])->middleware('auth');
