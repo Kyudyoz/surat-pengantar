@@ -63,7 +63,21 @@
             cursor: pointer;
         }
 
+        .table {
+            background-color: white;
+        }
         
+        @media (max-width: 480px) {
+        .table, thead, tbody, tr, td {
+            width: 100%;
+            overflow-x: scroll;
+            }
+        .btn{
+            display: block;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        }
       </style>
 
 	<title>{{ $title }}</title>

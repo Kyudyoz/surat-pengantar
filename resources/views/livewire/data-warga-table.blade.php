@@ -2,9 +2,9 @@
     <div class="col-xl-12 col-xxl-12 d-flex">
         <div class="w-100">
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
+                <div class="col-sm-12 table">
+                    <div class="container">
+                        <div class="card-header my-2">
                             <input type="text" class="form-control w-25" wire:model.live="search" placeholder="Cari warga...">
                         </div>
                         <table class="table table-hover my-0 text-center">
