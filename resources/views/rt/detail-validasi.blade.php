@@ -9,36 +9,14 @@
         <div class="row">
             <div class="col-xl-10 col-xxl-10 d-flex">
                 <div class="w-100">
-                    <div class="row">
+                    <div class="row justify-content-center">
 
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-4 text-center p-2 border border-2">
-
-                                            <div class="pict">
-
-                                                    @if ($user->image)
-                                                    <div class="upload">
-                                                        <img src="{{ asset('storage/'. $user->image) }}" title="profile"
-                                                            width="125" height="125">
-                                                    </div>
-                                                    @else
-                                                    <div class="upload">
-                                                        @if ($user->jenis_kelamin == 'Laki-laki')
-                                                        <img src="../assets/img/avatars/avatar.jpg" alt="{{ $user->nama }}" width="125" height="125"/>
-                                                        @else
-                                                        <img src="../assets/img/avatars/avatar-5.jpg" alt="{{ $user->nama }}" width="125" height="125"/>
-                                                        @endif
-                                                    </div>
-                                                    @endif
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
-                                        <div class="col-md-7 mt-3">
-                                            <div class="row">
+                                    <div class="row justify-content-center align-items-center">
+                                        <div class="col-md-12 mt-3">
+                                            <div class="row justify-content-center">
                                                 <div class="col-sm-6">
                                                     <h5><strong>Nama Lengkap</strong></h5>
                                                     <p class="text-muted">{{ $user->nama }}</p>
@@ -48,7 +26,7 @@
                                                     <p class="text-muted">{{ $user->nik }}</p>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row justify-content-center">
                                                 <div class="col-sm-6">
                                                     <h5><strong>Tempat Lahir</strong></h5>
                                                     <p class="text-muted">{{ $user->tempat_lahir }}</p>
@@ -58,7 +36,7 @@
                                                     <p class="text-muted">{{ \Carbon\Carbon::parse($user->tanggal_lahir)->isoFormat('D MMMM Y') }}</p>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row justify-content-center">
                                                 <div class="col-sm-6">
                                                     <h5><strong>Alamat</strong></h5>
                                                     <p class="text-muted">{{ $user->alamat }}</p>
@@ -68,7 +46,7 @@
                                                     <p class="text-muted">{{ $user->jenis_kelamin }}</p>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row justify-content-center">
                                                 <div class="col-sm-6">
                                                     <h5><strong>Agama</strong></h5>
                                                     <p class="text-muted">{{ $user->agama }}</p>
@@ -78,7 +56,7 @@
                                                     <p class="text-muted">{{ $user->status_perkawinan }}</p>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row justify-content-center">
                                                 <div class="col-sm-6">
                                                     <h5><strong>Pekerjaan</strong></h5>
                                                     <p class="text-muted">{{ $user->pekerjaan }}</p>
@@ -96,6 +74,49 @@
                                                     @endif
                                                 </div>
                                             </div>
+                                            <div class="row justify-content-center">
+                                                <div class="col-sm-6 mt-2">
+                                                    <h5><strong>Foto KTP/KK</strong></h5>
+                                                    <img src="{{ asset('storage/'. $user->ktp) }}" title="ktp"
+                                                            width="200" height="200">
+                                                </div>
+                                                <div class="col-sm-6 mt-2">
+                                                    <h5><strong>Foto bersama KTP/KK</strong></h5>
+                                                    <img src="{{ asset('storage/'. $user->with_ktp) }}" title="withktp"
+                                                            width="200" height="200">
+                                                </div>
+                                            </div>
+                                            @if (auth()->user()->role == 'Ketua')                                                
+                                                @if ($user->status == 'Menunggu Validasi')    
+                                                <div class="row mt-4">
+                                                    <div class="col-sm-6 mt-4">
+                                                        <a href="/setujuiAkun/{{ Crypt::encrypt($user->id) }}" class="btn btn-success w-100">
+                                                            Setujui
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-sm-6 mt-4">
+                                                        <a href="/tolakAkun/{{ Crypt::encrypt($user->id) }}" class="btn btn-danger w-100">
+                                                            Tolak
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                @endif
+                                                @elseif(auth()->user()->role == 'Admin')
+                                                @if ($user->status == 'Disetujui RT')    
+                                                <div class="row mt-4">
+                                                    <div class="col-sm-6 mt-4">
+                                                        <a href="/setujuiAkunAdmin/{{ Crypt::encrypt($user->id) }}" class="btn btn-success w-100">
+                                                            Setujui
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-sm-6 mt-4">
+                                                        <a href="/tolakAkunAdmin/{{ Crypt::encrypt($user->id) }}" class="btn btn-danger w-100">
+                                                            Tolak
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                @endif
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

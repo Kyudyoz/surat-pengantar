@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('pekerjaan')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('image')->nullable();
+            $table->string('ktp')->nullable();
+            $table->string('with_ktp')->nullable();
             $table->string('status')->nullable();
             $table->string('role');
             $table->rememberToken();

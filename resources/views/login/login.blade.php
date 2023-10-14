@@ -32,13 +32,6 @@
 
 						<div class="card">
 							<div class="card-body">
-                                {{-- @if (session()->has('loginError'))
-
-                                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                                    <strong class="text-danger text-center"><em>{{ session('loginError') }}</em></strong>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                                @endif --}}
 								<div class="m-sm-3">
 									<form action="/login" method="post">
                                         @csrf
@@ -66,6 +59,9 @@
 											<button type="submit" class="btn btn-lg btn-primary">Login</button>
 										</div>
 									</form>
+									<div class="text-end mt-2">
+										<small class="text-muted">Belum punya akun? <a href="/register" class="text-decoration-none">Registrasi!</a></small>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -81,6 +77,15 @@
             icon: 'warning',
             title: 'Login Gagal!',
             text: '{{ session()->get('loginError') }}',
+        })
+    </script>
+	@endif
+	@if(session()->has('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session()->get('success') }}',
         })
     </script>
 	@endif

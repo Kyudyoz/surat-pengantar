@@ -20,12 +20,21 @@
                                 @foreach ($rts as $rt)
                                 <tr>
                                     <td>{{ $rt->nama_rt }}</td>
+                                    @if ($rt->nama_ketua)
                                     <td>{{ $rt->nama_ketua }}</td>
                                     <td>
                                         <a href="/lihatDetailRt/{{ Crypt::encrypt($rt->id) }}" class="btn btn-primary">
                                             <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                         </a>
                                     </td>
+                                    @else
+                                    <td>
+                                        <a href="/tambahUser/{{ Crypt::encrypt($rt->id) }}" class="btn btn-primary">
+                                        <i class="fa-solid fa-plus fa-lg"></i>
+                                        </a>
+                                    </td>
+                                    @endif
+
                                 </tr>
                                 @endforeach
                                 @else

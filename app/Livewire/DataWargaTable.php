@@ -16,7 +16,7 @@ class DataWargaTable extends Component
     {
         
         return view('livewire.data-warga-table',[
-            'users' => User::where('rt_id', auth()->user()->rt_id)->where('role','Warga')
+            'users' => User::where('rt_id', auth()->user()->rt_id)->where('role','Warga')->where('status', 'Disetujui Admin')
             ->where('nama','like','%'.$this->search.'%')->paginate(5),
         ]);
     }

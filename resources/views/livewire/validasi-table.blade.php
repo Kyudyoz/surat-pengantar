@@ -99,6 +99,7 @@
                                 </tr>
                                 @endforeach
                                 @else
+                                <hr>
                                     <p class="text-center">Belum Ada Surat</p>
                             </tbody>
                             @endif

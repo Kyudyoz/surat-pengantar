@@ -51,7 +51,9 @@ class DatabaseSeeder extends Seeder
             'agama' => 'Islam',
             'status_perkawinan' => 'Belum Kawin',
             'pekerjaan' => 'Mahasiswa',
-            'role' => 'Warga'
+            'role' => 'Warga',
+            'no_hp' => '628901231232',
+            'status' => 'Disetujui Admin'
         ]);
         User::create([
             'rt_id' => 2,
@@ -65,7 +67,10 @@ class DatabaseSeeder extends Seeder
             'agama' => 'Islam',
             'status_perkawinan' => 'Belum Kawin',
             'pekerjaan' => 'Pengurus RT',
-            'role' => 'Ketua'
+            'role' => 'Ketua',
+            'no_hp' => '628901231234',
+            'status' => 'Disetujui Admin'
+
         ]);
         User::create([
             'rt_id' => 1,
@@ -79,7 +84,9 @@ class DatabaseSeeder extends Seeder
             'agama' => 'Islam',
             'status_perkawinan' => 'Belum Kawin',
             'pekerjaan' => 'Pejabat RT',
-            'role' => 'Ketua'
+            'role' => 'Ketua',
+            'no_hp' => '628901231234',
+            'status' => 'Disetujui Admin'
         ]);
         User::create([
             'rt_id' => 3,
@@ -93,7 +100,10 @@ class DatabaseSeeder extends Seeder
             'agama' => 'Islam',
             'status_perkawinan' => 'Belum Kawin',
             'pekerjaan' => 'Pejabat RT',
-            'role' => 'Ketua'
+            'role' => 'Ketua',
+            'no_hp' => '628901231237',
+            'status' => 'Disetujui Admin'
+            
         ]);
         User::create([
             'rt_id' => 2,
@@ -107,13 +117,17 @@ class DatabaseSeeder extends Seeder
             'agama' => 'Islam',
             'status_perkawinan' => 'Belum Kawin',
             'pekerjaan' => 'Mahasiswa',
-            'role' => 'Warga'
+            'role' => 'Warga',
+            'no_hp' => '628901231239',
+            'status' => 'Disetujui Admin'
+
         ]);
         User::create([
             'nik' => 'admin',
             'password' => bcrypt('12345'),
             'nama' => 'Admin',
-            'role' => 'Admin'
+            'role' => 'Admin',
+            'status' => 'Disetujui Admin'
         ]);
 
         Surat::create([

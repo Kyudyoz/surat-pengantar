@@ -15,7 +15,7 @@ class DataUserTable extends Component
     public function render()
     {
         return view('livewire.data-user-table',[
-            'users' => User::where('role','!=','Admin')->where('nama','like','%'.$this->search.'%')->orderBy('role')->orderBy('rt_id')->paginate(5),
+            'users' => User::where('role','!=','Admin')->where('status', 'Disetujui Admin')->where('nama','like','%'.$this->search.'%')->orderBy('role')->orderBy('rt_id')->paginate(5),
         ]);
     }
 

@@ -9,41 +9,46 @@ use Illuminate\Support\Facades\Crypt;
 
 class AdminController extends Controller
 {
-    public function tambahUser() {
-        
-        return view('admin.tambah-user',[
-            'title' => 'Tambah User',
-            'active' => 'Data User',
-            'rts' => Rt::orderBy('nama_rt')->get()
+    public function tambahUser($id)
+    {
+        $id = Crypt::decrypt($id);
+        $rt = Rt::find($id);
+        return view('admin.tambah-user', [
+            'title' => 'Tambah Akun RT',
+            'active' => 'Data RT',
+            'rt' => $rt
         ]);
     }
 
-    public function tambahRt() {
-        return view('admin.tambah-rt',[
+    public function tambahRt()
+    {
+        return view('admin.tambah-rt', [
             'title' => 'Tambah RT',
             'active' => 'Tambah RT',
 
         ]);
     }
 
-    public function dataRt() {
+    public function dataRt()
+    {
 
-        return view('admin.data-rt',[
+        return view('admin.data-rt', [
             'title' => 'Data RT',
             'active' => 'Data RT',
             'rts' => Rt::orderBy('nama_rt')->get()
         ]);
-        
     }
 
-    public function dataUser() {
-        return view('admin.data-user',[
+    public function dataUser()
+    {
+        return view('admin.data-user', [
             'title' => 'Data User',
             'active' => 'Data Warga',
         ]);
     }
 
-    public function storeUser(Request $request) {
+    public function storeUser(Request $request)
+    {
         $validatedData = $request->validate([
             'nik' => 'required|unique:users',
             'nama' => 'required',
@@ -60,11 +65,13 @@ class AdminController extends Controller
         $validatedData['status_perkawinan'] = $request->status_perkawinan;
         $validatedData['no_hp'] = $request->no_hp;
         $validatedData['role'] = $request->role;
+        $validatedData['status'] = $request->status;
         User::create($validatedData);
         return redirect('/dataUser')->with('success', 'User Berhasil Ditambah!');
     }
-    
-    public function storeRt(Request $request) {
+
+    public function storeRt(Request $request)
+    {
         $validatedData = $request->validate([
             'nama_rt' => 'required|unique:rts'
         ]);
@@ -74,11 +81,12 @@ class AdminController extends Controller
         return redirect('/dataRt')->with('success', 'RT Berhasil Ditambah!');
     }
 
-    public function lihatDetailRt($id) {
+    public function lihatDetailRt($id)
+    {
         $id = Crypt::decrypt($id);
         $rts = Rt::where('id', $id)->get();
         $users = User::where('rt_id', $id)->where('role', 'Warga')->get();
-        return view('admin.detail-rt',[
+        return view('admin.detail-rt', [
             'title' => 'Detail RT',
             'active' => 'Data RT',
             'rts' => $rts,
@@ -86,7 +94,8 @@ class AdminController extends Controller
         ]);
     }
 
-    public function updateRt(Request $request, $id) {
+    public function updateRt(Request $request, $id)
+    {
         $rt = Rt::find($id);
         $rt->nama_ketua = $request->nama_ketua;
         $rt->ttd = null;
@@ -102,5 +111,99 @@ class AdminController extends Controller
             $ketua->save();
         }
         return redirect('/dataRt')->with('success', 'Ketua RT Berhasil Diubah!');
+    }
+
+    public function validasiAkun()
+    {
+        $users = User::where('status', 'Disetujui RT')->latest()->simplePaginate(5);
+        $users2 = User::where('status', 'Disetujui Admin')->orWhere('status', 'Ditolak RT')->orWhere('status', 'Ditolak Admin')->orderBy('status', 'DESC')->latest()->simplePaginate(5);
+        return view('admin.validasi-admin', [
+            'title' => 'Validasi Akun',
+            'active' => 'Validasi Akun User',
+            'users' => $users,
+            'users2' => $users2,
+        ]);
+    }
+
+    public function setujuiAkun($id)
+    {
+        $id = Crypt::decrypt($id);
+
+        $user = User::find($id);
+
+        $user->status = 'Disetujui Admin';
+
+        $user->save();
+
+        $phone_number = $user->no_hp;
+
+        $phone_number = preg_replace('/^62/', '0', $phone_number);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $phone_number,
+                'message' => 'Pengajuan registrasi akun anda sudah disetujui oleh Admin. Silahkan Login : https://kelompok3.rsix.site/login',
+                'countryCode' => '62', //optional
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: xNs9nSws9bqjaBxD04WQ' //change TOKEN to your actual token
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return redirect('/validasiAkun')->with('success', 'Akun Berhasil Disetujui!');
+    }
+
+    public function tolakAkun($id)
+    {
+        $id = Crypt::decrypt($id);
+
+        $user = User::find($id);
+
+        $user->status = 'Ditolak Admin';
+
+        $user->save();
+
+        $phone_number = $user->no_hp;
+
+        $phone_number = preg_replace('/^62/', '0', $phone_number);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $phone_number,
+                'message' => 'Pengajuan registrasi akun anda ditolak oleh Admin. Hubungi RT setempat melalui : https://kelompok3.rsix.site/infoRt',
+                'countryCode' => '62', //optional
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: xNs9nSws9bqjaBxD04WQ' //change TOKEN to your actual token
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return redirect('/validasiAkun')->with('success', 'Akun Berhasil Ditolak!');
     }
 }

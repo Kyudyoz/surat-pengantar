@@ -22,15 +22,26 @@ class RtController extends Controller
             'surats2' => $surats2,
         ]);
     }
+
+    public function validasiWarga()
+    {
+        $users = User::where('rt_id', auth()->user()->rt_id)
+        ->where('status', 'Menunggu Divalidasi')->latest()->simplePaginate(5);
+        $users2 = User::where('rt_id', auth()->user()->rt_id)
+        ->where('status','!=','Menunggu Divalidasi')->orderBy('status', 'DESC')->latest()->simplePaginate(5);
+        return view('rt.validasi-warga',[
+            'title' => 'Validasi Akun Warga',
+            'active' => 'Validasi Akun Warga',
+            'users' => $users,
+            'users2' => $users2,
+        ]);
+    }
+
     public function dataWarga()
     {
-        // $users = User::where('rt_id', auth()->user()->rt_id)
-        // ->where('role', 'Warga')
-        // ->paginate(5);
         return view('rt.data-warga',[
             'title' => 'Data Warga',
             'active' => 'Data Warga',
-            // 'users' => $users,
         ]);
     }
 
@@ -70,7 +81,6 @@ class RtController extends Controller
     }
 
     public function storeWarga(Request $request){
-        // $validatedData['nama'] = $request->nama;
         $validatedData = $request->validate([
             'nik' => 'required|unique:users',
             'nama' => 'required',
@@ -103,6 +113,18 @@ class RtController extends Controller
         ]);
     }
 
+    public function detailValidasi($id)
+    {
+        $id = Crypt::decrypt($id);
+
+        $users = User::where('id', $id)->get();
+        return view('rt.detail-validasi',[
+            'title' => 'Detail Validasi',
+            'active' => 'Validasi Akun Warga',
+            'users' => $users
+        ]);
+    }
+
     public function setuju($id)
     {
         $id = Crypt::decrypt($id);
@@ -120,8 +142,21 @@ class RtController extends Controller
             return back()->with('ttdError', 'Anda Belum Mengunggah Tanda Tangan!');
         }
         
-
     }
+
+    public function setujuiAkun($id)
+    {
+        $id = Crypt::decrypt($id);
+
+        $user = User::find($id);
+
+        $user->status = 'Disetujui RT';
+    
+        $user->save();
+        return redirect('/validasiWarga')->with('success', 'Akun Berhasil Disetujui! Harap tunggu validasi Admin');
+    }
+
+
     public function tolak($id)
     {
         $id = Crypt::decrypt($id);
@@ -134,4 +169,44 @@ class RtController extends Controller
         return redirect('/validasi')->with('success', 'Surat Berhasil Ditolak!');
     }
 
+    public function tolakAkun($id)
+    {
+        $id = Crypt::decrypt($id);
+
+        $user = User::find($id);
+
+        $user->status = 'Ditolak RT';
+    
+        $user->save();
+
+        $phone_number = $user->no_hp;
+
+        $phone_number = preg_replace('/^62/', '0', $phone_number);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.fonnte.com/send',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array(
+        'target' => $phone_number,
+        'message' => 'Pengajuan registrasi akun anda ditolak oleh RT. Hubungi RT setempat melalui : https://kelompok3.rsix.site/infoRt', 
+        'countryCode' => '62', //optional
+        ),
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: xNs9nSws9bqjaBxD04WQ' //change TOKEN to your actual token
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return redirect('/validasiWarga')->with('success', 'Akun Berhasil Ditolak!');
+    }
 }

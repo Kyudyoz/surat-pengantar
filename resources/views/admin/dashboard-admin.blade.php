@@ -42,6 +42,22 @@
                                     <h1 class="mt-1 mb-3">{{ $jmlUser }}</h1>
                                 </div>
                             </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col mt-0">
+                                            <h5 class="card-title">Permintaan Validasi Akun</h5>
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <div class="stat text-primary">
+                                                <i class="align-middle" data-feather="user-check"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h1 class="mt-1 mb-3">{{ $jmlValidasi }}</h1>
+                                </div>
+                            </div>
                         </div>
 
                     </div>

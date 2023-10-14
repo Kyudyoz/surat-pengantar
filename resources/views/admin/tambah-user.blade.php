@@ -17,7 +17,8 @@
                                         <div class="col-md-12 mt-3">
                                             <form action="/storeUser" method="post">
                                                 @csrf
-                                                <input type="hidden" name="role" value="Warga">
+                                                <input type="hidden" name="role" value="Ketua">
+                                                <input type="hidden" name="status" value="Disetujui Admin">
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <h5><strong>Nama Lengkap</strong></h5>
@@ -158,11 +159,8 @@
                                                 <div class="col-sm-6">
                                                     <h5><strong>RT</strong></h5>
                                                     <div class="mb-3">
-                                                        <select name="rt_id" id="rt_id" class="form-select form-select-md @error('rt_id') is-invalid @enderror" required>
-                                                            <option value="" hidden>Pilih RT</option>
-                                                            @foreach ($rts as $rt)
+                                                        <select name="rt_id" id="rt_id" class="form-select form-select-md @error('rt_id') is-invalid @enderror" required readonly>
                                                             <option value="{{ $rt->id }}">{{ $rt->nama_rt }}</option>
-                                                            @endforeach
                                                         </select>
                                                         @error('rt_id')
                                                         <div class="invalid-feedback">

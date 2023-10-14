@@ -151,6 +151,11 @@
 		                    <i class="align-middle" data-feather="upload"></i> <span class="align-middle">Unggah Tanda Tangan</span>
 		                </a>
 		            </li>
+		            <li class="sidebar-item {{ ($active === "Validasi Akun Warga") ? 'active' : '' }}">
+		                <a class="sidebar-link" href="/validasiWarga">
+		                    <i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Validasi Akun Warga</span>
+		                </a>
+		            </li>
                     @elseif(auth()->user()->role == 'Warga')
                     <li class="sidebar-header">
 		                Fitur
@@ -184,6 +189,11 @@
 		            <li class="sidebar-item {{ ($active === "Data Warga") ? 'active' : '' }}">
 		                <a class="sidebar-link" href="/dataUser">
 		                    <i class="align-middle" data-feather="align-right"></i> <span class="align-middle">Data User</span>
+		                </a>
+		            </li>
+                    <li class="sidebar-item {{ ($active === "Validasi Akun User") ? 'active' : '' }}">
+		                <a class="sidebar-link" href="/validasiAkun">
+		                    <i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Validasi Akun User</span>
 		                </a>
 		            </li>
                     @endif
@@ -280,10 +290,19 @@
 			<footer class="footer">
 				<div class="container-fluid">
 					<div class="row text-muted">
-						<div class="col-12 text-center">
-							<p class="mb-0">
+						<div class="col-sm-7 text-end">
+							<small class="mb-0">
 								Muara Bulian &copy;2023
-							</p>
+							</small>
+						</div>
+						<div class="col-sm-3 text-center">
+							<small class="mb-0">
+								Kontak Admin : 
+                                <a href="https://wa.me/62895082566261" class="text-decoration-none text-black-50">
+                                    <i class="fa-solid fa-phone fa-lg"> </i>
+                                    Admin
+                                </a>
+							</small>
 						</div>
 					</div>
 				</div>
@@ -416,6 +435,8 @@
 
     function previewImage() {
         const image = document.querySelector("#image");
+        const ktp = document.querySelector("#ktp");
+        const withKtp = document.querySelector("#withKtp");
         const imgPreview = document.querySelector(".img-preview");
         const imgPreview2 = document.querySelector(".img-preview2");
 
@@ -430,6 +451,18 @@
         oFReader2.readAsDataURL(image.files[0]);
         oFReader2.onload = function (oFREvent) {
             imgPreview2.src = oFREvent.target.result;
+        }
+        const oFReader3 = new FileReader();
+        oFReader3.readAsDataURL(ktp.files[0]);
+        oFReader3.onload = function (oFREvent) {
+            imgPreview.style.display = 'block';
+            imgPreview.src = oFREvent.target.result;
+        }
+        const oFReader4 = new FileReader();
+        oFReader4.readAsDataURL(withKtp.files[0]);
+        oFReader4.onload = function (oFREvent) {
+            imgPreview.style.display = 'block';
+            imgPreview.src = oFREvent.target.result;
         }
     }
 
