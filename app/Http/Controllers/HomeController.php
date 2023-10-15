@@ -11,19 +11,27 @@ use Illuminate\Support\Facades\Crypt;
 
 class HomeController extends Controller
 {
+
+    public function index()
+    {
+        return view('landing.blade.php', [
+            'title' => 'Smart RT',
+            'active' => 'landing'
+        ]);
+    }
     public function dashboardRt()
     {
 
         $diproses = Surat::where('rt_id', auth()->user()->rt_id)
-                    ->where('status', 'Diproses')
-                    ->get();
+            ->where('status', 'Diproses')
+            ->get();
         $jmlDiproses = $diproses->count();
 
-        $warga = User::where('role' , 'Warga')->where('rt_id', auth()->user()->rt->id)->where('status','Disetujui Admin')->get();
-        $validasi = User::where('role' , 'Warga')->where('rt_id', auth()->user()->rt->id)->where('status','Menunggu Validasi')->get();
+        $warga = User::where('role', 'Warga')->where('rt_id', auth()->user()->rt->id)->where('status', 'Disetujui Admin')->get();
+        $validasi = User::where('role', 'Warga')->where('rt_id', auth()->user()->rt->id)->where('status', 'Menunggu Validasi')->get();
         $jmlWarga = $warga->count();
         $jmlValidasi = $validasi->count();
-        return view('rt.dashboard-rt',[
+        return view('rt.dashboard-rt', [
             'title' => 'Dashboard',
             'active' => 'Dashboard RT',
             'diproses' => $diproses,
@@ -39,13 +47,13 @@ class HomeController extends Controller
     {
         $rts = Rt::all();
         $jmlRt = $rts->count();
-        $user = User::where('role','!=' ,'Admin')->where('status','Disetujui Admin')->get();
-        $validasi = User::where('role','!=' ,'Admin')->where('status','Disetujui RT')->get();
+        $user = User::where('role', '!=', 'Admin')->where('status', 'Disetujui Admin')->get();
+        $validasi = User::where('role', '!=', 'Admin')->where('status', 'Disetujui RT')->get();
         $jmlUser = $user->count();
         $jmlValidasi = $validasi->count();
-        
 
-        return view('admin.dashboard-admin',[
+
+        return view('admin.dashboard-admin', [
             'title' => 'Dashboard',
             'active' => 'Dashboard Admin',
             'rts' => $rts,
@@ -53,31 +61,31 @@ class HomeController extends Controller
             'user' => $user,
             'jmlUser' => $jmlUser,
             'jmlValidasi' => $jmlValidasi
-            
+
 
         ]);
     }
     public function dashboard()
     {
         $surats = Surat::where('user_id', auth()->user()->id)
-                    ->get();
+            ->get();
         $disetujui = Surat::where('user_id', auth()->user()->id)
-                    ->where('status', 'Disetujui')
-                    ->get();
+            ->where('status', 'Disetujui')
+            ->get();
         $ditolak = Surat::where('user_id', auth()->user()->id)
-                    ->where('status', 'Ditolak')
-                    ->get();
+            ->where('status', 'Ditolak')
+            ->get();
         $diproses = Surat::where('user_id', auth()->user()->id)
-                    ->where('status', 'Diproses')
-                    ->get();
+            ->where('status', 'Diproses')
+            ->get();
         $surats2 = Surat::where('user_id', auth()->user()->id)
-        ->latest()->simplePaginate(2);
+            ->latest()->simplePaginate(2);
         $jmlSurat = $surats->count();
         $jmlDisetujui = $disetujui->count();
         $jmlDitolak = $ditolak->count();
         $jmlDiproses = $diproses->count();
 
-        return view('warga.dashboard',[
+        return view('warga.dashboard', [
             'title' => 'Dashboard',
             'active' => 'Dashboard Warga',
             'disetujui' => $disetujui,
@@ -93,7 +101,7 @@ class HomeController extends Controller
     }
     public function blog()
     {
-        return view('blog.blog',[
+        return view('blog.blog', [
             'title' => 'Bulian News',
             'active' => 'Blog'
         ]);
@@ -102,7 +110,7 @@ class HomeController extends Controller
     {
 
         $users = User::where('id', auth()->user()->id)->get();
-        return view('profil',[
+        return view('profil', [
             'title' => 'Halaman Profil',
             'active' => 'Profil',
             'users' => $users
@@ -112,22 +120,23 @@ class HomeController extends Controller
     {
 
         $users = User::where('id', auth()->user()->id)->get();
-        return view('pengaturan',[
+        return view('pengaturan', [
             'title' => 'Pengaturan Akun',
             'active' => 'Profil',
             'users' => $users
         ]);
     }
 
-    public function infoRt(){
-        return view('info-rt',[
+    public function infoRt()
+    {
+        return view('info-rt', [
             'title' => 'Informasi RT/RW',
             'active' => 'Info RT',
             // 'users' => User::where('role', 'Ketua')->orderBy('rt_id')->get()
             'users' => User::where('role', 'Ketua')
-            ->leftJoin('rts', 'users.rt_id', '=', 'rts.id')
-            ->orderBy('rts.nama_rt')
-            ->simplePaginate(5)
+                ->leftJoin('rts', 'users.rt_id', '=', 'rts.id')
+                ->orderBy('rts.nama_rt')
+                ->simplePaginate(5)
         ]);
     }
 
@@ -135,7 +144,7 @@ class HomeController extends Controller
     {
 
         $users = User::where('id', auth()->user()->id)->get();
-        return view('edit_password',[
+        return view('edit_password', [
             'title' => 'Edit Password',
             'active' => 'Profil',
             'users' => $users
@@ -146,7 +155,7 @@ class HomeController extends Controller
     {
         $rules = [
             'nama' => 'required|max:255',
-            'image'=> 'image|file|max:1024',
+            'image' => 'image|file|max:1024',
         ];
         $validatedData = $request->validate($rules);
         if ($request->file('image')) {
@@ -162,7 +171,8 @@ class HomeController extends Controller
         return redirect('/pengaturan')->with('success', 'Foto Profil Berhasil Diubah');
     }
 
-    public function updateNoHp(Request $request){
+    public function updateNoHp(Request $request)
+    {
         $validatedData['alamat'] = $request->alamat;
         $validatedData['agama'] = $request->agama;
         $validatedData['status_perkawinan'] = $request->status_perkawinan;
@@ -171,7 +181,8 @@ class HomeController extends Controller
         User::where('id', auth()->user()->id)->update($validatedData);
         return redirect('/profil')->with('success', 'Profil Berhasil Diubah!');
     }
-    public function updatePass(Request $request){
+    public function updatePass(Request $request)
+    {
 
         $validatedData['password'] = bcrypt($request->password);
         User::where('id', auth()->user()->id)->update($validatedData);

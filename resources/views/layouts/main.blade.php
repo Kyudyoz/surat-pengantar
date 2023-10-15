@@ -212,7 +212,11 @@
 		                    <i class="align-middle" data-feather="info"></i> <span class="align-middle">Informasi RT/RW</span>
 		                </a>
 		            </li>
-
+                    <li class="sidebar-item {{ ($active === "landing") ? 'active' : '' }}">
+		                <a class="sidebar-link" href="/landing">
+		                    <i class="align-middle" data-feather="info"></i> <span class="align-middle">Landing Page</span>
+		                </a>
+		            </li>
                     @else
                     <li class="sidebar-header">
 		                Umum
@@ -226,6 +230,11 @@
                     <li class="sidebar-item {{ ($active === "Info RT") ? 'active' : '' }}">
 		                <a class="sidebar-link" href="/infoRt">
 		                    <i class="align-middle" data-feather="info"></i> <span class="align-middle">Informasi RT/RW</span>
+		                </a>
+		            </li>
+                    <li class="sidebar-item {{ ($active === "landing") ? 'active' : '' }}">
+		                <a class="sidebar-link" href="/landing">
+		                    <i class="align-middle" data-feather="info"></i> <span class="align-middle">Landing Page</span>
 		                </a>
 		            </li>
                     @endauth
