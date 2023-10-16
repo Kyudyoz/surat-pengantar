@@ -1,7 +1,17 @@
 @extends('layouts.main')
 @section('main')
 
-
+<style>
+        @media (max-width: 991.98px){
+        .sidebar.collapsed {
+             margin-left: -260px; 
+        }
+        .sidebar {
+            margin-left: 0;
+        }
+        }
+        }
+</style>
     <section class="landing">
         <h2 id="text"><span>Surat RT digital ya...</span><br>TANDA.RT</h2>
         <img src="/img/bird1.png" id="bird1">
