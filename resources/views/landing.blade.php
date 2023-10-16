@@ -1,13 +1,37 @@
 @extends('layouts.main')
 @section('main')
-<link rel="stylesheet" href="css/styles.css">
+
+<style>
+  @media (max-width: 991.98px){
+  .sidebar.collapsed {
+       margin-left: -260px; 
+  }
+  .sidebar {
+      margin-left: 0;
+  }
+  }
+
+  #scrollToTopButton {
+  width: 50px;
+  height: 50px;
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  cursor: pointer;
+}
+</style>
+
     <section class="landing">
         <h2 id="text"><span>Surat RT digital ya...</span><br>TANDA.RT</h2>
         <img src="/img/bird1.png" id="bird1">
         <img src="/img/bird2.png" id="bird2">
         <img src="/img/rumah2.png" id="rumah2">
         <img src="/img/rumah.png" id="rumah">
-        <a href="#scroll" id="btn" class="page-scroll">Login</a>
+        @guest
+        <a href="/login" id="btn" class="page-scroll">Login</a>
+        @endguest
         <img src="/img/semak.png" id="semak">
         <img src="/img/jalan.png" id="jalan">
     </section>   
@@ -15,7 +39,7 @@
     let text = document.getElementById("text");
     let bird1 = document.getElementById("bird1");
     let bird2 = document.getElementById("bird2");
-    let btn = document.getElementById("btn");
+    // let btn = document.getElementById("btn");
     let semak = document.getElementById("semak");
     let rumah2 = document.getElementById("rumah2");
     let rumah = document.getElementById("rumah");
@@ -28,17 +52,17 @@
         bird1.style.left = value * 2 + "%";
         bird2.style.top = value * -1.5 + "%";
         bird2.style.left = value * -5 + "%";
-        btn.style.top = value * 1.5 + "px";
+        // btn.style.top = value * 1.5 + "px";
         semak.style.top = value * -0.08 + "px";
         rumah.style.top = value * 0.0 + "px";
         rumah2.style.top = value * 0.0 + "px";
     }) 
     </script>
     
-</link>
+    <button id="scrollToTopButton" onclick="scrollToTop()" class="rounded-circle btn btn-secondary"><i class="align-middle" data-feather="arrow-up"></i></button>
 
 <div class="klaim">
-        <div class="tklaim col-lg-8 mx-4" style="">
+        <div class="tklaim col-lg-8 mx-4">
             <h4 style="color:white;"><b>
                     Cepat, tepat dan aman
                 </b>
@@ -60,7 +84,9 @@
       </div>
       <div class="card-footer mx-3 mb-3">
       <div class="d-grid gap-1">
-      <a href="/login" type="button" class="btn btn-dark">Buat Surat</a>
+      @if(!(auth()->user()) || (auth()->user()->role == 'Warga'))
+      <a href="/buatSKTM" type="button" class="btn btn-dark">Buat Surat</a>
+      @endif
       </div>
       </div>
     </div>
@@ -74,7 +100,9 @@
       </div>
       <div class="card-footer mx-3 mb-3">
       <div class="d-grid gap-1">
-      <a href="/login" type="button" class="btn btn-dark">Buat Surat</a>
+        @if(!(auth()->user()) || (auth()->user()->role == 'Warga'))
+        <a href="/buatSKKR" type="button" class="btn btn-dark">Buat Surat</a>
+        @endif
       </div>
       </div>
     </div>
@@ -88,7 +116,9 @@
       </div>
       <div class="card-footer mx-3 mb-3">
       <div class="d-grid gap-1">
-      <a href="/login" type="button" class="btn btn-dark">Buat Surat</a>
+        @if(!(auth()->user()) || (auth()->user()->role == 'Warga'))
+        <a href="/buatSKU" type="button" class="btn btn-dark">Buat Surat</a>
+        @endif
       </div>
       </div>
     </div>
@@ -102,7 +132,9 @@
       </div>
       <div class="card-footer mx-3 mb-3">
       <div class="d-grid gap-1">
-      <a href="/login" type="button" class="btn btn-dark">Buat Surat</a>
+        @if(!(auth()->user()) || (auth()->user()->role == 'Warga'))
+        <a href="/buatSKD" type="button" class="btn btn-dark">Buat Surat</a>
+        @endif
       </div>
       </div>
     </div>
@@ -116,7 +148,9 @@
       </div>
       <div class="card-footer mx-3 mb-3">
       <div class="d-grid gap-1">
-      <a href="/login" type="button" class="btn btn-dark">Buat Surat</a>
+        @if(!(auth()->user()) || (auth()->user()->role == 'Warga'))
+        <a href="/buatSKK" type="button" class="btn btn-dark">Buat Surat</a>
+        @endif
       </div>
       </div>
     </div>
@@ -130,7 +164,9 @@
       </div>
       <div class="card-footer mx-3 mb-3">
       <div class="d-grid gap-1">
-      <a href="/login" type="button" class="btn btn-dark">Buat Surat</a>
+        @if(!(auth()->user()) || (auth()->user()->role == 'Warga'))
+        <a href="/buatSKJ" type="button" class="btn btn-dark">Buat Surat</a>
+        @endif
       </div>
       </div>
     </div>
@@ -219,7 +255,7 @@
 
 <div class="unggul">
         <div class="col-lg-8 mx-4" style="color:white">
-        <img src="\img\logoRT.png" class="logo">
+        <img src="\img\logoRT.png" class="logo rounded">
         <h4 style="color:white"><b>
                     Tentang Kami
                 </b>
@@ -230,4 +266,26 @@
             </p>
         </div>
 </div>
+
+
+<script>
+  // Fungsi untuk menampilkan atau menyembunyikan tombol scroll to top
+function toggleScrollToTopButton() {
+  const scrollToTopButton = document.getElementById('scrollToTopButton');
+  if (document.documentElement.scrollTop > 100) {
+    scrollToTopButton.style.display = 'block';
+  } else {
+    scrollToTopButton.style.display = 'none';
+  }
+}
+
+// Fungsi untuk melakukan scroll ke paling atas
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Event listener untuk memanggil toggleScrollToTopButton saat melakukan scroll
+window.addEventListener('scroll', toggleScrollToTopButton);
+
+</script>
 @endsection

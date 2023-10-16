@@ -497,7 +497,6 @@
     });
 
       </script>
-<script src="{{ URL::asset('/js/script.js') }}"></script>
 
 </body>
 
