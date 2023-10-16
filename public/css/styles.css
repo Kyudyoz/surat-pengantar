@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&display=swap');
+
+/* HOME PAGE */
+
+.landing {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.landing #text {
+    position: absolute;
+    color: #222E3B;
+    font-size: 8vw;
+    text-align: center;
+    line-height: 0.70em;
+    font-family: 'League Spartan', sans-serif;
+    transform: translateY(-50%);
+}
+
+.landing #text span {
+    font-size: 0.2em;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-family: "Poppins", sans-serif;
+}
+
+#btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 30px;
+    background: #222E3B;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border-radius: 40px;
+    transform: translateY(100px);
+}
+
+.klaim {
+    width: 100%;
+    height: 200px;
+    background: #fff;
+    display: flex;
+    padding-top: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.dual {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.dual2 {
+    color:white;
+    width: 50%;
+    height: 300px;
+    background-image: url("/img/warga.png");
+    padding-top: 65px;
+}
+
+.dual3 {
+    color:white;
+    width: 50%;
+    height: 300px;
+    background-image: url("/img/ketuaRT.png");
+    padding-top: 65px;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.unggul {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    background-image: url("/img/perumahan.png");
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
