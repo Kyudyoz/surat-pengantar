@@ -1,41 +1,20 @@
 @extends('layouts.main')
 @section('main')
-<link rel="stylesheet" href="css/styles.css">
+
+
     <section class="landing">
         <h2 id="text"><span>Surat RT digital ya...</span><br>TANDA.RT</h2>
         <img src="/img/bird1.png" id="bird1">
         <img src="/img/bird2.png" id="bird2">
         <img src="/img/rumah2.png" id="rumah2">
         <img src="/img/rumah.png" id="rumah">
-        <a href="#scroll" id="btn" class="page-scroll">Login</a>
+        @guest
+        <a href="/login" id="btn">Login</a>
+        @endguest
         <img src="/img/semak.png" id="semak">
         <img src="/img/jalan.png" id="jalan">
     </section>   
-    <script>   
-    let text = document.getElementById("text");
-    let bird1 = document.getElementById("bird1");
-    let bird2 = document.getElementById("bird2");
-    let btn = document.getElementById("btn");
-    let semak = document.getElementById("semak");
-    let rumah2 = document.getElementById("rumah2");
-    let rumah = document.getElementById("rumah");
-    let jalan = document.getElementById("jalan");
-
-    window.addEventListener("scroll", function () {
-        let value = window.scrollY;
-        text.style.top = 50 + value * -0.35 + "%";
-        bird1.style.top = value * -1.5 + "%";
-        bird1.style.left = value * 2 + "%";
-        bird2.style.top = value * -1.5 + "%";
-        bird2.style.left = value * -5 + "%";
-        btn.style.top = value * 1.5 + "px";
-        semak.style.top = value * -0.08 + "px";
-        rumah.style.top = value * 0.0 + "px";
-        rumah2.style.top = value * 0.0 + "px";
-    }) 
-    </script>
-    
-</link>
+   
 
 <div class="klaim">
         <div class="col-lg-8 mx-4" style="">
@@ -59,7 +38,9 @@
       </div>
       <div class="card-footer mx-3 mb-3">
       <div class="d-grid gap-1">
-      <a href="/login" type="button" class="btn btn-dark">Buat Surat</a>
+      @if(!(auth()->user()) || (auth()->user()->role == 'Warga'))
+      <a href="/buatSKTM" type="button" class="btn btn-dark">Buat Surat</a>
+      @endif
       </div>
       </div>
     </div>
@@ -73,7 +54,9 @@
       </div>
       <div class="card-footer mx-3 mb-3">
       <div class="d-grid gap-1">
-      <a href="/login" type="button" class="btn btn-dark">Buat Surat</a>
+      @if(!(auth()->user()) || (auth()->user()->role == 'Warga'))
+      <a href="/buatSKKR" type="button" class="btn btn-dark">Buat Surat</a>
+      @endif
       </div>
       </div>
     </div>
@@ -87,7 +70,9 @@
       </div>
       <div class="card-footer mx-3 mb-3">
       <div class="d-grid gap-1">
-      <a href="/login" type="button" class="btn btn-dark">Buat Surat</a>
+      @if(!(auth()->user()) || (auth()->user()->role == 'Warga'))
+      <a href="/buatSKU" type="button" class="btn btn-dark">Buat Surat</a>
+      @endif
       </div>
       </div>
     </div>
@@ -101,7 +86,9 @@
       </div>
       <div class="card-footer mx-3 mb-3">
       <div class="d-grid gap-1">
-      <a href="/login" type="button" class="btn btn-dark">Buat Surat</a>
+      @if(!(auth()->user()) || (auth()->user()->role == 'Warga'))
+      <a href="/buatSKD" type="button" class="btn btn-dark">Buat Surat</a>
+      @endif
       </div>
       </div>
     </div>
@@ -115,7 +102,9 @@
       </div>
       <div class="card-footer mx-3 mb-3">
       <div class="d-grid gap-1">
-      <a href="/login" type="button" class="btn btn-dark">Buat Surat</a>
+      @if(!(auth()->user()) || (auth()->user()->role == 'Warga'))
+      <a href="/buatSKK" type="button" class="btn btn-dark">Buat Surat</a>
+      @endif
       </div>
       </div>
     </div>
@@ -129,7 +118,9 @@
       </div>
       <div class="card-footer mx-3 mb-3">
       <div class="d-grid gap-1">
-      <a href="/login" type="button" class="btn btn-dark">Buat Surat</a>
+      @if(!(auth()->user()) || (auth()->user()->role == 'Warga'))
+      <a href="/buatSKJ" type="button" class="btn btn-dark">Buat Surat</a>
+      @endif
       </div>
       </div>
     </div>
@@ -191,7 +182,7 @@
 
 <div class="unggul">
         <div class="col-lg-8 mx-4" style="color:white">
-        <img src="\img\logoRT.png" class="logo">  
+        <img src="\img\logoRT.png" class="logo rounded">  
         <h4 style="color:white"><b>
                     Tentang Kami
                 </b>

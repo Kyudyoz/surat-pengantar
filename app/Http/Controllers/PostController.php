@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Crypt;
+
 class PostController extends Controller
 {
     /**
@@ -16,8 +17,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::latest()->paginate(3);
-        return view('blog.blog',[
-            "posts"=> $posts,
+        return view('blog.blog', [
+            "posts" => $posts,
             'title' => 'Bulian News',
             'active' => 'Blog'
         ]);
@@ -28,8 +29,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('blog.create',[
-            "rts"=> Rt::all(),
+        return view('blog.create', [
+            "rts" => Rt::all(),
             'title' => 'Bulian News',
             'active' => 'Blog'
         ]);
@@ -41,9 +42,9 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'judul' =>'required|max:255',
-            'slug' =>'required|unique:posts',
-            'image'=>'required|image|file|max:1024',
+            'judul' => 'required|max:255',
+            'slug' => 'required|unique:posts',
+            'image' => 'required|image|file|max:1024',
             'body' => 'required',
         ]);
         $validatedData['image'] = $request->file('image')->store('post-image');
@@ -51,7 +52,7 @@ class PostController extends Controller
 
         Post::create($validatedData);
 
-        return redirect('/')->with('success', 'Postingan berhasil dibuat!');
+        return redirect('/blog')->with('success', 'Postingan berhasil dibuat!');
     }
 
     /**
@@ -60,9 +61,9 @@ class PostController extends Controller
     public function show(Post $post)
     {
 
-        return view('blog.show',[
-            "title"=>$post->judul,
-            "post"=>$post,
+        return view('blog.show', [
+            "title" => $post->judul,
+            "post" => $post,
             'active' => 'Blog'
         ]);
     }
@@ -72,7 +73,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('blog.edit',[
+        return view('blog.edit', [
             "title" => "Edit Postingan",
             "active" => "Blog",
             'post' => $post
@@ -85,8 +86,8 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $rules = [
-            'judul' =>'required|max:255',
-            'image'=>'image|file|max:1024',
+            'judul' => 'required|max:255',
+            'image' => 'image|file|max:1024',
             'body' => 'required',
         ];
 
@@ -106,9 +107,9 @@ class PostController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
 
         Post::where('id', $post->id)
-        ->update($validatedData);
+            ->update($validatedData);
 
-        return redirect('/')->with('success', 'Postingan berhasil diubah!');
+        return redirect('/blog')->with('success', 'Postingan berhasil diubah!');
     }
 
     /**
@@ -120,10 +121,11 @@ class PostController extends Controller
             Storage::delete($post->image);
         }
         Post::destroy($post->id);
-        return redirect('/')->with('success', 'Postingan berhasil dihapus');
+        return redirect('/blog')->with('success', 'Postingan berhasil dihapus');
     }
 
-    public function checkSlug(Request $request){
+    public function checkSlug(Request $request)
+    {
         $slug = SlugService::createSlug(Post::class, 'slug', $request->judul);
         return response()->json(['slug' => $slug]);
     }

@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('landing', [
-            'title' => 'Smart RT',
+            'title' => 'Tanda RT',
             'active' => 'landing'
         ]);
     }

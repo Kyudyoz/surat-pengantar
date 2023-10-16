@@ -3,6 +3,7 @@
 <main class="content">
     <div class="container-fluid p-0">
 
+        <a href="/blog" class="btn btn-danger"><i class="align-middle" data-feather="arrow-left"></i> Kembali</a>
         <div class="row justify-content-center mt-2">
 
             <div class="col-md-8 mb-2">

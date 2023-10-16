@@ -21,8 +21,8 @@ use App\Http\Controllers\wargaController;
 |
 */
 
-Route::get('/', [PostController::class, 'index']);
-Route::get('/landing', [HomeController::class, 'index']);
+Route::get('/blog', [PostController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/profil', [HomeController::class, 'profil'])->middleware('auth');
 Route::get('/pengaturan', [HomeController::class, 'pengaturan'])->middleware('auth');
 Route::get('/infoRt', [HomeController::class, 'infoRt']);
