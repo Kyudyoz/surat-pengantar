@@ -255,7 +255,7 @@
 
 <div class="unggul">
         <div class="col-lg-8 mx-4" style="color:white">
-        <img src="\img\logoRT.png" class="logo rounded">
+        <img src="\img\logoRT.png" class="logo rounded-circle">
         <h4 style="color:white"><b>
                     Tentang Kami
                 </b>
