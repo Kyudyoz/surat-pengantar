@@ -51,7 +51,9 @@
 											<button type="submit" class="btn btn-lg btn-primary">Kirim</button>
 										</div>
 									</form>
-									
+									<div class="text-end mt-4">
+										<small class="text-muted"><strong><a href="/login" class="text-decoration-none">Kembali ke login</a></strong></small>
+									</div>
 								</div>
 							</div>
 						</div>

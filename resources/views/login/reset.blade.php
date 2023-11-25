@@ -23,8 +23,7 @@
 				<div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
 					<div class="d-table-cell align-middle">
 
-						
-
+						<a href="/lupa-password" class="btn btn-danger mb-2"><i class="align-middle" data-feather="arrow-left"></i> Kembali</a>
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-3">
