@@ -52,13 +52,35 @@ class User extends Authenticatable
     //     });
     // }
 
-    public function posts(){
+    public function generateOtp()
+    {
+        $otp = rand(100000, 999999);
+
+        $this->update([
+            'otp' => $otp,
+            'otp_expires_at' => now()->addMinutes(10), // Atur berakhirnya waktu OTP
+        ]);
+
+        return $otp;
+    }
+    public function resetPassword($newPassword)
+    {
+        $this->update([
+            'password' => bcrypt($newPassword),
+            'otp' => null,
+            'otp_expires_at' => null,
+        ]);
+    }
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
-    public function surats(){
+    public function surats()
+    {
         return $this->hasMany(Surat::class);
     }
-    public function rt(){
+    public function rt()
+    {
         return $this->belongsTo(Rt::class);
     }
 }

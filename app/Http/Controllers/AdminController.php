@@ -50,7 +50,7 @@ class AdminController extends Controller
     public function storeUser(Request $request)
     {
         $validatedData = $request->validate([
-            'nik' => 'required|unique:users',
+            'nik' => 'required|unique:users|min:16|max:16|numeric',
             'nama' => 'required',
             'tanggal_lahir' => 'required',
             'tempat_lahir' => 'required',
@@ -67,6 +67,9 @@ class AdminController extends Controller
         $validatedData['role'] = $request->role;
         $validatedData['status'] = $request->status;
         User::create($validatedData);
+        $rts = Rt::find($request->rt_id);
+        $rts->nama_ketua = $request->nama;
+        $rts->save();
         return redirect('/dataUser')->with('success', 'User Berhasil Ditambah!');
     }
 
@@ -75,7 +78,10 @@ class AdminController extends Controller
         $validatedData = $request->validate([
             'nama_rt' => 'required|unique:rts'
         ]);
+
         $validatedData['nama_rt'] = strtoupper($validatedData['nama_rt']);
+
+
 
         Rt::create($validatedData);
         return redirect('/dataRt')->with('success', 'RT Berhasil Ditambah!');
@@ -152,7 +158,7 @@ class AdminController extends Controller
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array(
                 'target' => $phone_number,
-                'message' => 'Pengajuan registrasi akun anda sudah disetujui oleh Admin. Silahkan Login : https://kelompok3.rsix.site/login',
+                'message' => "Pengajuan registrasi akun anda dengan disetujui oleh Admin. \r\nSilahkan Login : https://kelompok3.rsix.site/login",
                 'countryCode' => '62', //optional
             ),
             CURLOPT_HTTPHEADER => array(
@@ -193,7 +199,7 @@ class AdminController extends Controller
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array(
                 'target' => $phone_number,
-                'message' => 'Pengajuan registrasi akun anda ditolak oleh Admin. Hubungi RT setempat melalui : https://kelompok3.rsix.site/infoRt',
+                'message' => "Pengajuan registrasi akun anda ditolak oleh Admin. \r\nHubungi RT setempat melalui : https://kelompok3.rsix.site/infoRt",
                 'countryCode' => '62', //optional
             ),
             CURLOPT_HTTPHEADER => array(

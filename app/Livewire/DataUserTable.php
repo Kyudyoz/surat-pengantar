@@ -14,8 +14,8 @@ class DataUserTable extends Component
     protected $paginationTheme = 'bootstrap';
     public function render()
     {
-        return view('livewire.data-user-table',[
-            'users' => User::where('role','!=','Admin')->where('status', 'Disetujui Admin')->where('nama','like','%'.$this->search.'%')->orderBy('role')->orderBy('rt_id')->paginate(5),
+        return view('livewire.data-user-table', [
+            'users' => User::where('role', '!=', 'Admin')->where('status', 'Disetujui')->where('nama', 'like', '%' . $this->search . '%')->orderBy('role')->orderBy('rt_id')->paginate(5),
         ]);
     }
 

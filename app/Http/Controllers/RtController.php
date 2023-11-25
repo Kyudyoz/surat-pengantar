@@ -14,9 +14,9 @@ class RtController extends Controller
     public function validasi()
     {
         $surats2 = Surat::where('rt_id', auth()->user()->rt_id)
-        ->orderBy('status')
-        ->simplePaginate(5);
-        return view('rt.validasi',[
+            ->orderBy('status')
+            ->simplePaginate(5);
+        return view('rt.validasi', [
             'title' => 'Validasi Surat Pengantar',
             'active' => 'Validasi',
             'surats2' => $surats2,
@@ -26,10 +26,10 @@ class RtController extends Controller
     public function validasiWarga()
     {
         $users = User::where('rt_id', auth()->user()->rt_id)
-        ->where('status', 'Menunggu Divalidasi')->latest()->simplePaginate(5);
+            ->where('status', 'Menunggu Divalidasi')->latest()->simplePaginate(5);
         $users2 = User::where('rt_id', auth()->user()->rt_id)
-        ->where('status','!=','Menunggu Divalidasi')->orderBy('status', 'DESC')->latest()->simplePaginate(5);
-        return view('rt.validasi-warga',[
+            ->where('status', '!=', 'Menunggu Divalidasi')->orderBy('status', 'DESC')->latest()->simplePaginate(5);
+        return view('rt.validasi-warga', [
             'title' => 'Validasi Akun Warga',
             'active' => 'Validasi Akun Warga',
             'users' => $users,
@@ -39,30 +39,33 @@ class RtController extends Controller
 
     public function dataWarga()
     {
-        return view('rt.data-warga',[
+        return view('rt.data-warga', [
             'title' => 'Data Warga',
             'active' => 'Data Warga',
         ]);
     }
 
-    public function tambahWarga(){
-        return view('rt.tambah-warga',[
+    public function tambahWarga()
+    {
+        return view('rt.tambah-warga', [
             'title' => 'Data Warga',
             'active' => 'Data Warga',
         ]);
     }
 
-    public function unggahTtd(){
-        return view('rt.unggah-ttd',[
+    public function unggahTtd()
+    {
+        return view('rt.unggah-ttd', [
             'title' => 'Unggah Tanda Tangan',
             'active' => 'Unggah Tanda Tangan',
             'rts' => Rt::where('id', auth()->user()->rt_id)->get(),
         ]);
     }
 
-    public function updateTtd(Request $request) {
+    public function updateTtd(Request $request)
+    {
         $rules = [
-            'ttd'=> 'image|file|max:2048',
+            'ttd' => 'image|file|max:2048',
         ];
         $validatedData = $request->validate($rules);
         if ($request->file('ttd')) {
@@ -74,13 +77,14 @@ class RtController extends Controller
         $id = $request->id;
         $validatedData['id'] = $id;
 
-        
+
 
         Rt::where('id', $id)->update($validatedData);
         return redirect('/unggahTtd')->with('success', 'Tanda Tangan Berhasil Diunggah!');
     }
 
-    public function storeWarga(Request $request){
+    public function storeWarga(Request $request)
+    {
         $validatedData = $request->validate([
             'nik' => 'required|unique:users',
             'nama' => 'required',
@@ -106,7 +110,7 @@ class RtController extends Controller
         $id = Crypt::decrypt($id);
 
         $users = User::where('id', $id)->get();
-        return view('rt.detail-warga',[
+        return view('rt.detail-warga', [
             'title' => 'Data Warga',
             'active' => 'Data Warga',
             'users' => $users
@@ -118,7 +122,7 @@ class RtController extends Controller
         $id = Crypt::decrypt($id);
 
         $users = User::where('id', $id)->get();
-        return view('rt.detail-validasi',[
+        return view('rt.detail-validasi', [
             'title' => 'Detail Validasi',
             'active' => 'Validasi Akun Warga',
             'users' => $users
@@ -135,13 +139,12 @@ class RtController extends Controller
 
         if ($rt->ttd) {
             $surat->status = 'Disetujui';
-    
+
             $surat->save();
             return redirect('/validasi')->with('success', 'Surat Berhasil Disetujui!');
-        } else{
+        } else {
             return back()->with('ttdError', 'Anda Belum Mengunggah Tanda Tangan!');
         }
-        
     }
 
     public function setujuiAkun($id)
@@ -150,10 +153,39 @@ class RtController extends Controller
 
         $user = User::find($id);
 
-        $user->status = 'Disetujui RT';
-    
+        $user->status = 'Disetujui';
+
         $user->save();
-        return redirect('/validasiWarga')->with('success', 'Akun Berhasil Disetujui! Harap tunggu validasi Admin');
+
+        $phone_number = $user->no_hp;
+
+        $phone_number = preg_replace('/^62/', '0', $phone_number);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $phone_number,
+                'message' => "Pengajuan registrasi akun anda telah disetujui. \r\nSilahkan Login : https://kelompok3.rsix.site/login",
+                'countryCode' => '62', //optional
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: xNs9nSws9bqjaBxD04WQ' //change TOKEN to your actual token
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return redirect('/validasiWarga')->with('success', 'Akun Berhasil Disetujui!');
     }
 
 
@@ -175,8 +207,8 @@ class RtController extends Controller
 
         $user = User::find($id);
 
-        $user->status = 'Ditolak RT';
-    
+        $user->status = 'Ditolak';
+
         $user->save();
 
         $phone_number = $user->no_hp;
@@ -186,22 +218,22 @@ class RtController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.fonnte.com/send',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array(
-        'target' => $phone_number,
-        'message' => 'Pengajuan registrasi akun anda ditolak oleh RT. Hubungi RT setempat melalui : https://kelompok3.rsix.site/infoRt', 
-        'countryCode' => '62', //optional
-        ),
-        CURLOPT_HTTPHEADER => array(
-            'Authorization: xNs9nSws9bqjaBxD04WQ' //change TOKEN to your actual token
-        ),
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $phone_number,
+                'message' => "Pengajuan registrasi akun anda ditolak. \r\nHubungi RT setempat melalui : https://kelompok3.rsix.site/infoRt",
+                'countryCode' => '62', //optional
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: xNs9nSws9bqjaBxD04WQ' //change TOKEN to your actual token
+            ),
         ));
 
         $response = curl_exec($curl);

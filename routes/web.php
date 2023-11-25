@@ -60,9 +60,13 @@ Route::get('/deletePost/{post:slug}', [PostController::class, 'destroy'])->middl
 //login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::get('/lupa-password', [LoginController::class, 'lupaPw'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('send-otp', [LoginController::class, 'send'])->name('password.send.otp');
+Route::view('reset-password', 'login.reset')->name('password.reset.form');
+Route::post('reset-password', [LoginController::class, 'reset'])->name('password.reset');
 
 //warga
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware('auth');

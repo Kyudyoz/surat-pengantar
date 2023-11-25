@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'rt_id' => 1,
-            'nik' => '1234567890',
+            'nik' => '1234567890123456',
             'password' => bcrypt('12345'),
             'nama' => 'Akhdan Al Wafi',
             'tempat_lahir' => 'Jambi',
@@ -53,11 +53,11 @@ class DatabaseSeeder extends Seeder
             'pekerjaan' => 'Mahasiswa',
             'role' => 'Warga',
             'no_hp' => '628901231232',
-            'status' => 'Disetujui Admin'
+            'status' => 'Disetujui'
         ]);
         User::create([
             'rt_id' => 2,
-            'nik' => '1234567892',
+            'nik' => '1234567892123456',
             'password' => bcrypt('12345'),
             'nama' => 'Sabrian',
             'tempat_lahir' => 'Jambi',
@@ -69,12 +69,12 @@ class DatabaseSeeder extends Seeder
             'pekerjaan' => 'Pengurus RT',
             'role' => 'Ketua',
             'no_hp' => '628901231234',
-            'status' => 'Disetujui Admin'
+            'status' => 'Disetujui'
 
         ]);
         User::create([
             'rt_id' => 1,
-            'nik' => '1234567891',
+            'nik' => '1234567891123456',
             'password' => bcrypt('12345'),
             'nama' => 'Muhammad Iqbal Firdaus',
             'tempat_lahir' => 'Padang',
@@ -85,12 +85,12 @@ class DatabaseSeeder extends Seeder
             'status_perkawinan' => 'Belum Kawin',
             'pekerjaan' => 'Pejabat RT',
             'role' => 'Ketua',
-            'no_hp' => '628901231234',
-            'status' => 'Disetujui Admin'
+            'no_hp' => '6282284928931',
+            'status' => 'Disetujui'
         ]);
         User::create([
             'rt_id' => 3,
-            'nik' => '1234567894',
+            'nik' => '1234567894123456',
             'password' => bcrypt('12345'),
             'nama' => 'Reysha',
             'tempat_lahir' => 'Jambi',
@@ -102,12 +102,12 @@ class DatabaseSeeder extends Seeder
             'pekerjaan' => 'Pejabat RT',
             'role' => 'Ketua',
             'no_hp' => '628901231237',
-            'status' => 'Disetujui Admin'
-            
+            'status' => 'Disetujui'
+
         ]);
         User::create([
             'rt_id' => 2,
-            'nik' => '1234567893',
+            'nik' => '1234567893123456',
             'password' => bcrypt('12345'),
             'nama' => 'Ilham',
             'tempat_lahir' => 'Padang',
@@ -119,7 +119,7 @@ class DatabaseSeeder extends Seeder
             'pekerjaan' => 'Mahasiswa',
             'role' => 'Warga',
             'no_hp' => '628901231239',
-            'status' => 'Disetujui Admin'
+            'status' => 'Disetujui'
 
         ]);
         User::create([
@@ -127,7 +127,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345'),
             'nama' => 'Admin',
             'role' => 'Admin',
-            'status' => 'Disetujui Admin'
+            'status' => 'Disetujui'
         ]);
 
         Surat::create([
@@ -148,7 +148,7 @@ class DatabaseSeeder extends Seeder
             'rt_id' => 2,
             'keperluan' => 'Terakhir',
             'jenis_surat' => 'Surat Keterangan Domisili',
-            
+
         ]);
 
         Post::create([

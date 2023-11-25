@@ -23,9 +23,7 @@
                                     <td>{{ $user2->nama }}</td>
                                     <td>{{ $user2->nik }}</td>
                                     <td>
-                                        @if ($user2->status == 'Disetujui RT')
-                                        <span class="badge bg-info">{{ $user2->status }}</span>
-                                        @elseif($user2->status == 'Disetujui Admin')
+                                        @if ($user2->status == 'Disetujui')
                                         <span class="badge bg-success">{{ $user2->status }}</span>
                                         @else
                                         <span class="badge bg-danger">{{ $user2->status }}</span>

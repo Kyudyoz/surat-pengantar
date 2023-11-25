@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-	<title>Login</title>
+	<title>Reset Password</title>
 </head>
 
 <body>
@@ -23,28 +23,24 @@
 				<div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
 					<div class="d-table-cell align-middle">
 
-						<div class="text-center mt-4">
-							<h1 class="h2">Selamat Datang Kembali!</h1>
-							<p class="lead">
-								Silahkan Login Untuk Melanjutkan
-							</p>
-						</div>
+						
 
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-3">
-									<form action="/login" method="post">
+									<form action="{{ route('password.reset') }}" method="post">
                                         @csrf
+                                        <input type="text" name="nik" value="{{ session('nik') }}">
 										<div class="mb-3">
-											<label class="form-label">NIK</label>
-											<input class="form-control form-control-lg @error('nik') is-invalid @enderror" type="text" name="nik" placeholder="Masukan NIK"/>
-                                            @error('nik')
+											<label class="form-label">OTP</label>
+											<input class="form-control form-control-lg @error('otp') is-invalid @enderror" type="text" name="otp" placeholder="Masukan otp"/>
+                                            @error('otp')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
                                             @enderror
 										</div>
-										<div class="mb-3">
+                                        <div class="mb-3">
 											<label class="form-label">Password</label>
 											<div class="input-group">
 												<input class="form-control pw form-control-lg @error('password') is-invalid @enderror" type="password" name="password" placeholder="Masukan password"/>
@@ -58,18 +54,14 @@
                                                 </div>
                                             @enderror
 										</div>
+										
 										<div>
 										</div>
 										<div class="d-grid gap-2 mt-3">
-											<button type="submit" class="btn btn-lg btn-primary">Login</button>
+											<button type="submit" class="btn btn-lg btn-primary">Reset!</button>
 										</div>
 									</form>
-									<div class="text-start mt-2">
-										<small class="text-muted"><a href="/lupa-password" class="text-decoration-none">Lupa Password?</a></small>
-									</div>
-									<div class="text-end mt-2">
-										<small class="text-muted">Belum punya akun? <a href="/register" class="text-decoration-none">Registrasi!</a></small>
-									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -83,7 +75,7 @@
     <script>
         Swal.fire({
             icon: 'warning',
-            title: 'Login Gagal!',
+            title: 'Gagal!',
             text: '{{ session()->get('loginError') }}',
         })
     </script>
@@ -98,23 +90,23 @@
     </script>
 	@endif
     <script src="{{ URL::asset('/assets/js/app.js') }}"></script>
-	<script>
-		let pw = document.querySelector('.pw');
-		let togglePw = document.querySelector('.toggle-pw');
-	
-		togglePw.onclick = function(){
-			if (pw.type == "password") {
-				pw.type = "text";
+    <script>
+        let pw = document.querySelector('.pw');
+        let togglePw = document.querySelector('.toggle-pw');
+    
+        togglePw.onclick = function(){
+            if (pw.type == "password") {
+                pw.type = "text";
                 pw.autocomplete = "off";
-				togglePw.classList.remove('btn-outline-secondary');
-				togglePw.classList.add('btn-secondary');
-			}else{
-				pw.type = "password";
-				togglePw.classList.remove('btn-secondary');
-				togglePw.classList.add('btn-outline-secondary');
-			}
-		}
-	</script>
+                togglePw.classList.remove('btn-outline-secondary');
+                togglePw.classList.add('btn-secondary');
+            }else{
+                pw.type = "password";
+                togglePw.classList.remove('btn-secondary');
+                togglePw.classList.add('btn-outline-secondary');
+            }
+        }
+    </script>
 </body>
 
 </html>

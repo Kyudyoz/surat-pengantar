@@ -192,11 +192,11 @@
 		                    <i class="align-middle" data-feather="align-right"></i> <span class="align-middle">Data User</span>
 		                </a>
 		            </li>
-                    <li class="sidebar-item {{ ($active === "Validasi Akun User") ? 'active' : '' }}">
+                    {{-- <li class="sidebar-item {{ ($active === "Validasi Akun User") ? 'active' : '' }}">
 		                <a class="sidebar-link" href="/validasiAkun">
 		                    <i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Validasi Akun User</span>
 		                </a>
-		            </li>
+		            </li> --}}
                     @endif
 
 		            <li class="sidebar-header">
@@ -431,6 +431,23 @@
 <script>
     document.getElementById('imageProfil').onchange =function(){
       document.getElementById('form').submit();
+    }
+</script>
+<script>
+    let pw = document.querySelector('.pw');
+    let togglePw = document.querySelector('.toggle-pw');
+
+    togglePw.onclick = function(){
+        if (pw.type == "password") {
+            pw.type = "text";
+            pw.autocomplete = "off";
+            togglePw.classList.remove('btn-outline-secondary');
+            togglePw.classList.add('btn-secondary');
+        }else{
+            pw.type = "password";
+            togglePw.classList.remove('btn-secondary');
+            togglePw.classList.add('btn-outline-secondary');
+        }
     }
 </script>
 <script>

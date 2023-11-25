@@ -12,9 +12,9 @@ class ValidasiAdminTable extends Component
     protected $paginationTheme = 'bootstrap';
     public function render()
     {
-        $users = User::where('status', 'Disetujui RT')->latest()->simplePaginate(5);
+        $users = User::where('status', 'Disetujui')->latest()->simplePaginate(5);
 
-        return view('livewire.validasi-admin-table',[
+        return view('livewire.validasi-admin-table', [
             'users' => $users
         ]);
     }

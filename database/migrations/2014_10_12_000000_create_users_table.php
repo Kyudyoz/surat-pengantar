@@ -30,7 +30,8 @@ return new class extends Migration
             $table->string('with_ktp')->nullable();
             $table->string('status')->nullable();
             $table->string('role');
-            $table->rememberToken();
+            $table->integer('otp')->nullable();
+            $table->timestamp('otp_expires_at')->nullable();
             $table->timestamps();
         });
     }

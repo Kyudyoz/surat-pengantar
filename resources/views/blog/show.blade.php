@@ -19,9 +19,15 @@
                     @endif
                     <div class="card-body">
                         <h2 class="card-title text-dark">{{ Str::ucfirst($post->judul) }}</h2>
+                        @if (!($post->user->rt_id))
+                        <small class="card-text text-muted">
+                            Dari : Admin
+                        </small>
+                        @else
                         <small class="card-text text-muted">
                             Dari : {{ $post->user->rt->nama_rt }}
                         </small>
+                        @endif
                         <br>
                         <small class="card-text text-muted">
                             {{ $post->created_at->diffForHumans() }}
@@ -29,14 +35,14 @@
                         <hr />
                         <p class="card-text">{!! $post->body !!}</p>
                         @auth
-                            @if (auth()->user()->role == "Ketua" || auth()->user()->role == "admin")
-                            <div class="w-100 text-end">
-                                <a href="/posts/edit/{{ $post->slug }}" class="btn btn-warning">Edit</a>
-                                <a href="#" class="btn btn-danger deletePost" data-id="{{ $post->slug }}">
-                                    Hapus
-                                </a>
-                            </div>
-                            @endif
+                        @if ($post->user_id == auth()->user()->id)
+                        <div class="w-100 text-end">
+                            <a href="/posts/edit/{{ $post->slug }}" class="btn btn-warning">Edit</a>
+                            <a href="#" class="btn btn-danger deletePost" data-id="{{ $post->slug }}">
+                                Hapus
+                            </a>
+                        </div>
+                        @endif
                         @endauth
 
                     </div>
