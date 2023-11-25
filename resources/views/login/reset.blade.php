@@ -30,7 +30,7 @@
 								<div class="m-sm-3">
 									<form action="{{ route('password.reset') }}" method="post">
                                         @csrf
-                                        <input type="text" name="nik" value="{{ session('nik') }}">
+                                        <input type="hidden" name="nik" value="{{ session('nik') }}">
 										<div class="mb-3">
 											<label class="form-label">OTP</label>
 											<input class="form-control form-control-lg @error('otp') is-invalid @enderror" type="text" name="otp" placeholder="Masukan otp"/>
