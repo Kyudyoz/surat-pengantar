@@ -138,8 +138,8 @@
                     <p style="text-align: center">Ketua {{ ucfirst($surat->rt->nama_rt) }}</p>
                     @if ($surat->status == 'Disetujui')
                     <div class="text-center" style="text-align: center">
-                        <img src="{{ $pic }}" alt="ttd" border="0" width="70" style="display: inline;margin-left: 30%">
-                        <img src="{{ $pic2 }}" alt="qr" border="0" width="70" style="padding-left: 20%">
+                        <img src="{{ $pic }}" alt="ttd" border="0" width="70" >
+                        {{-- <img src="{{ $pic2 }}" alt="qr" border="0" width="70" style="padding-left: 20%"> --}}
                     </div>
                     <p style="text-align: center;padding-top:5%">{{ ucfirst($surat->rt->nama_ketua) }}</p>
                     @else
