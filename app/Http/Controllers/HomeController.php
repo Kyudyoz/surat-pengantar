@@ -27,7 +27,7 @@ class HomeController extends Controller
             ->get();
         $jmlDiproses = $diproses->count();
 
-        $warga = User::where('role', 'Warga')->where('rt_id', auth()->user()->rt->id)->where('status', 'Disetujui Admin')->get();
+        $warga = User::where('role', 'Warga')->where('rt_id', auth()->user()->rt->id)->where('status', 'Disetujui')->get();
         $validasi = User::where('role', 'Warga')->where('rt_id', auth()->user()->rt->id)->where('status', 'Menunggu Validasi')->get();
         $jmlWarga = $warga->count();
         $jmlValidasi = $validasi->count();
@@ -47,10 +47,10 @@ class HomeController extends Controller
     {
         $rts = Rt::all();
         $jmlRt = $rts->count();
-        $user = User::where('role', '!=', 'Admin')->where('status', 'Disetujui Admin')->get();
-        $validasi = User::where('role', '!=', 'Admin')->where('status', 'Disetujui RT')->get();
+        $user = User::where('role', '!=', 'Admin')->where('status', 'Disetujui')->get();
+
         $jmlUser = $user->count();
-        $jmlValidasi = $validasi->count();
+
 
 
         return view('admin.dashboard-admin', [
@@ -60,7 +60,7 @@ class HomeController extends Controller
             'jmlRt' => $jmlRt,
             'user' => $user,
             'jmlUser' => $jmlUser,
-            'jmlValidasi' => $jmlValidasi
+
 
 
         ]);
