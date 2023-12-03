@@ -18,10 +18,10 @@
 
 <body>
 	<main class="d-flex w-100">
-		<div class="container d-flex flex-column">
-			<div class="row vh-100">
-				<div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
-					<div class="d-table-cell align-middle">
+		<div class="container d-flex flex-column pb-4">
+			<div class="row vh-100 pb-4">
+				<div class="col-sm-8 col-md-8 col-lg-10 col-xl-10 mx-auto d-table h-100 pb-4">
+					<div class="d-table-cell align-middle pb-4">
 
 						<div class="text-center mt-4">
 							<h1 class="h2">Masukan NIK untuk mendapatkan password</h1>
@@ -29,30 +29,35 @@
 								OTP akan dikirim melalui whatsapp yang terikat dengan akun
 							</p>
 						</div>
-
+						<a href="/login" class="btn btn-danger mb-2"><i class="align-middle" data-feather="arrow-left"></i> Kembali</a>
 						<div class="card">
-							<div class="card-body">
-								<div class="m-sm-3">
-									<form action="{{ route('password.send.otp') }}" method="post">
-                                        @csrf
-										<div class="mb-3">
-											<label class="form-label">NIK</label>
-											<input class="form-control form-control-lg @error('nik') is-invalid @enderror" type="text" name="nik" placeholder="Masukan NIK"/>
-                                            @error('nik')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+							<div class="row g-0">
+								<div class="col-md-4 text-center">
+									<img src="{{ URL::asset('assets/img/icons/logo2.png') }}" class="img-fluid rounded-start" width="70%" alt="...">
+								</div>
+								<div class="col-md-8 mt-4">
+									<div class="card-body">
+										<div class="m-sm-3">
+											<form action="{{ route('password.send.otp') }}" method="post">
+												@csrf
+												<div class="mb-3">
+													<label class="form-label">NIK</label>
+													<input class="form-control form-control-lg @error('nik') is-invalid @enderror" type="text" name="nik" placeholder="Masukan NIK"/>
+													@error('nik')
+														<div class="invalid-feedback">
+															{{ $message }}
+														</div>
+													@enderror
+												</div>
+												
+												<div>
+												</div>
+												<div class="d-grid gap-2 mt-3">
+													<button type="submit" class="btn btn-lg btn-primary">Kirim</button>
+												</div>
+											</form>
+											
 										</div>
-										
-										<div>
-										</div>
-										<div class="d-grid gap-2 mt-3">
-											<button type="submit" class="btn btn-lg btn-primary">Kirim</button>
-										</div>
-									</form>
-									<div class="text-end mt-4">
-										<small class="text-muted"><strong><a href="/login" class="text-decoration-none">Kembali ke login</a></strong></small>
 									</div>
 								</div>
 							</div>
