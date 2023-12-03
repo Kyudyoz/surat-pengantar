@@ -35,7 +35,7 @@ class LoginController extends Controller
     {
         $request->validate([
             'nik' => 'required',
-            'password' => 'required|min:5',
+            'password' => 'required',
             'otp' => 'required',
         ]);
         $user = User::where('nik', $request->nik)->first();
@@ -43,7 +43,8 @@ class LoginController extends Controller
             $user->resetPassword($request->input('password'));
             return redirect('/login')->with('success', 'Password telah diubah!');
         }
-        return back()->with('loginError', 'OTP salah atau sudah tidak berlaku!');
+
+        return back()->with('loginError', 'OTP salah atau sudah kadaluarsa!')->with('nik', $user->nik);
     }
 
 

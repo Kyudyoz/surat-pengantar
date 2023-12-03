@@ -91,8 +91,8 @@
                     <p style="text-align: center">Ketua {{ ucfirst($surat->rt->nama_rt) }}</p>
                     @if ($surat->status == 'Disetujui')
                     <div class="text-center" style="text-align: center">
-                        {{-- <img src="{{ $pic }}" alt="ttd" border="0" width="70"> --}}
-                        <img src="data:image/png;base64, {!! base64_encode(QrCode::size(70)->generate(asset('storage/' . $surat->rt->ttd))) !!}" alt="ttd" border="0" width="70">
+                        <img src="{{ $pic }}" alt="ttd" border="0" width="70">
+                        {{-- <img src="data:image/png;base64, {!! base64_encode(QrCode::size(70)->generate(asset('storage/' . $surat->rt->ttd))) !!}" alt="ttd" border="0" width="70"> --}}
                         {{-- <img src="{{ $pic2 }}" alt="qr" border="0" width="70" style="padding-left: 20%"> --}}
                     </div>
                     <p style="text-align: center;padding-top:5%">{{ ucfirst($surat->rt->nama_ketua) }}</p>
