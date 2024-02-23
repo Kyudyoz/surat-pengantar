@@ -9,7 +9,7 @@ Berikut adalah langkah-langkah untuk mengkloning dan menjalankan proyek ini seca
 
 2. **Clone Proyek dari GitHub:**
    ```bash
-   git clone https://github.com/Kyudyoz/santar.git
+   git clone https://github.com/Kyudyoz/surat-pengantar.git
 3. **Masuk ke direktori project**
 4. **Instal Dependensi Composer**
     ```bash
